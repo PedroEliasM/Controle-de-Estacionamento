@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/04/2025 às 02:29
+-- Tempo de geração: 30/04/2025 às 00:00
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -43,6 +43,7 @@ CREATE TABLE `empresa` (
 CREATE TABLE `movimentacao` (
   `id_movimentacao` int(11) NOT NULL COMMENT 'ID da Movimentação',
   `tipo` char(1) NOT NULL COMMENT 'Tipo da movimentação: E-Entrada / S-Saída',
+  `data` datetime(1) NOT NULL,
   `fk_id_vaga` int(11) NOT NULL COMMENT 'FK - ID da Vaga'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
