@@ -13,3 +13,4 @@ Mensagem de erro de conflito
 5.2.1 - Pressionar a tecla ESC
 5.2.2 - Digitar ":wq"
 5.2.3 - Pressionar Enter
+5.2.4 - git push
