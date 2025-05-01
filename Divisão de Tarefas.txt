@@ -3,17 +3,18 @@ Divisão de Tarefas
 --- Outros ---
 - (1 pessoa) Responsável pelo Banco de dados
 
-- Criar funções adicionais do projeto
+- (1 pessoa) Criar funções adicionais do projeto: mostrar as vagas mais usadas e menos usadas,
+mostrar por quanto tempo as vagas foram ocupadas e registrar isso
 
-- (1 pessoa) Criar telas de login usuário e ADM
+- (1 pessoa, mesma do banco de dados) Criar telas de login usuário e ADM
 --- Outros ---
 **********************************************
 --- ADM ---
-- (1 pessoa) Criar tela CRUD de empresa
+- (1 pessoa) Criar tela CRUD de empresa, cuidar das funções da tela
 
-- (1 pessoa) Criar tela CRUD de usuário(funcionário)
+- (1 pessoa) Criar tela CRUD de usuário(funcionário), cuidar das funções da tela
 
-- (1 pessoa) Criar tela CRUD de vagas
+- (1 pessoa) Criar tela CRUD de vagas, cuidar das funções da tela
 
 - (1 pessoa, mesma da tela funcionário) Criar tela de controle de vagas e status(vai ser utilizada a função da tela de funcionário)
 --- ADM ---
