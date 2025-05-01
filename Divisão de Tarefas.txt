@@ -1,0 +1,23 @@
+divisao de tarefas
+
+- Responsável pelo Banco de dados
+
+criar funçoes do projeto
+
+
+--- ADM ---
+- (tela de ADM) Criar tela CRUD de empresa
+
+- (tela de ADM) Criar tela CRUD de usuário(funcionário)
+
+- (tela de ADM) Criar tela CRUD de vagas
+
+- (tela de ADM) Criar tela de entrada e saída de carros(tipo tela de acentos de cinema)
+
+- (tela de ADM) Criar tela de controle de vagas e status
+--- ADM ---
+
+criar telas de login usuario e ADM
+usuario - tela de entrada e saida de carros
+
+
