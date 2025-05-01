@@ -20,8 +20,7 @@ Divisão de Tarefas
 **********************************************
 --- Funcionário ---
 
-- (1 pessoa) Criar tela de controle de entrada e saída de carros: tela visual com vagas(parecido com tela de acentos em cinema),
-funções da tela
+- (1 pessoa) Criar tela de controle de entrada e saída de carros: tela visual com vagas(parecido com tela de acentos em cinema), funções da tela
 
 --- Funcionário ---
 
