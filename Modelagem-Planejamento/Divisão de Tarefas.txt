@@ -1,27 +1,29 @@
 Divisão de Tarefas
 
 --- Outros ---
-- (1 pessoa) Responsável pelo Banco de dados
+- (Kleberson e Nicolas) Responsável pelo Banco de dados
 
-- (1 pessoa) Criar funções adicionais do projeto: mostrar as vagas mais usadas e menos usadas,
-mostrar por quanto tempo as vagas foram ocupadas e registrar isso
+- (Daniel e Henrique) Função de perfil do usuário: Foto, dados principais, editar informações, tela visual do perfil
+- (Daniel e Henrique) Criar funções adicionais do projeto: mostrar as vagas mais usadas e menos usadas, mostrar por quanto tempo as vagas foram ocupadas e registrar isso
 
-- (1 pessoa, mesma do banco de dados) Criar telas de login usuário e ADM
+- (Pedro) Criar telas de login usuário e ADM
+- (Pedro) Design do Sistema, CSS
+- (Pedro e Leonardo) Testar segurança do Sistema
 --- Outros ---
 **********************************************
 --- ADM ---
-- (1 pessoa) Criar tela CRUD de empresa, cuidar das funções da tela
+- (Kleberson e Nicolas) Criar funções CRUD de empresa + modal visual
+- (Kleberson e Nicolas) Criar funções CRUD de usuário(funcionário) + modal visual
+- (Kleberson e Nicolas) Criar funções CRUD de vagas + modal visual
+- CRUD -> Criar, Editar, Excluir, Buscar
 
-- (1 pessoa) Criar tela CRUD de usuário(funcionário), cuidar das funções da tela
-
-- (1 pessoa) Criar tela CRUD de vagas, cuidar das funções da tela
-
-- (1 pessoa, mesma da tela funcionário) Criar tela de controle de vagas e status(vai ser utilizada a função da tela de funcionário)
+- (Pedro) Colocar a tela de visualização de vagas da tela de funcionário aqui na tela de ADM)
 --- ADM ---
 **********************************************
 --- Funcionário ---
 
-- (1 pessoa) Criar tela de controle de entrada e saída de carros: tela visual com vagas(parecido com tela de acentos em cinema), funções da tela
+- (Pedro) Criar visual da tela de controle de entrada e saída de carros: tela visual com vagas(parecido com tela de acentos em cinema)
+- (Leonardo) Função para puxar informações das vagas: Nome da vaga, Ativa/Inativa Ocupada/Livre
 
 --- Funcionário ---
 
