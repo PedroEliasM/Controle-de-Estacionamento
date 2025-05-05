@@ -14,8 +14,9 @@ Divisão de Tarefas
 --- ADM ---
 - (Kleberson e Nicolas) Criar funções CRUD de empresa + modal visual
 - (Kleberson e Nicolas) Criar funções CRUD de usuário(funcionário) + modal visual
-- (Kleberson e Nicolas) Criar funções CRUD de vagas + modal visual
 - CRUD -> Criar, Editar, Excluir, Buscar
+
+- (Leonardo) Criar funções CRUD de vagas + modal visual
 
 - (Pedro) Colocar a tela de visualização de vagas da tela de funcionário aqui na tela de ADM)
 --- ADM ---
