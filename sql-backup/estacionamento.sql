@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/04/2025 às 00:00
+-- Tempo de geração: 07/05/2025 às 02:52
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -33,6 +33,13 @@ CREATE TABLE `empresa` (
   `cnpj` varchar(14) NOT NULL COMMENT 'CNPJ da Empresa',
   `telefone` varchar(13) NOT NULL COMMENT 'Telefone da Empresa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `empresa`
+--
+
+INSERT INTO `empresa` (`id_empresa`, `nome`, `cnpj`, `telefone`) VALUES
+(1, 'Senai', '03776284000109', '4734417700');
 
 -- --------------------------------------------------------
 
@@ -80,6 +87,13 @@ CREATE TABLE `usuario` (
   `fk_id_empresa` int(11) NOT NULL COMMENT 'FK - ID da Empresa',
   `fk_id_tipo_usuario` int(11) NOT NULL COMMENT 'FK - ID do tipo de usuário'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `fk_id_empresa`, `fk_id_tipo_usuario`) VALUES
+(1, 'pedro', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -141,7 +155,7 @@ ALTER TABLE `vaga`
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da empresa';
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da empresa', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `movimentacao`
@@ -159,7 +173,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Usuário';
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Usuário', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `vaga`
