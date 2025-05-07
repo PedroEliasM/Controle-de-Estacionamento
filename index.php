@@ -5,10 +5,6 @@
         <meta charset="UTF-8">
         <title>PHP</title>
 
-        <!-- CSS -->
-        <?php include('Sistema/Frontend/sidebar.php'); ?>
-        <!-- Fim CSS -->
-
         <style>
             body{
                 font-family: Arial, sans-serif;
@@ -60,8 +56,7 @@
 
     <body id="iBody" src="Sistema/img/fundo-estacionamento.jpg">
 
-        <form class="form" method="POST" action="php/validacao.php">
-            <h1>Login</h1>
+        <form class="form" method="POST" action="Sistema/Backend/validaLogin.php">
             <div>
                 <label for="" class="text-info">Email:</label>
                 <input class="campos" type="email" placeholder="Email" name="nEmail" id="iEmail" required>
