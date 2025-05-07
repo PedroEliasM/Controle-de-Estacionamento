@@ -7,8 +7,8 @@
 
     $_SESSION['logado'] = 0;
 
-    $email = stripslashes($_POST["nEmail"]);
-    $senha = stripslashes($_POST["nSenha"]);
+    $email = stripslashes($_POST["email"]);
+    $senha = stripslashes($_POST["senha"]);
 
     //$_POST - Valor enviado pelo FORM através da propriedade NAME do elemento HTML 
     //$_GET - Valor enviado pelo FORM através da URL

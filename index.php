@@ -5,69 +5,32 @@
         <meta charset="UTF-8">
         <title>PHP</title>
 
-        <style>
-            body{
-                font-family: Arial, sans-serif;
-                background-color: lightgray;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin: 0;
-
-                background-image: url('Sistema/img/fundo-estacionamento.jpg');
-                background-size: cover;
-                background-repeat: no-repeat;
-            }
-            .form{
-                border-color: red;
-                width: 230px;
-                height: 200px;
-                background-color: aliceblue;
-                margin-top: 0 auto;
-                padding: 25px;
-                padding-left: 60px;
-                padding-bottom: 90px;
-                border-radius: 10px;
-                box-shadow: 10px 1px 50px transparent;
-                opacity: 100%;
-            }
-            .campos{
-                padding: 3px;
-                padding-right: 10%;
-                margin-top: 5px;
-                margin-bottom: 10px;
-                border-radius: 5px;
-                border-color: lightgray;
-            }
-            #iButton{
-                color: lightgray;
-                background-color: blue;
-                margin-top: 5px;
-                padding: 5px;
-                border-radius: 5px;
-            }
-            h1{
-                color: black;
-            }
-        </style>
+        <link rel="stylesheet" href="Sistema/Frontend/css/style-index.css">
 
     </head>
 
-    <body id="iBody" src="Sistema/img/fundo-estacionamento.jpg">
+    <body class="body" src="Sistema/img/fundo-estacionamento.jpg">
+        <div class="container">
 
-        <form class="form" method="POST" action="Sistema/Backend/validaLogin.php">
-            <div>
-                <label for="" class="text-info">Email:</label>
-                <input class="campos" type="email" placeholder="Email" name="nEmail" id="iEmail" required>
-            </div>
-            <div>
-                <label for="" class="text-info">Senha:</label>
-                <input class="campos" type="password" placeholder="Password" name="nSenha" id="iSenha" required>
+            <div class="logo">
+                <img src="Sistema/img/logo.png" alt="ParkWay Logo" class="logo">
+                <h1 class="logo">ParkWay</h1>
+                <h3 class="logo">Systems</h3>
             </div>
 
-            <input id="iButton" type="submit" value="Login">
-        </form>
+            <form method="POST" action="Sistema/Backend/validaLogin.php">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" placeholder="Digite seu email..." name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" placeholder="Digite sua senha..." name="senha" id="senha" required>
+                </div>
 
+                <input id="login-button" type="submit" value="Login">
+            </form>
+
+        </div>
     </body>
 </html
