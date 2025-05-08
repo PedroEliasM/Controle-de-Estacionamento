@@ -38,7 +38,7 @@
 
             <!-- Conteúdo principal -->
             <div id="content" class="p-4 p-md-5 pt-5">
-                <h1 class="mb-4 content">Nome da Empresa</h1>
+                CONTEUDO do PERFIL
             </div>
 
         </div>

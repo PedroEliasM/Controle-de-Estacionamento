@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="/Estacionamento/Sistema/plugins/fontawesome-free/css/all.min.css">
