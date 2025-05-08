@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head lang="pt-bt">
+    <head lang="pt-br">
 
         <meta charset="UTF-8">
         <title>PHP</title>

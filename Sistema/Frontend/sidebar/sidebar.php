@@ -1,0 +1,31 @@
+
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	        </button>
+        </div>
+	  		<div class="img bg-wrap text-center py-4" style="background-image: url(/Estacionamento/Sistema/Frontend/sidebar/images/bg_1.jpg);">
+	  			<div class="user-logo">
+	  				<div class="img" style="background-image: url(/Estacionamento/Sistema/img/logo.png);"></div>
+	  				<h3>ParkWay Systems</h3>
+	  			</div>
+	  		</div>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="#"><span class="fa fa-home mr-3"></span> Vagas </a>
+          </li>
+          <li class="desactive">
+            <a href="#"><span class="fa fa-home mr-3"></span> Usuários </a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-cog mr-3"></span> Settings</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-support mr-3"></span> Support</a>
+          </li>
+          <li>
+            <a href="/Estacionamento/Sistema/Backend/validaLogoff.php"><span class="fa fa-sign-out mr-3"></span> Sair</a>
+          </li>
+        </ul>
+
+    	</nav>
