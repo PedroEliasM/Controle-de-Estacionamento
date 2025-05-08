@@ -39,7 +39,7 @@
                   </div>
                   
                   <div class="col-3" align="right">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#novoUsuarioModal">
+                    <button type="button" class="btn btn-success" data-toggle="modal" >
                       Novo Usuário
                     </button>
                   </div>
@@ -174,9 +174,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- JS -->
-<?php include('partes/js.php'); ?>
-<!-- Fim JS -->
 
 <script>
   $(function () {

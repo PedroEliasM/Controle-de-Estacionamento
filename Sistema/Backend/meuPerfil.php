@@ -83,7 +83,7 @@
                             </div>
                         </div>
                         <div class="card-action" align="right">
-                            <a href="menuUsuario.php" class="btn btn-danger" data-toggle="tooltip" title="Limpar Alterações">
+                            <a href="meuPerfil.php" class="btn btn-danger" data-toggle="tooltip" title="Limpar Alterações">
                                 <span>Limpar</span>
                             </a>
                             <input type="submit" class="btn btn-success" value="Salvar" data-toggle="tooltip" title="Salvar Alterações">
