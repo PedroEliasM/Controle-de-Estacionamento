@@ -8175,7 +8175,7 @@ h1, h2, h3, h4, h5,
 
 .wrapper {
   width: 100%; }
-
+/*
 #sidebar {
   min-width: 300px;
   max-width: 300px;
@@ -8283,7 +8283,7 @@ h1, h2, h3, h4, h5,
       #sidebar .custom-menu .btn.btn-primary:after {
         content: "\f054";
         left: 2px; }
-
+*/
 .bg-wrap {
   width: 100%;
   position: relative;
@@ -8319,11 +8319,12 @@ a[data-toggle="collapse"] {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
-
+/*
 @media (max-width: 991.98px) {
   #sidebarCollapse span {
     display: none; } }
-
+*/
+/*
 #content {
   width: 100%;
   padding: 0;
@@ -8331,7 +8332,7 @@ a[data-toggle="collapse"] {
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s; }
-
+*/
 .btn.btn-primary {
   background: #2f89fc;
   border-color: #2f89fc; }
