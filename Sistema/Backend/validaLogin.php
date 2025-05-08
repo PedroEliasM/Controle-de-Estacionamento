@@ -30,7 +30,7 @@
             //$_SESSION['logado']        = 1;
 
             //Acessar a tela inicial
-            header('location: ../Frontend/sidebar/index.html');
+            header('location: ../Frontend/painel-adm.php');
             
         }        
     }else{
