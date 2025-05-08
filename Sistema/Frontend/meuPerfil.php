@@ -34,7 +34,7 @@
                                             <div class="row">
                                                 <div class="col-3 text-center">
                                                     <div class="foto-perfil mx-auto">
-                                                        <img alt="<?php echo $_SESSION['NomeLogin'];?>" src="img/logo.png" class="foto">
+                                                        <img alt="<?php echo $_SESSION['NomeLogin'];?>" src="../img/logo.png" class="foto">
                                                         <div class="trocar-imagem">
                                                             <i class="fas fa-camera upload-button"></i>
                                                             <p>Alterar Foto</p>
@@ -91,6 +91,5 @@
                         </div>
                 </form>
                 </div>
-            
     </body>
 </html>
