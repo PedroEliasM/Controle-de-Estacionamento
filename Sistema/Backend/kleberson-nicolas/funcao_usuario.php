@@ -195,9 +195,8 @@ function tipoAcessoUsuario($id){
             if($coluna["id_tipo_usuario"] == 1){
                 //Admin
                 $resp = '<option value="1">Admin</option>'
-                        .'<option value="2">funcionario</option>'
-;
-            }else ($coluna["id_tipo_usuario"] == 2){
+                        .'<option value="2">funcionario</option>';
+            }else if ($coluna["id_tipo_usuario"] == 2){
                 //funcionario
                 $resp = '<option value="2">funcionario</option>'
                         .'<option value="1">Admin</option>';
