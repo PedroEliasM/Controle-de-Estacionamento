@@ -1,6 +1,7 @@
 <?php 
   session_start();
-  include('php/funcoes.php');
+  include('funcoes.php');
+  include('conexao.php')
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +59,6 @@
                       <th>Tipo de Usuário</th>
                       <th>Nome</th>
                       <th>Login</th>
-                      <th>Ativo</th>                
                       <th>Ações</th>
                   </tr>
                   </thead>
@@ -137,12 +137,6 @@
                       <input type="file" class="form-control" id="iFoto" name="Foto" accept="image/*">
                     </div>
                   </div>
-                
-                  <div class="col-12">
-                    <div class="form-group">
-                      <input type="checkbox" id="iAtivo" name="nAtivo">
-                      <label for="iAtivo">Usuário Ativo</label>
-                    </div>
 
                 </div>
 

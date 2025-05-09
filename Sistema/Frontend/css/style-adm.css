@@ -24,6 +24,7 @@
     -o-transition: all 0.3s;
     transition: all 0.3s;
     position: relative;
+    max-height: 100vh;
 }
     #sidebar .h6 {
       color: #fff; }

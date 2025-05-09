@@ -9,8 +9,6 @@
     $funcao      = $_GET["funcao"];
     $idUsuario   = $_GET["codigo"];
 
-    if($_POST["nAtivo"] == "on") $ativo = "S"; else $ativo = "N";
-
     include("conexao.php");
 
     //Validar se é Inclusão ou Alteração
@@ -20,13 +18,13 @@
         $idUsuario = proxIdUsuario();
 
         //INSERT
-        $sql = "INSERT INTO usuarios (idUsuario,idTipoUsuario,Nome,Login,Senha,FlgAtivo) "
+        $sql = "INSERT INTO usuarios (id_usuario,id_tipo_usuario,nome,login,Senha) "
                 ." VALUES (".$idUsuario.","
                 .$tipoUsuario.","
                 ."'$nome',"
                 ."'$login',"
                 ."md5('$senha'),"
-                ."'$ativo');";
+;
 
     }elseif($funcao == "A"){
         //UPDATE
@@ -36,18 +34,18 @@
             $setSenha = " Senha = md5('".$senha."'), ";
         }
 
-        $sql = "UPDATE usuarios "
-                ." SET idTipoUsuario = $tipoUsuario, "
+        $sql = "UPDATE usuario "
+                ." SET id_tipo_usuario = $tipoUsuario, "
                     ." Nome = '$nome', "
                     ." Login = '$login', "
                     .$setSenha 
                     ." FlgAtivo = '$ativo' "
-                ." WHERE idUsuario = $idUsuario;";
+                ." WHERE id_usuario = $idUsuario;";
 
     }elseif($funcao == "D"){
         //DELETE
-        $sql = "DELETE FROM usuarios "
-                ." WHERE idUsuario = $idUsuario;";
+        $sql = "DELETE FROM usuario "
+                ." WHERE id_usuario = $id_Usuario;";
     }
 
     $result = mysqli_query($conn,$sql);
@@ -62,19 +60,19 @@
         $novoNome = md5($_FILES['Foto']['name']).'.'.$extensao;        
         
         
-        if(is_dir('../dist/img/')){
+        if(is_dir('../img/')){
             //Existe
-            $diretorio = '../dist/img/';
+            $diretorio = '../img/';
         }else{
             //Criar pq não existe
-            $diretorio = mkdir('../dist/img/');
+            $diretorio = mkdir('../img/');
         }
 
         //Cria uma cópia do arquivo local na pasta do projeto
         move_uploaded_file($_FILES['Foto']['tmp_name'], $diretorio.$novoNome);
 
         //Caminho que será salvo no banco de dados
-        $dirImagem = 'dist/img/'.$novoNome;
+        $dirImagem = '/img/'.$novoNome;
 
         include("conexao.php");
         //UPDATE
@@ -85,6 +83,6 @@
         mysqli_close($conn);
     }
 
-    header("location: ../usuarios.php");
+    header("location: ../usuario.php");
 
 ?>

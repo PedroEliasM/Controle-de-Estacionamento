@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    include('../Backend/funcoes_meuPerfil/salvar_meuPerfil.php');
+?>
+
 <!DOCTYPE html>
 <html>
     <head lang="pt-br">
@@ -37,9 +42,9 @@
             <!-- Fim Navbar -->
 
             <!-- Conteúdo principal -->
-            <div id="content" class="p-4 p-md-5 pt-5">
-                <h1 class="mb-4 content">Nome da Empresa</h1>
-            </div>
+
+                <?php include("meuPerfil.php");?>
+
 
         </div>
 
@@ -50,4 +55,4 @@
         <script src="/Estacionamento/Sistema/Frontend/sidebar/js/main.js"></script>
         <!-- FIM Sidebar JavaScript -->
     </body>
-</html
+</html>
