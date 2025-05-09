@@ -44,7 +44,7 @@
 
     }elseif($funcao == "D"){
         //DELETE
-        $sql = "DELETE FROM usuarios "
+        $sql = "DELETE FROM usuario "
                 ." WHERE id_usuario = $id_Usuario;";
     }
 
@@ -60,7 +60,7 @@
         $novoNome = md5($_FILES['Foto']['name']).'.'.$extensao;        
         
         
-        if(is_dir('../backend/img/')){
+        if(is_dir('../img/')){
             //Existe
             $diretorio = '../img/';
         }else{

@@ -1,6 +1,7 @@
 <?php 
   session_start();
-  include('php/funcoes.php');
+  include('funcoes.php');
+  include('conexao.php')
 ?>
 
 <!DOCTYPE html>
@@ -136,8 +137,6 @@
                       <input type="file" class="form-control" id="iFoto" name="Foto" accept="image/*">
                     </div>
                   </div>
-                
-                  
 
                 </div>
 
