@@ -44,11 +44,6 @@
                 <input type="file" id="iFoto" name="Foto" accept="image/*">
             </p>
 
-            <p>
-                <input type="checkbox" id="iAtivo" name="nAtivo">
-                <label for="iAtivo">Usuário Ativo</label>
-            </p>
-
             <button type="submit">Inserir</button>
 
         </form>

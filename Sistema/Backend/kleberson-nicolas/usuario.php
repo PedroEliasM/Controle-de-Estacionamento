@@ -58,7 +58,6 @@
                       <th>Tipo de Usuário</th>
                       <th>Nome</th>
                       <th>Login</th>
-                      <th>Ativo</th>                
                       <th>Ações</th>
                   </tr>
                   </thead>
@@ -138,11 +137,7 @@
                     </div>
                   </div>
                 
-                  <div class="col-12">
-                    <div class="form-group">
-                      <input type="checkbox" id="iAtivo" name="nAtivo">
-                      <label for="iAtivo">Usuário Ativo</label>
-                    </div>
+                  
 
                 </div>
 
