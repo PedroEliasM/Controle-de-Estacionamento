@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    include('../Backend/funcoes_meuPerfil/salvar_meuPerfil.php');
+?>
+
 <!DOCTYPE html>
 <html>
     <head lang="pt-br">
@@ -38,7 +43,7 @@
 
             <!-- Conteúdo principal -->
             <div id="content" class="p-4 p-md-5 pt-5">
-                CONTEUDO do PERFIL
+                <?php include("meuPerfil.php");?>
             </div>
 
         </div>
@@ -48,6 +53,8 @@
         <script src="/Estacionamento/Sistema/Frontend/sidebar/js/popper.js"></script>
         <script src="/Estacionamento/Sistema/Frontend/sidebar/js/bootstrap.min.js"></script>
         <script src="/Estacionamento/Sistema/Frontend/sidebar/js/main.js"></script>
+
+        <script src="/Estacionamento/Sistema/Frontend/imports/js.php"></script>
         <!-- FIM Sidebar JavaScript -->
     </body>
-</html
+</html>
