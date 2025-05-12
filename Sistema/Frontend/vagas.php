@@ -32,8 +32,10 @@ include("../Backend/funcoes.php");
     </style>
   </head>
   <body>
-    <h1>tela de vagas</h1>
+            
 
+    <h1>tela de vagas</h1>
+    
     <table border="1">
         <tr>
             <th>ID</th>

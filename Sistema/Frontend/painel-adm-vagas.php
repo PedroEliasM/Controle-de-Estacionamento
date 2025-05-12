@@ -35,10 +35,15 @@
                 include('navbar.php'); 
             ?>
             <!-- Fim Navbar -->
-
+            
+            <!-- Navbar -->
+            <?php 
+                include('vagas.php'); 
+            ?>
+            <!-- Fim Navbar -->
             <!-- Conteúdo principal -->
             <div id="content" class="p-4 p-md-5 pt-5">
-                <h1 class="mb-4 content">Nome da Empresa</h1>
+                <h1 class="mb-4 content">Vagas</h1>
             </div>
 
         </div>

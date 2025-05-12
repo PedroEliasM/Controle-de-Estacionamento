@@ -9,22 +9,23 @@
             return 'Não';
         }
     }
-    function nomeEmpresa(){
-        
+    function nomeEmpresa($idVaga){
         include("conexao.php");
-        $sql = "SELECT em.nome, vg.fk_id_empresa
-        from empresa  em
-        inner join vaga  vg
-        on em.id_empresa = vg.fk_id_empresa;";
+        $sql = "SELECT em.nome
+        from empresa em
+        inner join vaga vg
+        on em.id_empresa = vg.fk_id_empresa
+        WHERE id_vaga = $idVaga;";
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
 
         if(mysqli_num_rows($result) > 0){
             foreach($result as $campo){
-            
+
             }
         }
         return $campo;
     }
+    
 ?>
