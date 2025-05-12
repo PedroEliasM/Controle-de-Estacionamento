@@ -13,21 +13,20 @@
 
         if(mysqli_num_rows($result) > 0){
             foreach($result as $campo){
-                $idEmpresa = $campo['fk_id_empresa'];
-                $id = $campo['id_vaga'];
+                $idVaga = $campo['id_vaga'];
                 $linha .= "
                 <tr>
                     <td>" . $campo['id_vaga'] . "</td>
                     <td>" . $campo['descricao'] . "</td>
                     <td>" . $campo['situacao'] . "</td>
-                    <td>" . nomeEmpresa(['id_empresa']) . "</td>
+                    <td>" .$campo['fk_id_empresa']. "</td>
                     <td>" .descrFlag($campo['flg_ativo']) . "</td>
                     <td>
-                        <a href='alterar-vaga.php?id=$id'>
+                        <a href='alterar-vaga.php?id=$idVaga'>
                             Alterar
                         </a>
                          | 
-                        <a href='excluir-vaga.php?id=$id'>
+                        <a href='excluir-vaga.php?id=$idVaga'>
                             Excluir
                         </a>
                     </td>
