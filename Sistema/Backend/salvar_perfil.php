@@ -1,4 +1,4 @@
-<?php
+<?php/*
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
     }
@@ -51,4 +51,4 @@
 
     header('location: '.$_SERVER['HTTP_REFERER']);
 
-?>
+?>*/
