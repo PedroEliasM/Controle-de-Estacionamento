@@ -69,6 +69,7 @@ include('../Backend/funcoes_meuPerfil/salvar_meuPerfil.php');
                                                                             class="form-control"
                                                                             value="<?php //echo $_SESSION['SenhaLogin']; ?>"
                                                                             required>
+                                                                        <i class="fas fa-camera upload-button"></i>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-7">

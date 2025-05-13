@@ -1,6 +1,7 @@
 <?php
     include("funcaoMenu.php");
     include("funcaoVaga.php");
+    include("salvar_perfil.php");
 
     function descrFlag($flag) {
         if($flag == 'S') {

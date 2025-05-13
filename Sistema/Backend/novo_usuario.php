@@ -18,7 +18,6 @@
     <title>Novo Usuário</title>
     <!-- Inclusão de um arquivo CSS para melhorar a aparência -->
     <link rel="stylesheet" href="path/to/bootstrap.css">
-    <form action="php/salvar_usuario.php" method="POST" enctype="multipart/form-data">
 </head>
 <body>
     <div class="container mt-5">
