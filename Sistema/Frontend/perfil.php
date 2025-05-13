@@ -25,7 +25,7 @@
                                             <div class="row">
                                                 <div class="col-3 text-center">
                                                     <div class="foto-perfil mx-auto">
-                                                        <img src="<?php echo $_SESSION['FotoLogin']; ?>" class="foto" name="nFoto">
+                                                        <img alt="<?php echo $_SESSION['NomeLogin']; ?>" src="<?php echo $_SESSION['FotoLogin']; ?>" class="foto" name="nFoto">
                                                         <div class="trocar-imagem">
                                                             <i class="fas fa-camera upload-button"></i>
                                                             <p>Alterar Foto</p>

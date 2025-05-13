@@ -39,11 +39,12 @@
             <?php 
                 include('navbar.php'); 
             ?>
+
             <!-- Fim Navbar -->
 
             <!-- Conteúdo principal -->
 
-                <?php include("meuPerfil.php");?>
+                <?php include("perfil.php");?>
 
         </div>
 
