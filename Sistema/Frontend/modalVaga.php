@@ -59,9 +59,9 @@
         </p>
         <p>
           <label for="iEmpresa">Empresa:</label>
-          <select name="nEmpresa" class="form-control" required>
+          <select name="nEmpresa" required>
             <option value="">Selecione...</option>
-            <?php //echo optionTipoUsuario();?>
+            <?php echo optionEmpresa();?>
           </select>
         </p>
         <button onclick="openModal()">Salvar</button>
