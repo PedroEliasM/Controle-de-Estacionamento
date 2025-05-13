@@ -42,9 +42,7 @@
             <!-- Fim Navbar -->
 
             <!-- Conteúdo principal -->
-
-                <?php include("meuPerfil.php");?>
-
+            <?php include("meuPerfil.php");?>
 
         </div>
 
