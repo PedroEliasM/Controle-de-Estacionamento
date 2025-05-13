@@ -19,8 +19,7 @@
 <body>
 
 <div class="content-wrapper">
-  <div class="content-header">
-  </div>
+  <div class="content-header"></div>
 
   <section class="content">
     <div class="container-fluid">
@@ -136,8 +135,7 @@
 </div>
 
 <!-- Sidebar opcional -->
-<aside class="control-sidebar control-sidebar-dark">
-</aside>
+<aside class="control-sidebar control-sidebar-dark"></aside>
 
 <?php include('partes/js.php'); ?> <!-- Certifique-se de que esse arquivo inclui jQuery, Bootstrap, DataTables -->
 
@@ -156,5 +154,4 @@
 </script>
 
 </body>
-</html>,
-
+</html>

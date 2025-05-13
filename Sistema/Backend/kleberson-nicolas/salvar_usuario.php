@@ -1,6 +1,6 @@
 <?php
 
-    include('funcoes.php');
+    include('../funcoes.php');
 
     $tipoUsuario = $_POST["nTipoUsuario"];
     $nome        = $_POST["nNome"];
@@ -9,7 +9,7 @@
     $funcao      = $_GET["funcao"];
     $idUsuario   = $_GET["codigo"];
 
-    include("conexao.php");
+    include("../conexao.php");
 
     //Validar se é Inclusão ou Alteração
     if($funcao == "I"){
