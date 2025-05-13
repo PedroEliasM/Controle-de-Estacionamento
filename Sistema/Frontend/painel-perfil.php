@@ -43,8 +43,7 @@
 
             <!-- Conteúdo principal -->
 
-                <?php include("perfil.php");?>
-
+                <?php include("meuPerfil.php");?>
 
         </div>
 

@@ -38,7 +38,7 @@
             
             <!-- Navbar -->
             <?php 
-                include('vagas.php'); 
+                //include('vagas.php'); 
             ?>
             <!-- Fim Navbar -->
             <!-- Conteúdo principal -->
