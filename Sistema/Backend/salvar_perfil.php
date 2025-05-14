@@ -1,10 +1,10 @@
-<?php/*
+<?php
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
     }
 
     $idUsuario = $_SESSION['idUsuario'];
-    $nome      = $_POST['nNome'];
+    $nome      = $_POST['email'];
 
     include('funcoes.php');
 
@@ -44,11 +44,11 @@
     //Gravação no BD
     include('conexao.php');
     $sql = "UPDATE usuarios "
-            ." SET Nome = '".$nome."' "
-            ." WHERE idUsuario = ".$idUsuario.";";                                 
+            ." SET nome = '".$nome."' "
+            ." WHERE id_usuario = ".$idUsuario.";";                                 
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
     header('location: '.$_SERVER['HTTP_REFERER']);
 
-?>*/
+?>

@@ -14,7 +14,7 @@
 
                 <div class="card-body">
 
-                    <form method="POST" action="../Backend/salvar_perfil.php" enctype="multipart/form-data">
+                    <form method="POST" action="../Backend/salvar_perfil.php?funcao=I" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="row">
 
@@ -50,7 +50,7 @@
                                                                 <label>Senha</label>
                                                                 <input name="nSenha" id="iSenha" type="password"
                                                                     class="form-control"
-                                                                    value="<?php echo $_SESSION['SenhaLogin']; ?>"
+                                                                    value="<?php // echo $_SESSION['SenhaLogin']; ?>"
                                                                     required>
                                                                 <i class="fas fa-eye-slash toggle-password"
                                                                     style="cursor: pointer;"></i>
