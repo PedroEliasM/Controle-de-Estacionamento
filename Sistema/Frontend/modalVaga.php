@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -59,9 +60,9 @@
         </p>
         <p>
           <label for="iEmpresa">Empresa:</label>
-          <select name="nEmpresa" required>
+          <select name="nEmpresa" id="iEmpresa" required>
             <option value="">Selecione...</option>
-            <?php echo optionEmpresa();?>
+            <?php echo optionEmpresa(1);?>
           </select>
         </p>
         <button onclick="openModal()">Salvar</button>

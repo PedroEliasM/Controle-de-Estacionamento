@@ -1,7 +1,7 @@
 <?php
-include("modalVaga.php");
 
-include("../Backend/funcoes.php");
+include("../Backend/funcaoVaga.php");
+include("modalVaga.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -49,8 +49,8 @@ include("../Backend/funcoes.php");
         <?php echo listaVagas(); ?>
             
     </table>
-
     
     <button id="iButton" onclick=openModal()>Adicionar vaga</button>
+
   </body>
 </html>

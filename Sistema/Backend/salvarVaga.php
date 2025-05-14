@@ -4,7 +4,7 @@
 
     $descricao   = $_POST["nDescricao"];
     $situacao = $_POST["nSituacao"];
-    $idEmpresa   = $_GET["?"];
+    $idEmpresa   = $_GET["nEmpresa"];
 
     include("conexao.php");
     if($_POST["nAtivo"] == "on") $ativo = "S"; else $ativo = "N";
