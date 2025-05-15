@@ -27,6 +27,12 @@
                         
             //***Verificar os dados da consulta SQL
             $_SESSION['idUsuario']       = $coluna['id_usuario'];
+            $_SESSION['NomeLogin']       = $coluna['nome'];
+            $_SESSION['FotoLogin']       = $coluna['foto'];
+            $_SESSION['SenhaLogin']       = $coluna['senha'];
+            $_SESSION['EmailLogin']       = $coluna['email'];
+            $_SESSION['Empresa']       = $coluna['id_empresa'];
+            $_SESSION['Tipo_Usuario']       = $coluna['id_tipo_usuario'];
             //$_SESSION['logado']        = 1;
 
             //Acessar a tela inicial

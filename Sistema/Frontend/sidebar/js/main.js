@@ -13,7 +13,9 @@
 	fullHeight();
 
 	$('#sidebarCollapse').on('click', function () {
-      $('#sidebar').toggleClass('active');
+      $('#sidebar').toggleClass('active'); // Alterna a classe "active" na sidebar
+      $('#content').toggleClass('sidebar-collapsed'); // Ajusta o conteúdo principal
+      $('#navbar').toggleClass('sidebar-collapsed'); // Ajusta a navbar
   });
 
 })(jQuery);

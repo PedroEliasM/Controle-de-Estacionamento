@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include('../Backend/funcoes_meuPerfil/salvar_meuPerfil.php');
+    include('../Backend/conexao.php');
 ?>
 
 <!DOCTYPE html>
@@ -39,12 +39,12 @@
             <?php 
                 include('navbar.php'); 
             ?>
+
             <!-- Fim Navbar -->
 
             <!-- Conteúdo principal -->
 
-                <?php include("meuPerfil.php");?>
-
+                <?php include("perfil.php");?>
 
         </div>
 

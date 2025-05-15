@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/05/2025 às 02:52
+-- Tempo de geração: 09/05/2025 às 01:04
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -84,6 +84,7 @@ CREATE TABLE `usuario` (
   `nome` varchar(30) NOT NULL COMMENT 'Nome do usuário',
   `email` varchar(30) NOT NULL COMMENT 'Email do usuário',
   `senha` varchar(32) NOT NULL COMMENT 'Senha do usuário',
+  `foto` varchar(200) DEFAULT NULL COMMENT 'imagem do usuario',
   `fk_id_empresa` int(11) NOT NULL COMMENT 'FK - ID da Empresa',
   `fk_id_tipo_usuario` int(11) NOT NULL COMMENT 'FK - ID do tipo de usuário'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -92,8 +93,8 @@ CREATE TABLE `usuario` (
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `fk_id_empresa`, `fk_id_tipo_usuario`) VALUES
-(1, 'pedro', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', 1, 1);
+INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `foto`, `fk_id_empresa`, `fk_id_tipo_usuario`) VALUES
+(1, 'pedro', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
