@@ -21,7 +21,7 @@
                 ." VALUES (".$idVaga.","
                 .$descricao.","
                 .$situacao.","
-                .$ativo.,","
+                .$ativo.","
                 .$idEmpresa.");";
 
     }elseif($funcao == "A"){
