@@ -26,7 +26,9 @@
     </head>
 
     <body class="hold-transition sidebar-mini layout-fixed">
-        <div class="wrapper d-flex align-items-stretch">
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper d-flex align-items-stretch">
             <!-- Sidebar -->
             <?php 
                 //$_SESSION['menu-n1'] = 'administrador';
@@ -39,14 +41,16 @@
             <?php 
                 include('navbar.php'); 
             ?>
-
             <!-- Fim Navbar -->
 
             <!-- Conteúdo principal -->
-
-                <?php include("perfil.php");?>
-
+            <section id="content" class="d-flex align-items-stretch p-4 p-md-5 pt-5">
+                <div id="container-perfil" class="p-4 p-md-5 pt-5">
+                    <?php include("perfil.php");?>
+                </div>
+            </section>
         </div>
+        <!-- Fim wrapper -->
 
         <!-- INÍCIO Sidebar JavaScript -->
         <script src="/Estacionamento/Sistema/Frontend/sidebar/js/jquery.min.js"></script>
