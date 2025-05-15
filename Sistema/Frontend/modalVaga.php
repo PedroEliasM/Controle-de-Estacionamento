@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -45,12 +44,11 @@
   </head>
 
 <body>
-  <div class="modal-overlay" id="Modal1">
+  <div class="modal-overlay" id="myModal">
     <div class="modal-content">
       <span class="close-button" onclick=closeModal()>&times;</span>
       <h2>Adicionar Vaga</h2>
-
-      <form method="POST" action="../Backend/salvarVaga.php?funcao=I&id=0" enctype="multipart/form-data">
+      <form method="POST" action="php/salvarVaga.php?funcao=I" enctype="multipart/form-data">
         <p>
           <label for="iDescricao">Descrição:</label>
           <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="50">
@@ -60,29 +58,24 @@
           <input type="text" class="form-control" id="iSituacao" name="nSituacao" maxlength="50">
         </p>
         <p>
-                <input type="checkbox" name="nAtivo" id="iAtivo">
-                <label for="iAtivo">Usuário Ativo</label>
-        </p>
-        <p>
           <label for="iEmpresa">Empresa:</label>
-          <select name="nEmpresa" id="iEmpresa" required>
+          <select name="nEmpresa" required>
             <option value="">Selecione...</option>
-            <?php echo optionEmpresa(0);?>
+            <?php echo optionEmpresa();?>
           </select>
         </p>
         <button onclick="openModal()">Salvar</button>
       </form>
-
     </div>
     
   </div>
   <script>
     function openModal() {
-    document.getElementById().style.display = "block";
+    document.getElementById("myModal").style.display = "block";
     }
 
   function closeModal() {
-    document.getElementById().style.display = "none";
+    document.getElementById("myModal").style.display = "none";
     }
   </script>
 

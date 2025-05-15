@@ -1,4 +1,5 @@
 <?php
+
     $tipoUsuario = $_POST["nTipoUsuario"];
     $foto        = $_POST["nfoto"];
     $nome        = $_POST["nNome"];
@@ -58,7 +59,7 @@
         move_uploaded_file($_FILES['Foto']['tmp_name'], $diretorio.$novoNome);
 
         //Caminho que será salvo no banco de dados
-        $dirImagem = '../img/'.$novoNome;
+        $dirImagem = '../Frontend/img/'.$novoNome;
 
         include("conexao.php");
         //UPDATE
@@ -70,6 +71,6 @@
     }
     
 
-    header("location: ../painel-perfil.php");
+    header("location: ../Frontend/painel-perfil.php");
 
 ?>

@@ -44,11 +44,11 @@
             <!-- Fim Navbar -->
 
             <!-- Conteúdo principal -->
-            <section id="content" class="d-flex align-items-stretch p-4 p-md-5 pt-5">
-                <div id="container-perfil" class="p-4 p-md-5 pt-5">
+            <!--<div id="content" class="d-flex align-items-stretch p-4 p-md-5 pt-5">
+                <div id="container-perfil" class="p-4 p-md-5 pt-5">-->
                     <?php include("perfil.php");?>
-                </div>
-            </section>
+                <!--</div>
+            </div>-->
         </div>
         <!-- Fim wrapper -->
 

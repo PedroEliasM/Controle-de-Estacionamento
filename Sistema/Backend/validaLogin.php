@@ -26,24 +26,22 @@
         foreach ($resultLogin as $coluna) {
                         
             //***Verificar os dados da consulta SQL
-            $_SESSION['id']       = $coluna['id_usuario'];
-            $_SESSION['NomeLogin']       = $coluna['nome'];
-            $_SESSION['FotoLogin']       = $coluna['foto'];
-            $_SESSION['SenhaLogin']       = $coluna['senha'];
+            $_SESSION['id']               = $coluna['id_usuario'];
+            $_SESSION['NomeLogin']        = $coluna['nome'];
+            $_SESSION['FotoLogin']        = $coluna['foto'];
+            $_SESSION['SenhaLogin']        = $coluna['senha'];
             $_SESSION['EmailLogin']       = $coluna['email'];
-            $_SESSION['Empresa']       = $coluna['id_empresa'];
-            $_SESSION['Tipo_Usuario']       = $coluna['id_tipo_usuario'];
+            $_SESSION['Empresa']          = $coluna['id_empresa'];
+            $_SESSION['Tipo_Usuario']     = $coluna['id_tipo_usuario'];
             //$_SESSION['logado']        = 1;
 
             //Acessar a tela inicial
-            header('location: ../painel-adm-vagas.php');
+            header('location: ../Frontend/painel-adm-vagas.php');
             
         }        
     }else{
         //Acessar a tela inicial
         header('location: ../../index.php');
     } 
-
-    
 
 ?>

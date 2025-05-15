@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>PHP</title>
 
-        <link rel="stylesheet" href="Sistema/css/style-index.css">
+        <link rel="stylesheet" href="Sistema/Frontend/css/style-index.css">
 
     </head>
 
