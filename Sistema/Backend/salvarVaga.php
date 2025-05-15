@@ -19,8 +19,17 @@
         //$idVaga = proxIdVaga();
 
         //INSERT
+<<<<<<< HEAD
         $sql = "INSERT INTO vaga (id_vaga,descricao,situacao,flg_ativo,fk_id_empresa) 
                  VALUES ($idVaga,'$descricao','$situacao','$ativo',$idE);";
+=======
+        $sql = "INSERT INTO vaga (id_vaga,descricao,situacao,flg_ativo,fk_id_empresa) "
+                ." VALUES (".$idVaga.","
+                .$descricao.","
+                .$situacao.","
+                .$ativo.","
+                .$idEmpresa.");";
+>>>>>>> 77a40118fda4ff5c4cd8c270bd26d35394e3e52b
 
     }elseif($funcao == "A"){
         //UPDATE

@@ -4,12 +4,17 @@
 					<button type="button" id="sidebarCollapse" class="btn btn-primary">
 	        </button>
         </div>
+
+        <!-- Logo -->
 	  		<div class="img bg-wrap text-center py-4" style="background-image: url(/Estacionamento/Sistema/Frontend/sidebar/images/bg_1.jpg);">
 	  			<div class="user-logo">
 	  				<div class="img" style="background-image: url(/Estacionamento/Sistema/img/logo.png);"></div>
 	  				<h3>ParkWay Systems</h3>
 	  			</div>
 	  		</div>
+        <!-- /.logo -->
+
+        <!-- Sidebar Menu -->
         <ul class="list-unstyled components mb-5">
           <li class="active">
             <a href="./vagas.php"><span class="fa fa-home mr-3"></span> Vagas </a>
@@ -32,4 +37,5 @@
             </a>
           </li>
         </ul>
+        <!-- /.sidebar-menu -->
       </nav>

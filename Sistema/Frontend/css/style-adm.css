@@ -2,7 +2,7 @@
 #content {
     width: 100%;
     padding: 20px; /* Espaçamento interno para os itens do content */
-    min-height: 100vh;
+    max-height: 100vh;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s; 
@@ -13,8 +13,6 @@
     z-index: -2;
 }
 /* FIM - Fundo da tela */
-
-
 /* Sidebar */
 #sidebar {
     min-width: 300px;
@@ -183,3 +181,18 @@
         border-radius: 5px; /* Bordas arredondadas */
     }
 /* Fim Navbar */
+
+
+/* CSS tela de perfil */
+#container-perfil {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px; /* Espaçamento interno */
+  max-height: 100vh;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s; 
+
+  margin-top: -5vh;
+  z-index: 1;
+}
