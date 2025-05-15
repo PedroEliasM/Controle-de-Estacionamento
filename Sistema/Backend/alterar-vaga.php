@@ -1,4 +1,20 @@
+<?php
 
+
+    include("funcoes.php");
+
+    // Buscar os dados do usuário do ID recebido por GET
+    $usuario = buscaVagaId($_GET['id']);
+
+    //echo $usuario['nome'];
+    //die();
+
+    $flagAtivo = '';
+    if($usuario['flg_ativo'] == 'S') {
+        $flagAtivo = 'checked';
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -45,10 +61,11 @@
   </head>
 
 <body>
-  <div class="modal-overlay" id="Modal1">
+    <!-- Modal Adicionar Vaga -->
+  <div class="modal-overlay" id="Modal2">
     <div class="modal-content">
-      <span class="close-button" onclick=closeModal()>&times;</span>
-      <h2>Adicionar Vaga</h2>
+      <span class="close-button" onclick=closeModal2()>&times;</span>
+      <h2>as Vaga</h2>
 
       <form method="POST" action="../Backend/salvarVaga.php?funcao=I&id=0" enctype="multipart/form-data">
         <p>
@@ -70,19 +87,20 @@
             <?php echo optionEmpresa(0);?>
           </select>
         </p>
-        <button onclick="openModal()">Salvar</button>
+        <button onclick=openModal2()>Salvar</button>
       </form>
 
     </div>
     
   </div>
+  <!--Fim Modal Alterar Vaga -->
   <script>
-    function openModal() {
-    document.getElementById().style.display = "block";
+    function openModal2() {
+    document.getElementById("Modal2").style.display = "block";
     }
 
-  function closeModal() {
-    document.getElementById().style.display = "none";
+  function closeModal2() {
+    document.getElementById("Modal2").style.display = "none";
     }
   </script>
 

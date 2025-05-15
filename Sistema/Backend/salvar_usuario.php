@@ -1,32 +1,19 @@
 <?php
 
-    include('../funcoes.php');
-
     $tipoUsuario = $_POST["nTipoUsuario"];
+    $foto        = $_POST["nfoto"];
     $nome        = $_POST["nNome"];
     $login       = $_POST["nLogin"];
     $senha       = $_POST["nSenha"];
-    $funcao      = $_GET["funcao"];
-    $idUsuario   = $_GET["codigo"];
+    $opcao      = $_GET["opcao"];
+    $id   = $_GET["id"];
+
+    include('../funcoes.php');
 
     include("../conexao.php");
 
     //Validar se é Inclusão ou Alteração
-    if($funcao == "I"){
-
-        //Busca o próximo ID na tabela
-        $idUsuario = proxIdUsuario();
-
-        //INSERT
-        $sql = "INSERT INTO usuarios (id_usuario,id_tipo_usuario,nome,login,Senha) "
-                ." VALUES (".$idUsuario.","
-                .$tipoUsuario.","
-                ."'$nome',"
-                ."'$login',"
-                ."md5('$senha'),"
-;
-
-    }elseif($funcao == "A"){
+    if($opcao == "A"){
         //UPDATE
         if($senha == ''){ 
             $setSenha = ''; 
@@ -35,17 +22,17 @@
         }
 
         $sql = "UPDATE usuario "
-                ." SET id_tipo_usuario = $tipoUsuario, "
-                    ." Nome = '$nome', "
-                    ." Login = '$login', "
+                ." SET id_tipo_usuario = $id, "
+                    ." nome = '$nome', "
+                    ." login = '$login', "
+                    ." foto = '$foto', "
                     .$setSenha 
-                    ." FlgAtivo = '$ativo' "
                 ." WHERE id_usuario = $idUsuario;";
 
-    }elseif($funcao == "D"){
+    }elseif($opcao == "D"){
         //DELETE
         $sql = "DELETE FROM usuario "
-                ." WHERE id_usuario = $id_Usuario;";
+                ." WHERE id_usuario = $id;";
     }
 
     $result = mysqli_query($conn,$sql);
@@ -72,17 +59,18 @@
         move_uploaded_file($_FILES['Foto']['tmp_name'], $diretorio.$novoNome);
 
         //Caminho que será salvo no banco de dados
-        $dirImagem = '/img/'.$novoNome;
+        $dirImagem = '../Frontend/img/'.$novoNome;
 
         include("conexao.php");
         //UPDATE
         $sql = "UPDATE usuario "
                 ." SET Foto = '$dirImagem' "
-                ." WHERE id_usuario = $idUsuario;";
+                ." WHERE id_usuario = $id;";
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
     }
+    
 
-    header("location: ../usuario.php");
+    header("location: ../Frontend/painel-perfil.php");
 
 ?>

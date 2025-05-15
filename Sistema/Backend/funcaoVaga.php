@@ -1,6 +1,6 @@
 <?php
     function listaVagas(){
-        $linha = "";
+        $lista = '';
 
         include("conexao.php");
 
@@ -14,17 +14,17 @@
         if(mysqli_num_rows($result) > 0){
             foreach($result as $campo){
                 $idVaga = $campo['id_vaga'];
-                $linha .= "
+                $lista .= "
                 <tr>
                     <td>" . $campo['id_vaga'] . "</td>
                     <td>" . $campo['descricao'] . "</td>
                     <td>" . $campo['situacao'] . "</td>
-                    <td>" .$campo['fk_id_empresa']. "</td>
+                    <td>" .nomeEmpresa($campo['fk_id_empresa']). "</td>
                     <td>" .descrFlag($campo['flg_ativo']) . "</td>
                     <td>
-                        <a href='alterar-vaga.php?id=$idVaga'>
-                            Alterar
-                        </a>
+                    <a href='#' onclick=openModal2();>
+                    Alterar
+                  </a>
                          | 
                         <a href='excluir-vaga.php?id=$idVaga'>
                             Excluir
@@ -35,10 +35,10 @@
             }
         }
 
-        return $linha;
+        return $lista;
     }
     
-    function optionEmpresa($idEmpresa){
+    /*function optionEmpresa($idEmpresa){
 
         $option = "";
     
@@ -58,29 +58,33 @@
         } 
     
         return $option;
-    }
-    function optionEmpresaId($idEmpresa){
+    }*/
+    
+
+    function optionEmpresa($idVaga) {
         $lista = "";
 
         include("conexao.php");
 
         $sql = "SELECT * 
         FROM empresa
-        WHERE id_empresa= $idEmpresa;";
+        WHERE flg_ativo = 'S'
+        AND id_empresa <> $idVaga;";
+        //var_dump($sql);
+        //die();
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
 
         if(mysqli_num_rows($result) > 0){
             foreach($result as $campo){
-                $lista .= '<option value="'. $campo['id_empresa'] .'">'
-                . $campo['nome'] .'</option>';
+                $lista .= '<option value="'. $campo['id_empresa'] .'">'. $campo['nome'] .'</option>';
             }
         }
 
         return $lista;
-    }
-
+    } 
+    
     function descrFlag($flag) {
         if($flag == 'S') {
             return 'Sim';
@@ -88,37 +92,13 @@
             return 'Não';
         }
     }
-    /*function nomeEmpresa($idVaga){
-        include("conexao.php");
-        $sql = "SELECT em.nome
-        from empresa em
-        inner join vaga vg
-        on em.id_empresa = vg.fk_id_empresa
-        WHERE id_vaga = $idVaga;";
 
-        $result = mysqli_query($conn,$sql);
-        mysqli_close($conn);
-
-        if(mysqli_num_rows($result) > 0){
-            foreach($result as $campo){
-
-            }
-        }
-        return $campo;
-    }*/
-
-    /*
     function nomeEmpresa($idVaga){
 
-        $nome = "";
+        $nomeEmpresa = "";
     
         include("conexao.php");
-        $sql = "SELECT em.nome
-        from empresa em
-        inner join vaga vg
-        on em.id_empresa = vg.fk_id_empresa
-        WHERE id_vaga = $idVaga;"; 
-
+        $sql = "SELECT nome FROM empresa WHERE id_empresa = $idVaga;";        
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
     
@@ -133,11 +113,49 @@
             
             foreach ($array as $coluna) {            
                 //***Verificar os dados da consulta SQL
-                $nome = $coluna["nome"];
+                $nomeEmpresa = $coluna["nome"];
             }        
         } 
     
-        return $nome;
-    }*/
+        return $nomeEmpresa;
+    }
 
+    // Dados por ID
+    function buscaVagaId($idVaga) {
+        include("conexao.php");
+
+        $sql = "SELECT *
+                FROM vaga
+                WHERE id_vaga = $idVaga;";
+        //var_dump($sql);
+        //die();
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        if(mysqli_num_rows($result) > 0){
+            foreach($result as $campo){
+                
+            }
+        }
+        return $campo;
+    }
+    function proximoIDVaga($idVaga){
+        $idVaga=0;
+        
+        include("conexao.php");
+        $sql = "SELECT MAX(id_vaga) AS id_vaga FROM vaga;";
+        
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        if(mysqli_num_rows($result) > 0){
+            foreach($result as $campo){
+                $idVaga = $campo['id_vaga'];
+            }
+        }
+
+        return $idVaga + 1;
+    }
 ?>

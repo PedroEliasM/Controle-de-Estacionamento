@@ -14,6 +14,7 @@
 }
 /* FIM - Fundo da tela */
 
+
 /* Sidebar */
 #sidebar {
     min-width: 300px;
@@ -130,21 +131,27 @@
     display: none; } }
 /* Fim Sidebar */
 
-/* Navbar ao lado da sidebar */
+/* Navbar ao lado da sidebar *//* Navbar quando a sidebar está aberta */
 #navbar {
     position: fixed; /* Fixa a navbar no topo */
     top: 0;
     left: 300px;
     width: calc(100% - 300px); /* Faz a navbar preencher toda a largura */
     height: 60px; /* Altura da navbar */
-    background-color: purple; /* Cor de fundo */
+    background: rgba(128,0,128, 0.3); /* Background transparente/cor sem afetar o resto do conteúdo */
     color: white;
     display: flex;
     align-items: center;
     padding: 0 20px;
     padding-top: 3%;
-    opacity: 0.3;
+    transition: all 0.3s ease; /* Transição suave */
     z-index: -1; /* Garante que a navbar fique acima de outros elementos */
+}
+/* Navbar quando a sidebar está fechada */
+#navbar.sidebar-collapsed {
+  left: 0; /* Move a navbar para o início */
+  width: 100%; /* Faz a navbar ocupar toda a largura */
+  transition: all 0.3s ease; /* Transição suave */
 }
     /* Estilo para a lista da navbar */
     #navbar ul {
