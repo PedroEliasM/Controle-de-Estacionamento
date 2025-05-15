@@ -15,7 +15,7 @@
         
         <?php echo montaMenu(); ?>
 
-        <form method="POST" action="php/salvarEmpresa.php?funcao=A&codigo=<?php echo $_GET['id']; ?>" enctype="multipart/form-data">
+        <form method="POST" action="php/salvar_empresa.php?funcao=A&codigo=<?php echo $_GET['id']; ?>" enctype="multipart/form-data">
         
             <p>
                 <label for="iTipo">Tipo da Empresa:</label>
