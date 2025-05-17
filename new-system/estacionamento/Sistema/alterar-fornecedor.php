@@ -1,5 +1,5 @@
 <?php
-    include("php/funcoes.php");
+    include("backend/funcoes.php");
 ?>
 
 <!DOCTYPE HTML>
@@ -15,7 +15,7 @@
         
         <?php echo montaMenu(); ?>
 
-        <form method="POST" action="php/salvarFornecedor.php?funcao=A&codigo=<?php echo $_GET['id']; ?>" enctype="multipart/form-data">
+        <form method="POST" action="backend/salvarFornecedor.php?funcao=A&codigo=<?php echo $_GET['id']; ?>" enctype="multipart/form-data">
 
             <p>
             <label for="iNomeFantasia">Nome Fantasia:</label>

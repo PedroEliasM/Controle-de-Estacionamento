@@ -20,7 +20,7 @@
                 <h3 class="logo">Systems</h3>
             </div>
 
-            <form method="POST" action="Sistema/php/validaLogin.php">
+            <form method="POST" action="Sistema/backend/validaLogin.php">
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" id="iEmail" name="nEmail" placeholder="Digite seu email..."   required>

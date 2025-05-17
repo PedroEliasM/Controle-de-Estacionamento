@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  include('php/funcoes.php');
+  include('backend/funcoes.php');
 
   // Calcular os valores para os gráficos
   $ativos = [

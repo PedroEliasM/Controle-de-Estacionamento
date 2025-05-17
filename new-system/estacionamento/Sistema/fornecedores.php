@@ -1,6 +1,6 @@
  <?php 
   session_start();
-  include('php/funcoes.php');
+  include('backend/funcoes.php');
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +105,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="POST" action="php/salvarFornecedor.php?funcao=I" enctype="multipart/form-data">              
+              <form method="POST" action="backend/salvarFornecedor.php?funcao=I" enctype="multipart/form-data">              
                 
                 <div class="row">
                   <div class="col-8">

@@ -15,9 +15,9 @@
     //$_SESSION - Variável criada pelo usuário no PHP
 
     include("conexao.php");
-    $sql = "SELECT * FROM usuarios "
-            ." WHERE login = '$email' "
-            ." AND senha = md5('$senha');";
+    $sql = "SELECT * FROM usuario 
+            WHERE email = '$email' 
+            AND senha = md5('$senha');";
     $resultLogin = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -29,12 +29,14 @@
         foreach ($resultLogin as $coluna) {
                         
             //***Verificar os dados da consulta SQL
-            $_SESSION['idTipoUsuario'] = $coluna['idTipoUsuario'];
-            $_SESSION['logado']        = 1;
-            $_SESSION['idLogin']       = $coluna['idUsuario'];
-            $_SESSION['NomeLogin']     = $coluna['Nome'];
-            $_SESSION['FotoLogin']     = $coluna['Foto'];
-            $_SESSION['AtivoLogin']    = $coluna['FlgAtivo'];
+            $_SESSION['idTipoUsuario']  = $coluna['fk_id_tipo_usuario'];
+            $_SESSION['logado']         = 1;
+            $_SESSION['idLogin']        = $coluna['id_usuario'];
+            $_SESSION['NomeLogin']      = $coluna['nome'];
+            $_SESSION['EmailLogin']     = $coluna['email'];
+            $_SESSION['FotoLogin']      = $coluna['foto'];
+            $_SESSION['AtivoLogin']     = $coluna['flg_ativo'];
+            $_SESSION['idEmpresa']      = $coluna['fk_id_empresa'];
 
             //Acessar a tela inicial
             header('location: ../painel.php');
@@ -42,7 +44,7 @@
         }        
     }else{
         //Acessar a tela inicial
-        header('location: ../');
+        header('location: ../../');
     } 
 
     

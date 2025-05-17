@@ -19,7 +19,7 @@ function listaFornecedor(){
         foreach ($result as $coluna) {
 
             //Ativo: S ou N
-            //if($coluna["FlgAtivo"] == 'S')  $ativo = 'checked'; else $ativo = '';
+            //if($coluna["flg_ativo"] == 'S')  $ativo = 'checked'; else $ativo = '';
             if($coluna["flg_ativo"] == 'S'){  
                 $ativo = 'checked';
                 $icone = '<h6><i class="fas fa-check-circle text-success"></i></h6>'; 
@@ -67,7 +67,7 @@ function listaFornecedor(){
                         .'</div>'
                         .'<div class="modal-body">'
 
-                            .'<form method="POST" action="php/salvarFornecedor.php?funcao=A&codigo='.$coluna["id_fornecedor"].'" enctype="multipart/form-data">'
+                            .'<form method="POST" action="backend/salvarFornecedor.php?funcao=A&codigo='.$coluna["id_fornecedor"].'" enctype="multipart/form-data">'
                     
                                     .'<div class="col-8">'
                                         .'<div class="form-group">'
@@ -136,7 +136,7 @@ function listaFornecedor(){
                         .'</div>'
                         .'<div class="modal-body">'
 
-                            .'<form method="POST" action="php/salvarFornecedor.php?funcao=D&codigo='.$coluna["id_fornecedor"].'" enctype="multipart/form-data">'              
+                            .'<form method="POST" action="backend/salvarFornecedor.php?funcao=D&codigo='.$coluna["id_fornecedor"].'" enctype="multipart/form-data">'              
 
                                 .'<div class="row">'
                                     .'<div class="col-12">'
@@ -359,7 +359,7 @@ function loginUsuario($id){
 }
 */
 
-//Função para buscar a flag FlgAtivo do fornecedor
+//Função para buscar a flag flg_ativo do fornecedor
 function ativoFornecedor($id){
 
     $resp = "";

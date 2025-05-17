@@ -6,13 +6,13 @@
     include('conexao.php');
     include('funcoes.php');
 
-    $idUsuario = $_SESSION['id'];
+    $idUsuario = $_SESSION['idLogin'];
     $nome      = mysqli_real_escape_string($conn, $_POST['nNome']);
-    $senha     = isset($_POST['nSenha']) ? mysqli_real_escape_string($conn, $_POST['nSenha']) : '';
+    $senha     = isset($_POST['nAlterarSenha']) ? mysqli_real_escape_string($conn, $_POST['nAlterarSenha']) : '';
 
     //Foto do perfil
     $diretorioImg = '';
-
+    
     if (!empty($_FILES['nFoto']['tmp_name'])) {
 
         //Pega extensão e monta o novo nome do arquivo
@@ -40,7 +40,7 @@
             }
         }
     }
-
+    
     //Gravação no BD
     $sql = "UPDATE usuario 
             SET nome = '$nome'
@@ -49,6 +49,7 @@
         die("Erro ao atualizar nome: " . mysqli_error($conn));
     }
 
+    //Gravação no BD
     if (!empty($senha)) {
         $sql = "UPDATE usuario
                 SET senha = md5('$senha')
@@ -59,6 +60,9 @@
     }
 
     mysqli_close($conn);
-    header('location: ../Frontend/painel-perfil.php');
+    header('location: ../perfil.php');
     exit;
+
+    // Redireciona para a página anterior (última página acessada)
+    //header('location: '.$_SERVER['HTTP_REFERER']);
 ?>

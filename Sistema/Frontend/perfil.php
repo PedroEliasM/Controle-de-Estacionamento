@@ -1,16 +1,16 @@
 <?php
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
 
-include('../Backend/conexao.php');
+    include('../Backend/conexao.php');
 
-$idUsuario = $_SESSION['id'];
+    $idUsuario = $_SESSION['id'];
 
-$sql = "SELECT * FROM usuario WHERE id_usuario = $idUsuario";
-$result = mysqli_query($conn, $sql);
-$usuario = mysqli_fetch_assoc($result);
-mysqli_close($conn);
+    $sql = "SELECT * FROM usuario WHERE id_usuario = $idUsuario";
+    $result = mysqli_query($conn, $sql);
+    $usuario = mysqli_fetch_assoc($result);
+    mysqli_close($conn);
 
 ?>
 
@@ -30,7 +30,7 @@ mysqli_close($conn);
 
                 <div class="card-body">
 
-                    <form method="POST" action="Backend/salvar_perfil.php" enctype="multipart/form-data">
+                    <form method="POST" action="/Controle-de-Estacionamento/Sistema/Backend/salvar_perfil.php" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="row">
 
@@ -41,11 +41,11 @@ mysqli_close($conn);
                                             <div class="row">
                                                 <div class="col-3 text-center">
                                                     <div class="foto-perfil mx-auto">
-                                                    <img alt="<?php echo $usuario['nome']; ?>" src="<?php echo $usuario['foto'] . '?t=' . time(); ?>" class="foto" id="previewFoto">
+                                                        <img alt="<?php echo $usuario['nome']; ?>" src="<?php echo $usuario['foto'] . '?t=' . time(); ?>" class="foto" id="previewFoto">
                                                         <div class="trocar-imagem">
                                                             <i class="fas fa-camera upload-button"></i>
                                                             <p>Alterar Foto</p>
-                                                            <input class="arquivo" name="nFoto" type="file" id="inputFoto" title="" accept="image/*" />
+                                                            <input class="arquivo" name="nFoto" id="inputFoto" type="file"  title="" accept="image/*" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -61,7 +61,7 @@ mysqli_close($conn);
                                                         </div>
                                                         <div class="col-7">
                                                             <div class="form-group position-relative">
-                                                                <label>Senha</label>
+                                                                <label>Alterar Senha</label>
                                                                 <input name="nSenha" id="iSenha" type="password" placeholder="Digite sua senha..." class="form-control">
                                                                 <i class="fas fa-eye-slash toggle-password"
                                                                     style="cursor: pointer;"></i>

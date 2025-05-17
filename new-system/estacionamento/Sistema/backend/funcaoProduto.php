@@ -57,7 +57,7 @@ function listaProduto(){
                         .'</div>'
                         .'<div class="modal-body">'
 
-                            .'<form method="POST" action="php/salvarProduto.php?funcao=A&codigo='.$coluna["idProduto"].'" enctype="multipart/form-data">'              
+                            .'<form method="POST" action="backend/salvarProduto.php?funcao=A&codigo='.$coluna["idProduto"].'" enctype="multipart/form-data">'              
                 
                                 .'<div class="row">'
                                     .'<div class="col-12">'
@@ -109,7 +109,7 @@ function listaProduto(){
                         .'</div>'
                         .'<div class="modal-body">'
 
-                            .'<form method="POST" action="php/salvarProduto.php?funcao=D&codigo='.$coluna["idProduto"].'" enctype="multipart/form-data">'              
+                            .'<form method="POST" action="backend/salvarProduto.php?funcao=D&codigo='.$coluna["idProduto"].'" enctype="multipart/form-data">'              
 
                                 .'<div class="row">'
                                     .'<div class="col-12">'
@@ -169,7 +169,7 @@ function categoriaProduto($id){
     $resp = "";
 
     include("conexao.php");
-    $sql = "SELECT idTipoUsuario FROM usuarios WHERE idUsuario = $id;";        
+    $sql = "SELECT idTipoUsuario FROM usuario WHERE idUsuario = $id;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -212,7 +212,7 @@ function descrProduto($id){
     $resp = "";
 
     include("conexao.php");
-    $sql = "SELECT Nome FROM usuarios WHERE idUsuario = $id;";        
+    $sql = "SELECT Nome FROM usuario WHERE idUsuario = $id;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 

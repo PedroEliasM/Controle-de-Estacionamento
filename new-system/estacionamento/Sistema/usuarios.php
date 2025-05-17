@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  include('php/funcoes.php');
+  include('backend/funcoes.php');
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +104,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="POST" action="php/salvarUsuario.php?funcao=I" enctype="multipart/form-data">              
+              <form method="POST" action="backend/salvarUsuario.php?funcao=I" enctype="multipart/form-data">              
                 
                 <div class="row">
                   <div class="col-8">

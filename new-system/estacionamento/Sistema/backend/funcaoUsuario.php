@@ -3,7 +3,7 @@
 function listaUsuario(){
 
     include("conexao.php");
-    $sql = "SELECT * FROM usuarios ORDER BY idUsuario;";
+    $sql = "SELECT * FROM usuario ORDER BY id_usuario;";
             
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
@@ -19,8 +19,8 @@ function listaUsuario(){
         foreach ($result as $coluna) {
 
             //Ativo: S ou N
-            //if($coluna["FlgAtivo"] == 'S')  $ativo = 'checked'; else $ativo = '';
-            if($coluna["FlgAtivo"] == 'S'){  
+            //if($coluna["flg_ativo"] == 'S')  $ativo = 'checked'; else $ativo = '';
+            if($coluna["flg_ativo"] == 'S'){  
                 $ativo = 'checked';
                 $icone = '<h6><i class="fas fa-check-circle text-success"></i></h6>'; 
             }else{
@@ -65,7 +65,7 @@ function listaUsuario(){
                         .'</div>'
                         .'<div class="modal-body">'
 
-                            .'<form method="POST" action="php/salvarUsuario.php?funcao=A&codigo='.$coluna["idUsuario"].'" enctype="multipart/form-data">'              
+                            .'<form method="POST" action="backend/salvarUsuario.php?funcao=A&codigo='.$coluna["idUsuario"].'" enctype="multipart/form-data">'              
                 
                                 .'<div class="row">'
                                     .'<div class="col-8">'
@@ -138,7 +138,7 @@ function listaUsuario(){
                         .'</div>'
                         .'<div class="modal-body">'
 
-                            .'<form method="POST" action="php/salvarUsuario.php?funcao=D&codigo='.$coluna["idUsuario"].'" enctype="multipart/form-data">'              
+                            .'<form method="POST" action="backend/salvarUsuario.php?funcao=D&codigo='.$coluna["idUsuario"].'" enctype="multipart/form-data">'              
 
                                 .'<div class="row">'
                                     .'<div class="col-12">'
@@ -169,7 +169,7 @@ function proxIdUsuario(){
     $id = "";
 
     include("conexao.php");
-    $sql = "SELECT MAX(idUsuario) AS Maior FROM usuarios;";        
+    $sql = "SELECT MAX(id_usuario) AS Maior FROM usuario;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -197,7 +197,7 @@ function tipoAcessoUsuario($id){
     $resp = "";
 
     include("conexao.php");
-    $sql = "SELECT idTipoUsuario FROM usuarios WHERE idUsuario = $id;";        
+    $sql = "SELECT fk_id_tipo_usuario FROM usuario WHERE id_usuario = $id;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -212,21 +212,14 @@ function tipoAcessoUsuario($id){
         
         foreach ($array as $coluna) {            
             //***Verificar os dados da consulta SQL
-            if($coluna["idTipoUsuario"] == 1){
+            if($coluna["fk_id_tipo_usuario"] == 1){
                 //Admin
                 $resp = '<option value="1">Admin</option>'
-                        .'<option value="2">Empresa</option>'
-                        .'<option value="3">Comum</option>';
-            }else if($coluna["idTipoUsuario"] == 2){
-                //Empresa
-                $resp = '<option value="2">Empresa</option>'
-                        .'<option value="1">Admin</option>'
-                        .'<option value="3">Comum</option>';
+                        .'<option value="2">Funcionário</option>';
             }else{
-                //Comum
-                $resp = '<option value="3">Comum</option>'
-                        .'<option value="1">Admin</option>'
-                        .'<option value="2">Empresa</option>';
+                //Funcionário
+                $resp = '<option value="2">Funcionário</option>'
+                        .'<option value="1">Admin</option>';
             }
         }        
     } 
@@ -240,7 +233,7 @@ function fotoUsuario($id){
     $resp = "";
 
     include("conexao.php");
-    $sql = "SELECT Foto FROM usuarios WHERE idUsuario = $id;";        
+    $sql = "SELECT foto FROM usuario WHERE id_usuario = $id;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -255,7 +248,7 @@ function fotoUsuario($id){
         
         foreach ($array as $coluna) {            
             //***Verificar os dados da consulta SQL
-            $resp = $coluna["Foto"];
+            $resp = $coluna["foto"];
         }        
     } 
 
@@ -268,7 +261,7 @@ function nomeUsuario($id){
     $resp = "";
 
     include("conexao.php");
-    $sql = "SELECT Nome FROM usuarios WHERE idUsuario = $id;";        
+    $sql = "SELECT nome FROM usuario WHERE id_usuario = $id;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -283,7 +276,7 @@ function nomeUsuario($id){
         
         foreach ($array as $coluna) {            
             //***Verificar os dados da consulta SQL
-            $resp = $coluna["Nome"];
+            $resp = $coluna["nome"];
         }        
     } 
 
@@ -296,7 +289,7 @@ function loginUsuario($id){
     $resp = "";
 
     include("conexao.php");
-    $sql = "SELECT Login FROM usuarios WHERE idUsuario = $id;";        
+    $sql = "SELECT email FROM usuario WHERE id_usuario = $id;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -311,20 +304,20 @@ function loginUsuario($id){
         
         foreach ($array as $coluna) {            
             //***Verificar os dados da consulta SQL
-            $resp = $coluna["Login"];
+            $resp = $coluna["email"];
         }        
     } 
 
     return $resp;
 }
 
-//Função para buscar a flag FlgAtivo do usuário
+//Função para buscar a flag flg_ativo do usuário
 function ativoUsuario($id){
 
     $resp = "";
 
     include("conexao.php");
-    $sql = "SELECT FlgAtivo FROM usuarios WHERE idUsuario = $id;";        
+    $sql = "SELECT flg_ativo FROM usuario WHERE id_usuario = $id;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -333,7 +326,7 @@ function ativoUsuario($id){
         
         foreach ($result as $coluna) {            
             //***Verificar os dados da consulta SQL
-            if($coluna["FlgAtivo"] == 'S') $resp = 'checked'; else $resp = '';
+            if($coluna["flg_ativo"] == 'S') $resp = 'checked'; else $resp = '';
         }        
     } 
 
@@ -346,7 +339,7 @@ function qtdUsuariosAtivos(){
 
     include("conexao.php");
 
-    $sql = "SELECT COUNT(*) AS Qtd FROM usuarios WHERE FlgAtivo = 'S';";
+    $sql = "SELECT COUNT(*) AS Qtd FROM usuario WHERE flg_ativo = 'S';";
 
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
@@ -374,13 +367,13 @@ function qtdUsuariosAtivos($tipoUsuario = null) {
 
     // Verifica se foi passado um tipo de usuário
     if ($tipoUsuario !== null) {
-        $sql = "SELECT COUNT(*) AS Qtd FROM usuarios WHERE FlgAtivo = 'S' AND TipoUsuario = ?;";
+        $sql = "SELECT COUNT(*) AS Qtd FROM usuarios WHERE flg_ativo = 'S' AND TipoUsuario = ?;";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "s", $tipoUsuario);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
     } else {
-        $sql = "SELECT COUNT(*) AS Qtd FROM usuarios WHERE FlgAtivo = 'S';";
+        $sql = "SELECT COUNT(*) AS Qtd FROM usuarios WHERE flg_ativo = 'S';";
         $result = mysqli_query($conn, $sql);
     }
 
@@ -400,7 +393,7 @@ function qtdUsuariosRegistrados(){
     $qtd = 0;
 
     include("conexao.php");
-    $sql = "SELECT COUNT(*) AS Qtd FROM usuarios;";
+    $sql = "SELECT COUNT(*) AS Qtd FROM usuario;";
 
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);

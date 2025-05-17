@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  include('php/funcoes.php');
+  include('backend/funcoes.php');
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +106,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="POST" action="php/salvarProduto.php?funcao=I" enctype="multipart/form-data">              
+              <form method="POST" action="backend/salvarProduto.php?funcao=I" enctype="multipart/form-data">              
                 
                 <div class="row">
                   <div class="col-12">
@@ -233,7 +233,7 @@
       if(categoria != "" && categoria != "0"){
         
         //Vai no PHP consultar dados para a lista 2
-        $.getJSON('php/carregaProdutoCategoria.php?categoria='+categoria,
+        $.getJSON('backend/carregaProdutoCategoria.php?categoria='+categoria,
         function (dados){  
           
           //Carrega a primeira option

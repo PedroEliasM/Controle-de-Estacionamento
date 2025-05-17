@@ -6,7 +6,7 @@
         header("location: ../");
     }
     
-    include("php/funcoes.php");
+    include("backend/funcoes.php");
 
 ?>
 
@@ -23,7 +23,7 @@
 
         <?php echo montaMenu(); ?>
 
-        <form method="POST" action="php/salvarFornecedor.php?funcao=I" enctype="multipart/form-data">
+        <form method="POST" action="backend/salvarFornecedor.php?funcao=I" enctype="multipart/form-data">
 
             <p>
                 <label for="iRazao">Razão Social:</label>

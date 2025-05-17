@@ -6,7 +6,7 @@ function descrTipoUsuario($id){
     $descricao = "";
 
     include("conexao.php");
-    $sql = "SELECT Descricao FROM tipousuario WHERE idTipoUsuario = $id;";        
+    $sql = "SELECT descricao FROM tipo_usuario WHERE id_tipo_usuario = $id;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -21,7 +21,7 @@ function descrTipoUsuario($id){
         
         foreach ($array as $coluna) {            
             //***Verificar os dados da consulta SQL
-            $descricao = $coluna["Descricao"];
+            $descricao = $coluna["descricao"];
         }        
     } 
 
@@ -34,7 +34,7 @@ function optionTipoUsuario(){
     $option = "";
 
     include("conexao.php");
-    $sql = "SELECT idTipoUsuario, Descricao FROM tipousuario ORDER BY Descricao;";        
+    $sql = "SELECT id_tipo_usuario, descricao FROM tipo_usuario ORDER BY descricao;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -49,7 +49,7 @@ function optionTipoUsuario(){
         
         foreach ($array as $coluna) {            
             //***Verificar os dados da consulta SQL            
-            $option .= '<option value="'.$coluna['idTipoUsuario'].'">'.$coluna['Descricao'].'</option>';
+            $option .= '<option value="'.$coluna['id_tipo_usuario'].'">'.$coluna['descricao'].'</option>';
         }        
     } 
 
@@ -62,7 +62,7 @@ function descrTipoUsuarioBarras(){
     $descricao = "";
 
     include("conexao.php");
-    $sql = "SELECT Descricao FROM tipousuario;";        
+    $sql = "SELECT descricao FROM tipo_usuario;";        
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -72,9 +72,9 @@ function descrTipoUsuarioBarras(){
         foreach ($result as $coluna) {            
             //***Verificar os dados da consulta SQL
             if ($i < 3){
-                $descricao .= "'".$coluna["Descricao"]."',";
+                $descricao .= "'".$coluna["descricao"]."',";
             }else{
-                $descricao .= "'".$coluna["Descricao"]."'";
+                $descricao .= "'".$coluna["descricao"]."'";
             }
 
             $i++;
@@ -92,9 +92,9 @@ function qtdTipoUsuarioAtivo($tipoUsuario){
     $qtdTipoUsuarioAtivo = '0';
 
     // Monta a consulta SQL com base no tipo de usuário
-    $sql = "SELECT COUNT(*) AS Qtd FROM usuarios WHERE FlgAtivo = 'S'";
-    if ($tipoUsuario == '1' || $tipoUsuario == '2' || $tipoUsuario == '3') {
-        $sql .= " AND idTipoUsuario = '$tipoUsuario'";
+    $sql = "SELECT COUNT(*) AS Qtd FROM usuario WHERE flg_ativo = 'S'";
+    if ($tipoUsuario == '1' || $tipoUsuario == '2') {
+        $sql .= " AND fk_id_tipo_usuario = '$tipoUsuario'";
     }
 
     // Executa a consulta
@@ -127,9 +127,9 @@ function qtdTipoUsuarioInativo($tipoUsuario){
     $qtdTipoUsuarioInativo = '0';
 
     // Monta a consulta SQL com base no tipo de usuário
-    $sql = "SELECT COUNT(*) AS Qtd FROM usuarios WHERE FlgAtivo = 'N'";
-    if ($tipoUsuario == '1' || $tipoUsuario == '2' || $tipoUsuario == '3') {
-        $sql .= " AND idTipoUsuario = '$tipoUsuario'";
+    $sql = "SELECT COUNT(*) AS Qtd FROM usuario WHERE flg_ativo = 'N'";
+    if ($tipoUsuario == '1' || $tipoUsuario == '2') {
+        $sql .= " AND fk_id_tipo_usuario = '$tipoUsuario'";
     }
 
     // Executa a consulta

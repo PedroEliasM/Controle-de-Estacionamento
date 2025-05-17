@@ -6,7 +6,7 @@
         header("location: ../");
     }
     
-    include("php/funcoes.php");
+    include("backend/funcoes.php");
 
 ?>
 
@@ -23,7 +23,7 @@
 
         <?php echo montaMenu(); ?>
 
-        <form method="POST" action="php/salvarUsuario.php?funcao=I" enctype="multipart/form-data">
+        <form method="POST" action="backend/salvarUsuario.php?funcao=I" enctype="multipart/form-data">
             
             <p>
                 <label for="iNome">Tipo de Usuário:</label>
@@ -35,17 +35,17 @@
 
             <p>
                 <label for="iNome">Nome:</label>
-                <input type="text" id="iNome" name="nNome" maxlength="50">
+                <input type="text" id="iNome" name="nNome" maxlength="30">
             </p>
 
             <p>
-                <label for="iLogin">Login:</label>
-                <input type="email" id="iLogin" name="nLogin" maxlength="50">
+                <label for="iEmail">Email:</label>
+                <input type="email" id="iEmail" name="nEmail" maxlength="30">
             </p>
 
             <p>
                 <label for="iSenha">Senha:</label>
-                <input type="text" id="iSenha" name="nSenha" maxlength="6">
+                <input type="text" id="iSenha" name="nSenha" maxlength="32">
             </p>
 
             <p>

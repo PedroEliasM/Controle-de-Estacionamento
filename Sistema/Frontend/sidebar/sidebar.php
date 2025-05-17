@@ -6,9 +6,9 @@
         </div>
 
         <!-- Logo -->
-	  		<div class="img bg-wrap text-center py-4" style="background-image: url(/Estacionamento/Sistema/Frontend/sidebar/images/bg_1.jpg);">
+	  		<div class="img bg-wrap text-center py-4" style="background-image: url(/Controle-de-Estacionamento/Sistema/Frontend/sidebar/images/bg_1.jpg);">
 	  			<div class="user-logo">
-	  				<div class="img" style="background-image: url(/Estacionamento/Sistema/img/logo.png);"></div>
+	  				<div class="img" style="background-image: url(/Controle-de-Estacionamento/Sistema/img/logo.png);"></div>
 	  				<h3>ParkWay Systems</h3>
 	  			</div>
 	  		</div>
@@ -32,7 +32,7 @@
             <a href="#"><span class="fa fa-support mr-3"></span> Support</a>
           </li>
           <li class="desactive">
-            <a href="/Estacionamento/Sistema/Backend/validaLogoff.php"><span class="fas fa-sign-out-alt mr-3"></span>
+            <a href="/Controle-de-Estacionamento/Sistema/Backend/validaLogoff.php"><span class="fas fa-sign-out-alt mr-3"></span>
              Sair
             </a>
           </li>

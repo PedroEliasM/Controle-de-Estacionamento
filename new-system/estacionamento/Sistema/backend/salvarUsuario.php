@@ -4,7 +4,7 @@
 
     $tipoUsuario = $_POST["nTipoUsuario"];
     $nome        = $_POST["nNome"];
-    $login       = $_POST["nLogin"];
+    $email       = $_POST["nEmail"];
     $senha       = $_POST["nSenha"];
     $funcao      = $_GET["funcao"];
     $idUsuario   = $_GET["codigo"];
@@ -20,34 +20,29 @@
         $idUsuario = proxIdUsuario();
 
         //INSERT
-        $sql = "INSERT INTO usuarios (idUsuario,idTipoUsuario,Nome,Login,Senha,FlgAtivo) "
-                ." VALUES (".$idUsuario.","
-                .$tipoUsuario.","
-                ."'$nome',"
-                ."'$login',"
-                ."md5('$senha'),"
-                ."'$ativo');";
+        $sql = "INSERT INTO usuario (id_usuario,fk_id_tipo_usuario,nome,email,senha,flg_ativo) 
+                VALUES ($idUsuario,$tipoUsuario,'$nome','$email',md5('$senha'),('$ativo');";
 
     }elseif($funcao == "A"){
         //UPDATE
         if($senha == ''){ 
             $setSenha = ''; 
         }else{ 
-            $setSenha = " Senha = md5('".$senha."'), ";
+            $setSenha = " senha = md5('$senha'), ";
         }
 
-        $sql = "UPDATE usuarios "
-                ." SET idTipoUsuario = $tipoUsuario, "
-                    ." Nome = '$nome', "
-                    ." Login = '$login', "
-                    .$setSenha 
-                    ." FlgAtivo = '$ativo' "
-                ." WHERE idUsuario = $idUsuario;";
+        $sql = "UPDATE usuario 
+                SET fk_id_tipo_usuario = $tipoUsuario, 
+                    nome = '$nome', 
+                    email = '$email', 
+                    $setSenha 
+                    flg_ativo = '$ativo' 
+                    WHERE idUsuario = $idUsuario;";
 
     }elseif($funcao == "D"){
         //DELETE
-        $sql = "DELETE FROM usuarios "
-                ." WHERE idUsuario = $idUsuario;";
+        $sql = "DELETE FROM usuario 
+                WHERE id_usuario = $idUsuario;";
     }
 
     $result = mysqli_query($conn,$sql);
@@ -82,9 +77,9 @@
 
         include("conexao.php");
         //UPDATE
-        $sql = "UPDATE usuarios "
-                ." SET Foto = '$dirImagem' "
-                ." WHERE idUsuario = $idUsuario;";
+        $sql = "UPDATE usuario 
+                SET foto = '$dirImagem 
+                WHERE id_usuario = $idUsuario;";
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
     }
