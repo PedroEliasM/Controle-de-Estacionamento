@@ -61,19 +61,19 @@
         $novoNome = md5($_FILES['Foto']['name']).'.'.$extensao;        
         
         //Verificar se o diretório existe, ou criar a pasta
-        if(is_dir('../dist/img/')){
+        if(is_dir('../dist/img/usuarios/')){
             //Existe
-            $diretorio = '../dist/img/';
+            $diretorio = '../dist/img/usuarios/';
         }else{
             //Criar pq não existe
-            $diretorio = mkdir('../dist/img/');
+            $diretorio = mkdir('../dist/img/usuarios/');
         }
 
         //Cria uma cópia do arquivo local na pasta do projeto
         move_uploaded_file($_FILES['Foto']['tmp_name'], $diretorio.$novoNome);
 
         //Caminho que será salvo no banco de dados
-        $dirImagem = 'dist/img/'.$novoNome;
+        $dirImagem = 'dist/img/usuarios/'.$novoNome;
 
         include("conexao.php");
         //UPDATE

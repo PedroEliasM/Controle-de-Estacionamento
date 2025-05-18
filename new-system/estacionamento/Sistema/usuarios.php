@@ -116,8 +116,8 @@
 
                   <div class="col-4">
                     <div class="form-group">
-                      <label for="iNome">Tipo de Usuário:</label>
-                      <select name="nTipoUsuario" class="form-control" required>
+                      <label for="iTipoUsuario">Tipo de Usuário:</label>
+                      <select id="iTipoUsuario" name="nTipoUsuario" class="form-control" required>
                         <option value="">Selecione...</option>
                         <?php echo optionTipoUsuario();?>
                       </select>

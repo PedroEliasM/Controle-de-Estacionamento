@@ -99,14 +99,14 @@
                                             <div class="col-7">
                                               <div class="form-group">
                                                 <label>E-mail</label>
-                                                <input readonly name="nEmail" id="iEmail" type="email" maxlength="30" class="form-control form-control-sm" 
+                                                <input readonly name="nEmail" id="iEmail" type="email" maxlength="30" class="form-control" 
                                                   value="<?php echo $_SESSION['EmailLogin']; ?>">
                                               </div>
                                             </div>		
                                             <div class="col-5">
                                               <div class="form-group">
                                                 <label>Alterar Senha</label>
-                                                <input name="nAlterarSenha" id="iAlterarSenha" type="password" class="form-control form-control-sm" 
+                                                <input name="nAlterarSenha" id="iAlterarSenha" type="password" class="form-control" 
                                                   value="" placeholder="Digite sua nova senha...">
                                                   <i class="fas fa-eye-slash toggle-password"
                                                     style="cursor: pointer;"></i>
@@ -115,7 +115,7 @@
                                             <div class="col-7">
                                               <div class="form-group">
                                                 <label>Empresa</label>
-                                                <input readonly name="nEmpresa" id="iEmpresa" type="text" maxlength="30" class="form-control form-control-sm" 
+                                                <input readonly name="nEmpresa" id="iEmpresa" type="text" maxlength="30" class="form-control" 
                                                   value="<?php echo $_SESSION['idEmpresa']; ?>">
                                               </div>
                                             </div>

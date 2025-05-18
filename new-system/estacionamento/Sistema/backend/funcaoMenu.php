@@ -44,9 +44,13 @@ function montaMenu($n1,$n2){
 
         case 'usuarios':
             $opcUsuarios = 'active';
-            break;       
+            break;     
             
-        case 'fornecedores':
+        case 'vagas':
+            $opcVagas = 'active';
+            break;   
+            
+        case 'empresas':
             $opcEmpresas = 'active';
             break;  
         
@@ -111,7 +115,7 @@ function montaMenu($n1,$n2){
 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="./usuarios.php" class="nav-link '.$opcVagas.'">
+                        <a href="./vagas.php" class="nav-link '.$opcVagas.'">
                         <i class="fas fa-car nav-icon"></i>
                         <p>Vagas</p>
                         </a>
@@ -120,7 +124,7 @@ function montaMenu($n1,$n2){
 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="./fornecedores.php" class="nav-link '.$opcEmpresas.'">
+                        <a href="./empresas.php" class="nav-link '.$opcEmpresas.'">
                         <i class="fab fa-houzz nav-icon"></i>
                         <p>Empresas</p>
                         </a>

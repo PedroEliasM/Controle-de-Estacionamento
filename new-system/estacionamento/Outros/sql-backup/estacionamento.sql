@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15/05/2025 às 20:32
+-- Tempo de geração: 18/05/2025 às 23:10
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -32,6 +32,13 @@ CREATE TABLE `empresa` (
   `nome` varchar(30) NOT NULL COMMENT 'Nome da Empresa',
   `cnpj` varchar(14) NOT NULL COMMENT 'CNPJ da Empresa',
   `telefone` int(13) NOT NULL COMMENT 'Telefone da Empresa',
+  `cep` varchar(9) DEFAULT NULL COMMENT 'CEP da Empresa',
+  `endereco` varchar(30) DEFAULT NULL COMMENT 'Endereço da Empresa (rua, avenida, etc.)',
+  `numero` int(5) DEFAULT NULL COMMENT 'Número do endereço',
+  `complemento` varchar(60) DEFAULT NULL COMMENT 'Complemento do endereço',
+  `bairro` varchar(30) DEFAULT NULL COMMENT 'Bairro que a Empresa reside',
+  `cidade` varchar(30) DEFAULT NULL COMMENT 'Cidade que a Empresa reside',
+  `uf` varchar(2) DEFAULT NULL COMMENT 'UF do Estado que a Empresa reside',
   `flg_ativo` char(1) NOT NULL COMMENT 'Empresa ativa? S-Sim / N-Não'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,8 +46,8 @@ CREATE TABLE `empresa` (
 -- Despejando dados para a tabela `empresa`
 --
 
-INSERT INTO `empresa` (`id_empresa`, `nome`, `cnpj`, `telefone`, `flg_ativo`) VALUES
-(1, 'Senai', '03776284000109', 2147483647, '');
+INSERT INTO `empresa` (`id_empresa`, `nome`, `cnpj`, `telefone`, `cep`, `endereco`, `numero`, `complemento`, `bairro`, `cidade`, `uf`, `flg_ativo`) VALUES
+(1, 'Senai', '03776284000109', 2147483647, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'S');
 
 -- --------------------------------------------------------
 
@@ -96,7 +103,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `foto`, `flg_ativo`, `fk_id_empresa`, `fk_id_tipo_usuario`) VALUES
-(1, 'pedro', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', NULL, '0', 1, 1);
+(1, 'Pedro', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-1.png', 'S', 1, 1);
 
 -- --------------------------------------------------------
 
