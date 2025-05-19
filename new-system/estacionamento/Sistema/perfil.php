@@ -116,7 +116,7 @@
                                               <div class="form-group">
                                                 <label>Empresa</label>
                                                 <input readonly name="nEmpresa" id="iEmpresa" type="text" maxlength="30" class="form-control" 
-                                                  value="<?php echo $_SESSION['idEmpresa']; ?>">
+                                                  value="<?php echo $_SESSION['NomeEmpresa']; ?>">
                                               </div>
                                             </div>
                                           </div>
