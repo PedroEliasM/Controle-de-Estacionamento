@@ -1,11 +1,47 @@
 <?php
 
+    include('conexao.php');
     include('funcoes.php');
 
-    $nome           = $_POST["nNome"];
-    $cnpj           = $_POST["nCNPJ"];
-    $telefone       = $_POST["nTelefone"];
-    $cep            = $_POST["nCEP"];
+    /* Anti SQL Injection
+    $stmt = $conn->prepare("INSERT INTO empresa (nome, cnpj) VALUES (?, ?)");
+    $stmt->bind_param("ss", $nome, $cnpj);
+    $stmt->execute();
+
+    Cada "?" representa um parâmetro a ser passado
+    Cada "s", "i", "d" representa o tipo do parâmetro
+
+    "s" = string
+    "i" = integer (inteiro)
+    "d" = double (decimal)
+    "b" = blob (binário)
+
+
+    Exemplo usando função reutilizável:
+
+    function executaQuery($conn, $sql, $tipos, ...$params) {
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param($tipos, ...$params);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    $sql = "INSERT INTO empresa (nome, cnpj) VALUES (?, ?)";
+    executaQuery($conn, $sql, "ss", $nome, $cnpj);
+    */
+
+    $nome           = mysqli_real_escape_string($conn, $_POST["nNome"]);
+    $cnpj           = mysqli_real_escape_string($conn, $_POST["nCNPJ"]);
+    $telefone       = mysqli_real_escape_string($conn, $_POST["nTelefone"]);
+    $cep            = isset($_POST["nCEP"]) ? mysqli_real_escape_string($conn, $_POST['nCEP']) : '';
+    $endereco       = isset($_POST["nEndereco"]) ? mysqli_real_escape_string($conn, $_POST['nEndereco']) : '';
+    $numero         = isset($_POST["nNumero"]) ? mysqli_real_escape_string($conn, $_POST['nNumero']) : '';
+    $complemento    = isset($_POST["nComplemento"]) ? mysqli_real_escape_string($conn, $_POST['nComplemento']) : '';
+    $bairro         = isset($_POST["nBairro"]) ? mysqli_real_escape_string($conn, $_POST['nBairro']) : '';
+    $cidade         = isset($_POST["nCidade"]) ? mysqli_real_escape_string($conn, $_POST['nCidade']) : '';
+    $uf             = isset($_POST["nUF"]) ? mysqli_real_escape_string($conn, $_POST['nUF']) : '';
+
+
     $endereco       = $_POST["nEndereco"];
     $numero         = $_POST["nNumero"];
     $complemento    = $_POST["nComplemento"];
@@ -17,8 +53,6 @@
 
     if($_POST["nAtivo"] == "on") $ativo = "S"; else $ativo = "N";
 
-    include("conexao.php");
-
     //Validar se é Inclusão ou Alteração
     if($funcao == "I"){
 
@@ -28,12 +62,12 @@
         //INSERT
         $sql = "INSERT INTO empresa (id_empresa,nome,cnpj,telefone,cep,endereco,numero,complemento,bairro,cidade,uf,flg_ativo) 
                 VALUES ($idEmpresa,'$nome','$cnpj','$telefone','$cep','$endereco',
-                        '$numero','$complemento','$bairro','$cidade','$uf',('$ativo');";
+                        '$numero','$complemento','$bairro','$cidade','$uf','$ativo');";
 
     }elseif($funcao == "A"){
         //UPDATE
         $sql = "UPDATE empresa 
-                SET nome        = $nome, 
+                SET nome        = '$nome', 
                     cnpj        = '$cnpj', 
                     telefone    = '$telefone', 
                     cep         = '$cep', 
@@ -82,15 +116,14 @@
         //Caminho que será salvo no banco de dados
         $dirImagem = 'dist/img/empresas/'.$novoNome;
 
-        include("conexao.php");
         //UPDATE
-        $sql = "UPDATE usuario 
+        $sql = "UPDATE empresa 
                 SET foto = '$dirImagem 
-                WHERE id_usuario = $idEmpresa;";
+                WHERE id_empresa = $idEmpresa;";
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
     }
 
-    header("location: ../usuarios.php");
+    header("location: ../empresas.php");
 
 ?>

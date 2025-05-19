@@ -5,7 +5,7 @@ include("funcaoMenu.php");
 include("funcaoProduto.php");
 include("funcaoTipoUsuario.php");
 include("funcaoUsuario.php");
-//include("funcaoEmpresa.php");
+include("funcaoEmpresa.php");
     
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

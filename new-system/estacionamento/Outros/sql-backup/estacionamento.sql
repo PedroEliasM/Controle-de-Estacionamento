@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/05/2025 às 23:10
+-- Tempo de geração: 19/05/2025 às 18:31
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -32,10 +32,11 @@ CREATE TABLE `empresa` (
   `nome` varchar(30) NOT NULL COMMENT 'Nome da Empresa',
   `cnpj` varchar(14) NOT NULL COMMENT 'CNPJ da Empresa',
   `telefone` int(13) NOT NULL COMMENT 'Telefone da Empresa',
+  `foto` varchar(200) DEFAULT NULL COMMENT 'Foto da Empresa',
   `cep` varchar(9) DEFAULT NULL COMMENT 'CEP da Empresa',
   `endereco` varchar(30) DEFAULT NULL COMMENT 'Endereço da Empresa (rua, avenida, etc.)',
   `numero` int(5) DEFAULT NULL COMMENT 'Número do endereço',
-  `complemento` varchar(60) DEFAULT NULL COMMENT 'Complemento do endereço',
+  `complemento` varchar(60) DEFAULT NULL COMMENT 'Complemento do endereço (opcional)',
   `bairro` varchar(30) DEFAULT NULL COMMENT 'Bairro que a Empresa reside',
   `cidade` varchar(30) DEFAULT NULL COMMENT 'Cidade que a Empresa reside',
   `uf` varchar(2) DEFAULT NULL COMMENT 'UF do Estado que a Empresa reside',
@@ -46,8 +47,8 @@ CREATE TABLE `empresa` (
 -- Despejando dados para a tabela `empresa`
 --
 
-INSERT INTO `empresa` (`id_empresa`, `nome`, `cnpj`, `telefone`, `cep`, `endereco`, `numero`, `complemento`, `bairro`, `cidade`, `uf`, `flg_ativo`) VALUES
-(1, 'Senai', '03776284000109', 2147483647, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'S');
+INSERT INTO `empresa` (`id_empresa`, `nome`, `cnpj`, `telefone`, `foto`, `cep`, `endereco`, `numero`, `complemento`, `bairro`, `cidade`, `uf`, `flg_ativo`) VALUES
+(1, 'Senai', '03776284000109', 2147483647, NULL, '89219510', 'R. Arno Waldemar Döhler', 957, '', 'Zona Industrial Norte', 'Joinville', 'SC', 'S');
 
 -- --------------------------------------------------------
 

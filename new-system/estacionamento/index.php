@@ -22,11 +22,11 @@
 
             <form method="POST" action="Sistema/backend/validaLogin.php">
                 <div class="form-group">
-                    <label for="email">Email:</label>
+                    <label for="email">Email</label>
                     <input type="email" id="iEmail" name="nEmail" placeholder="Digite seu email..."   required>
                 </div>
                 <div class="form-group">
-                    <label for="senha">Senha:</label>
+                    <label for="senha">Senha</label>
                     <input type="password" id="iSenha" name="nSenha" placeholder="Digite sua senha..."   required>
                 </div>
 
