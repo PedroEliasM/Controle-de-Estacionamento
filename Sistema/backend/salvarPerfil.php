@@ -51,6 +51,8 @@
     if (!mysqli_query($conn, $sql)) {
         die("Erro ao atualizar nome: " . mysqli_error($conn));
     }
+    // Atualiza a sessão com o novo caminho da foto
+    $_SESSION['NomeLogin'] = $nome;
 
     //Gravação no BD
     if (!empty($senha)) {
