@@ -86,44 +86,54 @@
                 WHERE id_empresa = $idEmpresa;";
     }
 
-    $result = mysqli_query($conn,$sql);
-    mysqli_close($conn);
-
-
     //VERIFICA SE TEM IMAGEM NO INPUT
-    if($_FILES['Foto']['tmp_name'] != ""){
+    if($_FILES['nFoto']['tmp_name'] != ""){
 
         //Usar o mesmo nome do arquivo original
         //$nomeArq = $_FILES['Foto']['name'];
         //...
         //OU
         //Pega a extensão do arquivo e cria um novo nome pra ele (MD5 do nome original)
-        $extensao = pathinfo($_FILES['Foto']['name'], PATHINFO_EXTENSION);
-        $novoNome = md5($_FILES['Foto']['name']).'.'.$extensao;        
         
-        //Verificar se o diretório existe, ou criar a pasta
-        if(is_dir('../dist/img/empresas/')){
-            //Existe
+        //Foto do perfil
+        $diretorioImg = '';
+        
+        if (!empty($_FILES['nFoto']['tmp_name'])) {
+
+            //Pega extensão e monta o novo nome do arquivo
+            $ext = pathinfo($_FILES['nFoto']['name'], PATHINFO_EXTENSION);
+            $novo_nome = "foto-" . $idEmpresa . '.' . $ext;
+
+            //Verifica se existe o diretório (ou cria)
             $diretorio = '../dist/img/empresas/';
-        }else{
-            //Criar pq não existe
-            $diretorio = mkdir('../dist/img/empresas/');
+            if (!is_dir($diretorio)) {
+                mkdir($diretorio, 0755, true);
+            }
+
+            //Grava o arquivo no diretório
+            $caminho_completo = $diretorio . $novo_nome;
+            if (move_uploaded_file($_FILES['nFoto']['tmp_name'], $caminho_completo)) {
+                //Salva o diretório para colocar na tabela do BD
+                $diretorioImg = 'dist/img/empresas/' . $novo_nome;
+
+                //Gravação no BD
+                $sql = "UPDATE empresa
+                        SET foto = '$diretorioImg'
+                        WHERE id_empresa = $idUsuario";
+                if (!mysqli_query($conn, $sql)) {
+                    die("Erro ao atualizar foto: " . mysqli_error($conn));
+                }
+                
+                // Atualiza a sessão com o novo caminho da foto
+                $_SESSION['FotoEmpresa'] = $diretorioImg;
+            }
         }
-
-        //Cria uma cópia do arquivo local na pasta do projeto
-        move_uploaded_file($_FILES['Foto']['tmp_name'], $diretorio.$novoNome);
-
-        //Caminho que será salvo no banco de dados
-        $dirImagem = 'dist/img/empresas/'.$novoNome;
-
-        //UPDATE
-        $sql = "UPDATE empresa 
-                SET foto = '$dirImagem 
-                WHERE id_empresa = $idEmpresa;";
-        $result = mysqli_query($conn,$sql);
-        mysqli_close($conn);
     }
 
+    $result = mysqli_query($conn,$sql);
+    mysqli_close($conn);
+
     header("location: ../empresas.php");
+    exit;
 
 ?>

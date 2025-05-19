@@ -61,7 +61,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?php echo qtdCategoria();?></h3>
+                <h3><?php echo('1');?></h3>
 
                 <p>Qtd. Categorias</p>
               </div>
@@ -75,7 +75,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?php echo qtdProduto(); ?></h3>
+                <h3><?php echo('2'); ?></h3>
 
                 <p>Qtd. Produtos</p>
               </div>
@@ -89,7 +89,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3><?php echo qtdProdutoSemEstoque(); ?></h3>
+                <h3><?php echo('3'); ?></h3>
 
                 <p>Produtos Sem Estoque</p>
               </div>
@@ -143,7 +143,7 @@
 
 <script>
     var areaChartData = {
-      labels  : [<?php echo labelTresProdutos(); ?>],
+      labels  : [<?php echo('2'); ?>],
       datasets: [
         
         {
@@ -155,7 +155,7 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [<?php echo qtdTresProdutos(); ?>]
+          data                : [<?php echo('1'); ?>]
         },
         
       ]

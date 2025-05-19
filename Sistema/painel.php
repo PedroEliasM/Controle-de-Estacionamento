@@ -81,7 +81,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <!-- <h3>53<sup style="font-size: 20px">%</sup></h3> -->
-                <h3><?php echo qtdProdutoComEstoque();?></h3>
+                <h3><?php echo('2');?></h3>
 
                 <p>Produtos em estoque</p>
               </div>
@@ -95,7 +95,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?php echo qtdUsuariosRegistrados();?></h3>
+                <h3><?php echo('2');?></h3>
 
                 <p>User Registrations</p>
               </div>
