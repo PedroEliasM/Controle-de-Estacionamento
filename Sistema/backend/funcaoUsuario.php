@@ -87,8 +87,8 @@ function listaUsuario(){
                     
                                     .'<div class="col-8">'
                                         .'<div class="form-group">'
-                                            .'<label for="iLogin">Login:</label>'
-                                            .'<input type="email" value="'.$coluna["email"].'" class="form-control" id="iLogin" name="nLogin" maxlength="30">'
+                                            .'<label for="iEmail">Email:</label>'
+                                            .'<input type="email" value="'.$coluna["email"].'" class="form-control" id="iEmail" name="nEmail" maxlength="30">'
                                         .'</div>'
                                     .'</div>'
                     
