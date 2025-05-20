@@ -6,6 +6,7 @@ include("funcaoProduto.php");
 include("funcaoTipoUsuario.php");
 include("funcaoUsuario.php");
 include("funcaoEmpresa.php");
+include("funcaoVaga.php");
     
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -57,6 +58,14 @@ function enviarEmail($email,$msg,$assunto,$nome){
         //$_SESSION['msg-senha'] = $mail->ErrorInfo;
         $_SESSION['msg-senha'] = 'Houve uma falha no envio da nova senha. Verifique com seu administrador.';
         header('location: '.$_SERVER['HTTP_REFERER']);
+    }
+}
+
+function descrFlag($flag) {
+    if($flag == 'S') {
+        return 'Sim';
+    } else {
+        return 'Não';
     }
 }
 
