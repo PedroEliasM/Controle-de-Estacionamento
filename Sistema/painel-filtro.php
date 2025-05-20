@@ -62,7 +62,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <!-- <h3>53<sup style="font-size: 20px">%</sup></h3> -->
-                <h3><?php echo qtdProdutoComEstoque();?></h3>
+                <h3><?php echo('4');?></h3>
 
                 <p>Produtos em estoque</p>
               </div>

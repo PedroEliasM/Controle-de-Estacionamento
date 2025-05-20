@@ -16,7 +16,8 @@
 
     include("conexao.php");
     $sql = "SELECT 	usu.*, 
-		            emp.nome as nome_empresa
+		            emp.nome as nome_empresa,
+                    emp.foto as foto_empresa
             FROM usuario AS usu
             INNER JOIN empresa AS emp ON usu.fk_id_empresa = emp.id_empresa
             WHERE usu.email = '$email' 
@@ -41,6 +42,7 @@
             $_SESSION['AtivoLogin']     = $coluna['flg_ativo'];
             $_SESSION['idEmpresa']      = $coluna['fk_id_empresa'];
             $_SESSION['NomeEmpresa']      = $coluna['nome_empresa'];
+            $_SESSION['FotoEmpresa']      = $coluna['foto_empresa'];
 
             //Acessar a tela inicial
             header('location: ../painel.php');

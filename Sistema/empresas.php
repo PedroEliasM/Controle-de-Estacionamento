@@ -134,7 +134,7 @@
                   <div class="col-12">
                     <div class="form-group">
                       <label for="iFoto">Foto:</label>
-                      <input type="file" class="form-control" id="iFoto" name="Foto" accept="image/*">
+                      <input type="file" class="form-control" id="iFoto" name="nFoto" accept="image/*">
                     </div>
                   </div>
                 

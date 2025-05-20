@@ -110,7 +110,7 @@
                   <div class="col-8">
                     <div class="form-group">
                       <label for="iNome">Nome:</label>
-                      <input type="text" class="form-control" id="iNome" name="nNome" maxlength="50">
+                      <input type="text" class="form-control" id="iNome" name="nNome" maxlength="30">
                     </div>
                   </div>
 
@@ -126,8 +126,8 @@
 
                   <div class="col-8">
                     <div class="form-group">
-                      <label for="iLogin">Login:</label>
-                      <input type="email" class="form-control" id="iLogin" name="nLogin" maxlength="50">
+                      <label for="iEmail">Email:</label>
+                      <input type="email" class="form-control" id="iEmail" name="nEmail" maxlength="30">
                     </div>
                   </div>
 
@@ -141,7 +141,7 @@
                   <div class="col-12">
                     <div class="form-group">
                       <label for="iFoto">Foto:</label>
-                      <input type="file" class="form-control" id="iFoto" name="Foto" accept="image/*">
+                      <input type="file" class="form-control" id="iFoto" name="nFoto" accept="image/*">
                     </div>
                   </div>
                 
@@ -149,55 +149,6 @@
                     <div class="form-group">
                       <input type="checkbox" id="iAtivo" name="nAtivo">
                       <label for="iAtivo">Usuário Ativo</label>
-                    </div>
-                  </div>
-
-                  <div class="col-3">
-                    <div class="form-group">
-                      <label>CEP</label>
-                      <input required name="CEP" type="text" class="form-control cep">
-                    </div>
-                  </div>
-                  
-                  <div class="col-9">
-                    <div class="form-group">
-                      <label>Endereço</label>
-                      <input required name="Endereco" type="text" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="col-3">
-                    <div class="form-group">
-                      <label>Número</label>
-                      <input required name="Numero" type="text" maxlength="8" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="col-9">
-                    <div class="form-group">
-                      <label>Complemento</label>
-                      <input name="Complemento" type="text" maxlength="50" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="col-5">
-                    <div class="form-group">
-                      <label>Bairro</label>
-                      <input required name="Bairro" type="text" class="form-control">
-                    </div>
-                  </div>
-                  
-                  <div class="col-5">
-                    <div class="form-group">
-                      <label>Cidade</label>
-                      <input required name="Cidade" type="text" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="col-2">
-                    <div class="form-group">
-                      <label>UF</label>
-                      <input required name="UF" type="text" class="form-control">
                     </div>
                   </div>
 
@@ -209,7 +160,6 @@
                 </div>
                 
               </form>
-
             </div>
             
           </div>
