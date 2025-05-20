@@ -113,3 +113,25 @@ img {
 .mb-5 {
     margin-bottom: 3rem !important; }
 /* /.sidebar menu - old */
+
+/* Sidebar Menu styles */
+.sidebar-style {
+    background: rgba(0, 0, 0, 0.6) !important; }
+    .sidebar-style a {
+        color: #fff; }
+        .sidebar-style a:hover {
+            color: #fff;
+            background: #007bff; }
+    .sidebar-style ul li.active > a {
+        background: #007bff; }
+    .sidebar-style ul li.active > a:hover {
+        background: #007bff; }
+    .sidebar-style ul li.active > a i {
+        color: #fff; }
+    .sidebar-style ul li i {
+        color: #007bff; }
+    .sidebar-style ul li a i {
+        margin-right: 10px;
+}
+
+/* /.sidebar menu */
