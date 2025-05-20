@@ -78,6 +78,9 @@
         $sql = "DELETE FROM usuario 
                 WHERE id_usuario = $idUsuario;";
     }
+    // Atualiza a sessão com o novo valor
+    $_SESSION['NomeLogin'] = $nome;
+    $_SESSION['EmailLogin'] = $email;
 
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
