@@ -3,14 +3,15 @@
     include("conexao.php");
     include('funcoes.php');
 
-    $tipoUsuario = $_POST["nTipoUsuario"];
-    $nome        = $_POST["nNome"];
-    $email       = $_POST["nEmail"];
-    $senha       = $_POST["nSenha"];
-    $funcao      = $_GET["funcao"];
-    $idUsuario   = $_GET["codigo"];
-
-    if($_POST["nAtivo"] == "on") $ativo = "S"; else $ativo = "N";
+    $tipoUsuario    = $_POST["nTipoUsuario"];
+    $nome           = $_POST["nNome"];
+    $email          = $_POST["nEmail"];
+    $senha          = $_POST["nSenha"];
+    $funcao         = $_GET["funcao"];
+    $idUsuario      = isset($_GET["codigo"]) ? $_GET["codigo"] : null;
+    $ativo          = isset($_POST["nAtivo"]) ? $_POST["nAtivo"] : null;
+    $idEmpresa      = $_SESSION['idEmpresa'];
+    $ativo          = isset($_POST["nAtivo"]) && $_POST["nAtivo"] == "on" ? "S" : "N";
 
     //Foto do perfil
     $diretorioImg = '';
@@ -54,8 +55,8 @@
         $idUsuario = proxIdUsuario();
 
         //INSERT
-        $sql = "INSERT INTO usuario (id_usuario,fk_id_tipo_usuario,nome,email,senha,flg_ativo) 
-                VALUES ($idUsuario,$tipoUsuario,'$nome','$email',md5('$senha'),('$ativo');";
+        $sql = "INSERT INTO usuario (id_usuario,fk_id_tipo_usuario,nome,email,senha,flg_ativo,fk_id_empresa) 
+                VALUES ($idUsuario,$tipoUsuario,'$nome','$email',md5('$senha'),'$ativo','$idEmpresa');";
 
     }elseif($funcao == "A"){
         //UPDATE
