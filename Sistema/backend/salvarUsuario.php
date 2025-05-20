@@ -9,7 +9,6 @@
     $senha          = $_POST["nSenha"];
     $funcao         = $_GET["funcao"];
     $idUsuario      = isset($_GET["codigo"]) ? $_GET["codigo"] : null;
-    $ativo          = isset($_POST["nAtivo"]) ? $_POST["nAtivo"] : null;
     $idEmpresa      = $_SESSION['idEmpresa'];
     $ativo          = isset($_POST["nAtivo"]) && $_POST["nAtivo"] == "on" ? "S" : "N";
 

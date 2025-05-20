@@ -40,47 +40,12 @@
     $bairro         = isset($_POST["nBairro"]) ? mysqli_real_escape_string($conn, $_POST['nBairro']) : '';
     $cidade         = isset($_POST["nCidade"]) ? mysqli_real_escape_string($conn, $_POST['nCidade']) : '';
     $uf             = isset($_POST["nUF"]) ? mysqli_real_escape_string($conn, $_POST['nUF']) : '';
-    
+
     $funcao         = $_GET["funcao"];
-    $idEmpresa      = $_GET["codigo"];
+    $idEmpresa      = isset($_GET["codigo"]) ? $_GET["codigo"] : null;
 
     if($_POST["nAtivo"] == "on") $ativo = "S"; else $ativo = "N";
 
-
-    //Foto do perfil
-    $diretorioImg = '';
-    
-    if (!empty($_FILES['nFoto']['tmp_name'])) {
-
-        //Pega extensão e monta o novo nome do arquivo
-        $ext = pathinfo($_FILES['nFoto']['name'], PATHINFO_EXTENSION);
-        $novo_nome = "foto-" . $idEmpresa . '.' . $ext;
-
-        //Verifica se existe o diretório (ou cria)
-        $diretorio = '../dist/img/empresas/';
-        if (!is_dir($diretorio)) {
-            mkdir($diretorio, 0755, true);
-        }
-
-        //Grava o arquivo no diretório
-        $caminho_completo = $diretorio . $novo_nome;
-        if (move_uploaded_file($_FILES['nFoto']['tmp_name'], $caminho_completo)) {
-            //Salva o diretório para colocar na tabela do BD
-            $diretorioImg = 'dist/img/empresas/' . $novo_nome;
-
-            //Gravação no BD
-            $sql = "UPDATE empresa
-                    SET foto = '$diretorioImg'
-                    WHERE id_empresa = $idEmpresa";
-            if (!mysqli_query($conn, $sql)) {
-                die("Erro ao atualizar foto: " . mysqli_error($conn));
-            }
-            
-            // Atualiza a sessão com o novo caminho da foto
-            $_SESSION['FotoEmpresa'] = $diretorioImg;
-        }
-    }
-    // /.foto
 
     //Validar se é Inclusão ou Alteração
     if($funcao == "I"){
@@ -88,9 +53,37 @@
         //Busca o próximo ID na tabela
         $idEmpresa = proxIdEmpresa();
 
+        // Armazenar a foto do Usuário
+        $diretorioImg = '';
+        
+        if (!empty($_FILES['nFoto']['tmp_name'])) {
+
+            //Pega extensão e monta o novo nome do arquivo
+            $ext = pathinfo($_FILES['nFoto']['name'], PATHINFO_EXTENSION);
+            $novo_nome = "foto-" . $idEmpresa . '.' . $ext;
+
+            //Verifica se existe o diretório (ou cria)
+            $diretorio = '../dist/img/empresas/';
+            if (!is_dir($diretorio)) {
+                mkdir($diretorio, 0755, true);
+            }
+
+            //Grava o arquivo no diretório
+            $caminho_completo = $diretorio . $novo_nome;
+            if (move_uploaded_file($_FILES['nFoto']['tmp_name'], $caminho_completo)) {
+                //Salva o diretório para colocar na tabela do BD
+                $diretorioImg = 'dist/img/empresas/' . $novo_nome;
+                
+            }
+        }
+        // /.foto
+
+        // Armazena o caminho da foto
+        $foto = $diretorioImg;
+
         //INSERT
-        $sql = "INSERT INTO empresa (id_empresa,nome,cnpj,telefone,cep,endereco,numero,complemento,bairro,cidade,uf,flg_ativo) 
-                VALUES ($idEmpresa,'$nome','$cnpj','$telefone','$cep','$endereco',
+        $sql = "INSERT INTO empresa (id_empresa,nome,cnpj,telefone,foto,cep,endereco,numero,complemento,bairro,cidade,uf,flg_ativo) 
+                VALUES ($idEmpresa,'$nome','$cnpj','$telefone','$foto','$cep','$endereco',
                         '$numero','$complemento','$bairro','$cidade','$uf','$ativo');";
 
     }elseif($funcao == "A"){
@@ -108,6 +101,41 @@
                     uf          = '$uf', 
                     flg_ativo = '$ativo' 
                     WHERE id_empresa = $idEmpresa;";
+
+        //Foto do perfil
+        $diretorioImg = '';
+        
+        if (!empty($_FILES['nFoto']['tmp_name'])) {
+
+            //Pega extensão e monta o novo nome do arquivo
+            $ext = pathinfo($_FILES['nFoto']['name'], PATHINFO_EXTENSION);
+            $novo_nome = "foto-" . $idEmpresa . '.' . $ext;
+
+            //Verifica se existe o diretório (ou cria)
+            $diretorio = '../dist/img/empresas/';
+            if (!is_dir($diretorio)) {
+                mkdir($diretorio, 0755, true);
+            }
+
+            //Grava o arquivo no diretório
+            $caminho_completo = $diretorio . $novo_nome;
+            if (move_uploaded_file($_FILES['nFoto']['tmp_name'], $caminho_completo)) {
+                //Salva o diretório para colocar na tabela do BD
+                $diretorioImg = 'dist/img/empresas/' . $novo_nome;
+
+                //Gravação no BD
+                $sql = "UPDATE empresa
+                        SET foto = '$diretorioImg'
+                        WHERE id_empresa = $idEmpresa";
+                if (!mysqli_query($conn, $sql)) {
+                    die("Erro ao atualizar foto: " . mysqli_error($conn));
+                }
+                
+                // Atualiza a sessão com o novo caminho da foto
+                $_SESSION['FotoEmpresa'] = $diretorioImg;
+            }
+        }
+        // /.foto
 
     }elseif($funcao == "D"){
         //DELETE
