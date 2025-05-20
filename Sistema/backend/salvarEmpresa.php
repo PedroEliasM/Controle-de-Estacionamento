@@ -40,14 +40,7 @@
     $bairro         = isset($_POST["nBairro"]) ? mysqli_real_escape_string($conn, $_POST['nBairro']) : '';
     $cidade         = isset($_POST["nCidade"]) ? mysqli_real_escape_string($conn, $_POST['nCidade']) : '';
     $uf             = isset($_POST["nUF"]) ? mysqli_real_escape_string($conn, $_POST['nUF']) : '';
-
-
-    $endereco       = $_POST["nEndereco"];
-    $numero         = $_POST["nNumero"];
-    $complemento    = $_POST["nComplemento"];
-    $bairro         = $_POST["nBairro"];
-    $cidade         = $_POST["nCidade"];
-    $uf             = $_POST["nUF"];
+    
     $funcao         = $_GET["funcao"];
     $idEmpresa      = $_GET["codigo"];
 
