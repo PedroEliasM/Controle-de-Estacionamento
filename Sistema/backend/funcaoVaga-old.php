@@ -220,4 +220,96 @@
     
         return $idVaga;
     }
+
+    function qtdVagasAtivas(){
+        $qtd = 0;
+
+        include("conexao.php");
+
+        $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S';";
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        //Validar se tem retorno do BD
+        if (mysqli_num_rows($result) > 0) {
+            
+            foreach ($result as $coluna) {            
+                //***Verificar os dados da consulta SQL
+                $qtd = $coluna['Qtd'];
+            }        
+        }
+        
+        return $qtd;
+    }
+    function qtdEntradas(){
+        $qtd = 0;
+
+        include("conexao.php");
+
+        $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'E';";
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        //Validar se tem retorno do BD
+        if (mysqli_num_rows($result) > 0) {
+            
+            foreach ($result as $coluna) {            
+                //***Verificar os dados da consulta SQL
+                $qtd = $coluna['Qtd'];
+            }        
+        }
+        
+        return $qtd;
+    }
+    function qtdSaidas(){
+        $qtd = 0;
+
+        include("conexao.php");
+
+        $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'S';";
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        //Validar se tem retorno do BD
+        if (mysqli_num_rows($result) > 0) {
+            
+            foreach ($result as $coluna) {            
+                //***Verificar os dados da consulta SQL
+                $qtd = $coluna['Qtd'];
+            }        
+        }
+        
+        return $qtd;
+    }
+    function qtdEntradasSaidas(){
+    
+        $descricao = "";
+    
+        include("conexao.php");
+        $sql = "SELECT
+	tipo,
+	COUNT(*) AS total FROM movimentacao WHERE date(data) =  CURDATE() GROUP BY tipo;";        
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+    
+        //Validar se tem retorno do BD
+        if (mysqli_num_rows($result) > 0) {
+            $i = 1;
+            foreach ($result as $coluna) {            
+                //***Verificar os dados da consulta SQL
+                if ($i < 3){
+                    $descricao .= "'".$coluna['COUNT(*)']."',";
+                }else{
+                    $descricao .= "'".$coluna['COUNT(*)']."'";
+                }
+    
+                $i++;
+            }        
+        } 
+    
+        return json_encode($descricao); // Retorna um array JSON válido
+    }
 ?>
