@@ -31,8 +31,6 @@
 
   <!-- CSS das páginas -->  
   <link rel="stylesheet" href="css/style-telas.css">
-  <!-- Apenas se aplica para arquivos que o body tem a classe "dados-diarios" -->
-  <link rel="stylesheet" href="css/style-graficos.css">
   <!-- /.css das páginas -->  
 
   <!-- CSS Sidebar -->
