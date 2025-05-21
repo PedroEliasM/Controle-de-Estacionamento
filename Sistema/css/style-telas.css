@@ -1,0 +1,13 @@
+/* Background das telas */
+.content-wrapper {
+    background-color: #f4f6f9 !important;
+    /*background-image: url(../../../img/fundo-login.jpg) !important;*/
+}
+div.os-content {
+    background: transparent !important;
+}
+div.card-body {
+    background-color: #fff !important;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

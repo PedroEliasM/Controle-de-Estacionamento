@@ -1,0 +1,17 @@
+.table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .table-header {
+    display: table-header-group;
+    background-color: #f4f4f4;
+  }
+  .table-row {
+    display: table-row;
+  }
+  .table-cell {
+    display: table-cell;
+    padding: 8px;
+    border: 1px solid #ddd;
+  }

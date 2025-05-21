@@ -67,9 +67,24 @@
 
               <!-- /.card-header -->
               <div class="card-body">
-                <div class="vagas-container">
+                <table id="tabela" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Descrição</th>
+                      <th>Situação</th>
+                      <th>Empresa</th>               
+                      <th>Ativo</th>               
+                      <th>Ações</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
                   <?php echo listaVagas(); ?>
-                </div>
+                  
+                  </tbody>
+                  
+                </table>
               </div>
               <!-- /.card-body -->
             </div>
