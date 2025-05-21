@@ -1,0 +1,64 @@
+.vagas-container{
+  background-color: white;
+}
+
+/* Estilos para os cards de vaga */
+.vaga-card {
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  width: 150px; /* Largura fixa para os cards */
+  display: inline-block; /* Para que os cards fiquem lado a lado */
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  position: relative; /* Para posicionamento dos ícones */
+  min-height: 120px; /* Altura mínima para o card */
+  vertical-align: top; /* Alinha os cards ao topo */
+}
+
+.vaga-card.inativa {
+    background-color: #808080; /* Cinza */
+}
+
+.vaga-card.livre {
+    background-color: #90EE90; /* Verde claro */
+}
+
+.vaga-card.ocupada {
+    background-color: #DC143C; /* Vermelho */
+}
+
+.vaga-card .vaga-id {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.vaga-card .vaga-status {
+    font-size: 1.1em;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.vaga-card .vaga-actions {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px; /* Espaçamento entre os ícones */
+}
+
+.vaga-card .vaga-actions a {
+    color: white;
+    font-size: 1.2em;
+}
+
+.vaga-card .vaga-actions a:hover {
+    color: #f0f0f0;
+}

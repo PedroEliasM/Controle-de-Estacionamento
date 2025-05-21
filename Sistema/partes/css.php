@@ -31,6 +31,7 @@
 
   <!-- CSS das páginas -->  
   <link rel="stylesheet" href="css/style-telas.css">
+  <link rel="stylesheet" href="css/style-vagas.css">
   <!-- /.css das páginas -->  
 
   <!-- CSS Sidebar -->
