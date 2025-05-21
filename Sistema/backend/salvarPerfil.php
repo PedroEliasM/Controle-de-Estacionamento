@@ -39,7 +39,7 @@
                 die("Erro ao atualizar foto: " . mysqli_error($conn));
             }
             
-            // Atualiza a sessão com o novo caminho da foto
+          // Atualiza a sessão com o novo nome
             $_SESSION['FotoLogin'] = $diretorioImg;
         }
     }
