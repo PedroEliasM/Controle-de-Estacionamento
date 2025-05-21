@@ -17,9 +17,11 @@
     include("conexao.php");
     $sql = "SELECT 	usu.*, 
 		            emp.nome as nome_empresa,
-                    emp.foto as foto_empresa
+                    emp.foto as foto_empresa,
+                    tip.descricao as descricao_tipo_usuario
             FROM usuario AS usu
             INNER JOIN empresa AS emp ON usu.fk_id_empresa = emp.id_empresa
+            INNER JOIN tipo_usuario AS tip ON usu.fk_id_tipo_usuario = tip.id_tipo_usuario
             WHERE usu.email = '$email' 
             AND usu.senha = md5('$senha');";
     $resultLogin = mysqli_query($conn,$sql);
@@ -34,6 +36,7 @@
                         
             //***Verificar os dados da consulta SQL
             $_SESSION['idTipoUsuario']  = $coluna['fk_id_tipo_usuario'];
+            $_SESSION['DescricaoTipoUsuario']  = $coluna['descricao_tipo_usuario'];
             $_SESSION['logado']         = 1;
             $_SESSION['idLogin']        = $coluna['id_usuario'];
             $_SESSION['NomeLogin']      = $coluna['nome'];

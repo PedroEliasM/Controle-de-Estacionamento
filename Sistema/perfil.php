@@ -93,7 +93,7 @@
                                               <div class="form-group">
                                                 <label>Nível de Acesso</label>
                                                 <input readonly name="nNivelAcesso" id="iNivelAcesso" type="text" maxlength="20" class="form-control" 
-                                                  value="<?php echo $_SESSION['idTipoUsuario']; ?>">
+                                                  value="<?php echo $_SESSION['DescricaoTipoUsuario']; ?>">
                                               </div>
                                             </div>	
                                             <div class="col-7">
