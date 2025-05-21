@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/05/2025 às 18:31
+-- Tempo de geração: 21/05/2025 às 20:50
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -59,9 +59,20 @@ INSERT INTO `empresa` (`id_empresa`, `nome`, `cnpj`, `telefone`, `foto`, `cep`, 
 CREATE TABLE `movimentacao` (
   `id_movimentacao` int(11) NOT NULL COMMENT 'ID da Movimentação',
   `tipo` char(1) NOT NULL COMMENT 'Tipo da movimentação: E-Entrada / S-Saída',
-  `data` datetime(1) NOT NULL COMMENT 'Data e hora da movimentação',
+  `data` datetime DEFAULT current_timestamp(),
   `fk_id_vaga` int(11) NOT NULL COMMENT 'FK - ID da Vaga'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `movimentacao`
+--
+
+INSERT INTO `movimentacao` (`id_movimentacao`, `tipo`, `data`, `fk_id_vaga`) VALUES
+(1, 'E', '2025-05-21 12:10:37', 1),
+(2, 'E', '2025-05-21 12:10:37', 2),
+(3, 'E', '2025-05-21 12:10:55', 3),
+(4, 'S', '2025-05-21 12:12:14', 3),
+(5, 'S', '2025-05-21 12:12:14', 1);
 
 -- --------------------------------------------------------
 
@@ -121,6 +132,15 @@ CREATE TABLE `vaga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Despejando dados para a tabela `vaga`
+--
+
+INSERT INTO `vaga` (`id_vaga`, `descricao`, `situacao`, `flg_ativo`, `fk_id_empresa`) VALUES
+(1, 'Vaga01', 'L', 'S', 1),
+(2, 'Vaga02', 'O', 'S', 1),
+(3, 'Vaga03', 'L', 'N', 1);
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -172,7 +192,7 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de tabela `movimentacao`
 --
 ALTER TABLE `movimentacao`
-  MODIFY `id_movimentacao` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da Movimentação';
+  MODIFY `id_movimentacao` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da Movimentação', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_usuario`
@@ -190,7 +210,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `vaga`
 --
 ALTER TABLE `vaga`
-  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga';
+  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga', AUTO_INCREMENT=4;
 
 --
 -- Restrições para tabelas despejadas

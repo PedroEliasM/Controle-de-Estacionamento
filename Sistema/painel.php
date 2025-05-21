@@ -3,15 +3,15 @@
   include('backend/funcoes.php');
 
   // Calcular os valores para os gráficos
-  $ativos = [
+  /*$entradas [
       (int)qtdEntradas()
   ];
 
-  $inativos = [
+  $saidas = [
       (int)qtdSaidas()
-  ];
-  /*var_dump($ativos);
-  var_dump($inativos);
+  ];*/
+  /*var_dump($entradas);
+  var_dump($saidas);
   die();*/
   //var_dump(descrTipoUsuarioBarras());
   //die();
@@ -23,7 +23,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projeto Modelo - Dashboard</title>
+  <title>ParkWay - Dashboard</title>
 
   <!-- CSS -->
   <?php include('partes/css.php'); ?>
@@ -169,31 +169,33 @@
 <script>
     var areaChartData = {
       //labels  : ['Administrador','Empresa','Comum'],
-      labels  : ['Vagas'],
+      labels  : ['Movimentações'],
       datasets: [
         
         {
           label               : 'Entradas',
-          backgroundColor     : 'rgba(60,141,188,0.9)',
-          borderColor         : 'rgba(60,141,188,0.8)',
+          backgroundColor     : 'rgba(0, 255, 0, 0.5)',
+          borderColor         : 'rgba(0, 255, 0, 0.5)',
+          borderWidth         : 0,
           pointRadius          : false,
           pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointStrokeColor    : 'rgba(0, 255, 0, 0.5)',
           pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : <?php echo json_encode($ativos); ?>
+          pointHighlightStroke: 'rgba(0, 255, 0, 0.5)',
+          data                : [<?php echo qtdEntradas(); ?>]
         },
         
         {
           label               : 'Saídas',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
+          backgroundColor     : 'rgba(255, 0, 0, 0.5)',
+          borderColor         : 'rgba(255, 0, 0, 0.5)',
+          borderWidth         : 0,
           pointRadius         : false,
-          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointColor          : 'rgba(255, 0, 0, 0.5)',
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : <?php echo json_encode($inativos); ?>
+          pointHighlightStroke: 'rgba(255, 0, 0, 0.5)',
+          data                : [<?php echo qtdSaidas(); ?>]
         },
         
       ]
@@ -213,14 +215,12 @@
       responsive              : true,
       maintainAspectRatio     : false,
       datasetFill             : false,
-      scales: { // Add this block
-        xAxes: [{
-          stacked: false, // Explicitly set to false
-          barPercentage: 0.8, // Adjust this to control bar width within the category
-          categoryPercentage: 0.8 // Adjust this to control spacing between bar groups
-        }],
+      // Scales para o gráfico começar no valor '0 (zero)'
+      scales: {
         yAxes: [{
-          stacked: true
+          ticks: {
+            beginAtZero: true
+          }
         }]
       }
     }

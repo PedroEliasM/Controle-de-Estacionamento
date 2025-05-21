@@ -1,6 +1,6 @@
 /* Background das telas */
 .content-wrapper {
-    background-color: #f4f6f9 !important;
+    background-color: #000 !important; /* Claro: #f4f6f9 */
     /*background-image: url(../../../img/fundo-login.jpg) !important;*/
 }
 div.os-content {

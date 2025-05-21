@@ -24,9 +24,15 @@
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
   <!-- CSS Novo -->  
   <link rel="stylesheet" href="dist/css/style.css">
-  
+  <!-- /.css novo -->  
+
+  <!-- CSS das páginas -->  
+  <link rel="stylesheet" href="css/style-telas.css">
+  <!-- /.css das páginas -->  
+
   <!-- CSS Sidebar -->
   <link rel="stylesheet" href="partes/sidebar/css/style.css">
   <link rel="stylesheet" href="partes/sidebar/fonts/font.css">

@@ -81,7 +81,7 @@ function montaMenu($n1,$n2){
                     <li class="nav-item">
                         <a href="./painel.php" class="nav-link '.$opcPainel.'">
                         <i class="ion ion-pie-graph nav-icon"></i>
-                        <p>Dashboard</p>
+                        <p>Dados diários</p>
                         </a>
                     </li>              
                 </ul>
@@ -90,7 +90,7 @@ function montaMenu($n1,$n2){
                     <li class="nav-item">
                         <a href="./painel-simples.php" class="nav-link '.$opcPainelSimples.'">
                         <i class="ion ion-pie-graph nav-icon"></i>
-                        <p>Dashboard Simples</p>
+                        <p>Dados Totais</p>
                         </a>
                     </li>              
                 </ul>

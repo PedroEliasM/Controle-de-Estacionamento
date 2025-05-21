@@ -143,7 +143,7 @@
 
 <script>
     var areaChartData = {
-      labels  : [<?php echo('2'); ?>],
+      labels  : ['teste1','teste2'],
       datasets: [
         
         {
@@ -155,7 +155,7 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [<?php echo('1'); ?>]
+          data                : ['1','2']
         },
         
       ]
@@ -172,7 +172,14 @@
     var barChartOptions = {
       responsive              : true,
       maintainAspectRatio     : false,
-      datasetFill             : false
+      datasetFill             : false,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
 
     new Chart(barChartCanvas, {
