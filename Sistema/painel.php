@@ -4,15 +4,11 @@
 
   // Calcular os valores para os gráficos
   $ativos = [
-      (int)qtdTipoUsuarioAtivo('1'),
-      (int)qtdTipoUsuarioAtivo('2'),
-      (int)qtdTipoUsuarioAtivo('3')
+      (int)qtdEntradas()
   ];
 
   $inativos = [
-      (int)qtdTipoUsuarioInativo('1'),
-      (int)qtdTipoUsuarioInativo('2'),
-      (int)qtdTipoUsuarioInativo('3')
+      (int)qtdSaidas()
   ];
   /*var_dump($ativos);
   var_dump($inativos);
@@ -81,9 +77,9 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <!-- <h3>53<sup style="font-size: 20px">%</sup></h3> -->
-                <h3><?php echo('2');?></h3>
+                <h3><?php echo qtdVagasAtivas();?></h3>
 
-                <p>Produtos em estoque</p>
+                <p>Vagas Ativas</p>
               </div>
               <div class="icon">
                 <i class="fas fa-box-open"></i>
@@ -95,9 +91,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?php echo('2');?></h3>
+                <h3><?php echo qtdEntradas();?></h3>
 
-                <p>User Registrations</p>
+                <p>Entradas</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -109,9 +105,9 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3><?php echo qtdSaidas();?></h3>
 
-                <p>Unique Visitors</p>
+                <p>Saídas</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -129,7 +125,7 @@
             <!-- BAR CHART -->
             <div class="card text-success">
               <div class="card-header">
-                <h3 class="card-title">Usuários</h3>
+                <h3 class="card-title">Vagas</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
@@ -173,11 +169,11 @@
 <script>
     var areaChartData = {
       //labels  : ['Administrador','Empresa','Comum'],
-      labels  : [<?php echo descrTipoUsuarioBarras() ?>],
+      labels  : ['Vagas'],
       datasets: [
         
         {
-          label               : 'Ativo',
+          label               : 'Entradas',
           backgroundColor     : 'rgba(60,141,188,0.9)',
           borderColor         : 'rgba(60,141,188,0.8)',
           pointRadius          : false,
@@ -189,7 +185,7 @@
         },
         
         {
-          label               : 'Inativo',
+          label               : 'Saídas',
           backgroundColor     : 'rgba(210, 214, 222, 1)',
           borderColor         : 'rgba(210, 214, 222, 1)',
           pointRadius         : false,
@@ -216,7 +212,17 @@
     var barChartOptions = {
       responsive              : true,
       maintainAspectRatio     : false,
-      datasetFill             : false
+      datasetFill             : false,
+      scales: { // Add this block
+        xAxes: [{
+          stacked: false, // Explicitly set to false
+          barPercentage: 0.8, // Adjust this to control bar width within the category
+          categoryPercentage: 0.8 // Adjust this to control spacing between bar groups
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
     }
 
     new Chart(barChartCanvas, {

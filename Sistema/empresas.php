@@ -148,49 +148,49 @@
                   <div class="col-3">
                     <div class="form-group">
                       <label for="iCEP">CEP</label>
-                      <input id="iCEP" name="nCEP" type="text" maxlength="9" class="form-control cep" placeholder="Digite o CEP sem hífen">
+                      <input id="iCEP" required name="nCEP" type="text" maxlength="9" class="form-control cep" placeholder="Digite o CEP sem hífen">
                     </div>
                   </div>
                   
                   <div class="col-9">
                     <div class="form-group">
                       <label for="iEndereco">Endereço</label>
-                      <input id="iEndereco" name="nEndereco" type="text" maxlength="30" class="form-control" placeholder="Rua, Avenida, etc.">
+                      <input id="iEndereco" required name="nEndereco" type="text" maxlength="30" class="form-control" placeholder="Rua, Avenida, etc.">
                     </div>
                   </div>
 
                   <div class="col-3">
                     <div class="form-group">
                       <label for="iNumero">Número</label>
-                      <input id="iNumero" name="nNumero" type="number" maxlength="5" class="form-control" placeholder="Número">
+                      <input id="iNumero" required name="nNumero" type="number" maxlength="5" class="form-control" placeholder="Número">
                     </div>
                   </div>
 
                   <div class="col-9">
                     <div class="form-group">
                       <label for="iComplemento">Complemento (opcional)</label>
-                      <input id="iComplemento" name="nComplemento" type="text" maxlength="60" class="form-control" placeholder="Complemento">
+                      <input id="iComplemento"  name="nComplemento" type="text" maxlength="60" class="form-control" placeholder="Complemento">
                     </div>
                   </div>
 
                   <div class="col-5">
                     <div class="form-group">
                       <label for="iBairro">Bairro</label>
-                      <input id="iBairro" name="nBairro" type="text" maxlength="30" class="form-control" placeholder="Bairro">
+                      <input id="iBairro" required name="nBairro" type="text" maxlength="30" class="form-control" placeholder="Bairro">
                     </div>
                   </div>
                   
                   <div class="col-5">
                     <div class="form-group">
                       <label for="iCidade">Cidade</label>
-                      <input id="iCidade" name="nCidade" type="text" maxlength="30" class="form-control" placeholder="Cidade">
+                      <input id="iCidade" required name="nCidade" type="text" maxlength="30" class="form-control" placeholder="Cidade">
                     </div>
                   </div>
 
                   <div class="col-2">
                     <div class="form-group">
                       <label for="iUF">UF</label>
-                      <input id="iUF" name="nUF" type="text" maxlength="2" class="form-control" placeholder="UF">
+                      <input id="iUF" required name="nUF" type="text" maxlength="2" class="form-control" placeholder="UF">
                     </div>
                   </div>
 
