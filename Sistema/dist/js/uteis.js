@@ -70,15 +70,15 @@ var readURL = function(input) {
   /**************************
   *** CEP Autopreenchido ****
   ***************************/
-  cep    = $('input[name="CEP"');
-  rua    = $('input[name="Endereco"]');
-  bairro = $('input[name="Bairro"]');
-  cidade = $('input[name="Cidade"');
-  uf     = $('input[name="UF"]');
+  cep   = $('input[name="nCEP"]');
+  endereco  = $('input[name="nEndereco"]');
+  bairro = $('input[name="nBairro"]');
+  cidade = $('input[name="nCidade"]');
+  uf     = $('input[name="nUF"]');
   function limpa_formulário_cep() {
     // Limpa valores do formulário de cep.
     cep.val("");
-    rua.val("");
+    endereco.val("");
     bairro.val("");
     cidade.val("");
     uf.val("");
@@ -97,7 +97,7 @@ var readURL = function(input) {
       if(validacep.test(cep)) {
   
         //Preenche os campos com "..." enquanto consulta webservice.
-        $(rua).val("Carregando...").next('label').addClass('fixed');
+        $(endereco).val("Carregando...").next('label').addClass('fixed');
         $(bairro).val("Carregando...").next('label').addClass('fixed');
         $(cidade).val("Carregando...").next('label').addClass('fixed');
         $(uf).val("Carregando...").next('label').addClass('fixed');
@@ -106,7 +106,7 @@ var readURL = function(input) {
         $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
           if (!("erro" in dados)) {
             //Atualiza os campos com os valores da consulta.
-            $(rua).val(dados.logradouro);
+            $(endereco).val(dados.logradouro);
             $(bairro).val(dados.bairro);
             $(cidade).val(dados.localidade);
             $(uf).val(dados.uf);
