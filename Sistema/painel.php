@@ -120,12 +120,12 @@
         <!-- Main row -->
         <div class="row">
           <!-- Left col -->
-          <section class="col-lg-12 connectedSortable">
+          <section class="col-lg-6 connectedSortable">
               
             <!-- BAR CHART -->
             <div class="card text-success">
               <div class="card-header">
-                <h3 class="card-title">Vagas</h3>
+                <h3 class="card-title">Entradas e Saídas do Dia</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
@@ -139,6 +139,33 @@
               <div class="card-body">
                 <div class="chart">
                   <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </section>
+
+          <section class="col-lg-6 connectedSortable">
+              
+            <!-- BAR CHART -->
+            <div class="card text-success">
+              <div class="card-header">
+                <h3 class="card-title">Tempo Médio Diário</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -229,6 +256,33 @@
       type: 'bar',
       data: barChartData,
       options: barChartOptions
+    })
+     // GRÁFICO DE PIZZA
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData = {
+      labels: ['Entradas', 'Saídas'],
+      datasets: [{
+        data: [<?php echo intval(qtdEntradas()); ?>, <?php echo intval(qtdSaidas()); ?>],
+        backgroundColor: ['rgba(0, 255, 0, 0.5)', 'rgba(255, 0, 0, 0.5)'],
+        borderColor: ['#00ff00', '#ff0000'],
+        borderWidth: 1
+      }]
+    }
+
+    var pieOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
     })
 </script>
 
