@@ -30,7 +30,7 @@
   <!-- Fim CSS -->
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed dados-diarios">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -138,7 +138,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 50%;"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
