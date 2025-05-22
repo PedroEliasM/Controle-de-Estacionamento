@@ -110,7 +110,10 @@
                                         <div class="col-8">
                                             <div class="form-group">
                                                 <label for="editSituacao'.$vaga_id.'">Situação:</label>
-                                                <input type="text" value="'.$situacao.'" class="form-control" id="editSituacao'.$vaga_id.'" name="nSituacao" maxlength="80">
+                                                <select class="form-control" id="editSituacao'.$vaga_id.'" name="nSituacao">
+                                                    <option value="L" '.($situacao == 'L' ? 'selected' : '').'>Livre</option>
+                                                    <option value="O" '.($situacao == 'O' ? 'selected' : '').'>Ocupada</option>
+                                                </select>
                                             </div>
                                         </div>
                                     
