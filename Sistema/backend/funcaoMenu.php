@@ -10,7 +10,6 @@ function montaMenu($n1,$n2){
 
     $opcPainel        = '';
     $opcPainelSimples = '';
-    $opcPainelFiltro  = '';
     $opcUsuarios      = '';
     $opcVagas         = '';
     $opcEmpresas      = '';
@@ -38,10 +37,6 @@ function montaMenu($n1,$n2){
             $opcPainelSimples = 'active';
             break;
             
-        case 'painel-filtro':
-            $opcPainelFiltro = 'active';
-            break;
-
         case 'usuarios':
             $opcUsuarios = 'active';
             break;     
@@ -94,16 +89,7 @@ function montaMenu($n1,$n2){
                         </a>
                     </li>              
                 </ul>
-
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="./painel-filtro.php" class="nav-link '.$opcPainelFiltro.'">
-                        <i class="ion ion-pie-graph nav-icon"></i>
-                        <p>Dashboard Filtro</p>
-                        </a>
-                    </li>              
-                </ul>
-
+                
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="./usuarios.php" class="nav-link '.$opcUsuarios.'">

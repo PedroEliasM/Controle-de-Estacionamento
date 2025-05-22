@@ -47,26 +47,12 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?php echo qtdUsuariosAtivos();?></h3>
+                <h3><?php echo qtdVagasAtivas();?></h3>
 
-                <p>Usuários Ativos</p>
+                <p>Vagas Ativas</p>
               </div>
               <div class="icon">
-                <i class="fas fa-user"></i>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3><?php echo('1');?></h3>
-
-                <p>Qtd. Categorias</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fas fa-box-open"></i>
               </div>
             </div>
           </div>
@@ -75,9 +61,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?php echo('2'); ?></h3>
+                <h3><?php echo qtdEntradas();?></h3>
 
-                <p>Qtd. Produtos</p>
+                <p>Entradas Totais</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -89,15 +75,29 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3><?php echo('3'); ?></h3>
+                <h3><?php echo qtdSaidas();?></h3>
 
-                <p>Produtos Sem Estoque</p>
+                <p>Saídas Totais</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
             </div>
           </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3><?php echo TempoMedioTotal();?></h3>
+
+                <p>Tempo Médio de Permanência Total</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+            </div>
+          </div>
+          
           <!-- ./col -->
         </div>
         <!-- /.row -->
@@ -107,13 +107,49 @@
           <section class="col-lg-6 connectedSortable">
               
             <!-- BAR CHART -->
-            <div class="card">
+            <div class="card text-success">
               <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>                
+                <h3 class="card-title">Entradas e Saídas Totais</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
               </div>
               <div class="card-body">
                 <div class="chart">
                   <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </section>
+
+          <section class="col-lg-6 connectedSortable">
+              
+            <!-- BAR CHART -->
+            <div class="card text-success">
+              <div class="card-header">
+                <h3 class="card-title">Permanências por Hora Total</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -143,19 +179,34 @@
 
 <script>
     var areaChartData = {
-      labels  : ['teste1','teste2'],
+      //labels  : ['Administrador','Empresa','Comum'],
+      labels  : ['Movimentações'],
       datasets: [
         
         {
-          label               : 'Quantidade',
-          backgroundColor     : 'rgba(60,141,188,0.9)',
-          borderColor         : 'rgba(60,141,188,0.8)',
-          pointRadius         : false,
+          label               : 'Entradas',
+          backgroundColor     : 'rgba(0, 255, 0, 0.5)',
+          borderColor         : 'rgba(0, 255, 0, 0.5)',
+          borderWidth         : 0,
+          pointRadius          : false,
           pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointStrokeColor    : 'rgba(0, 255, 0, 0.5)',
           pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : ['1','2']
+          pointHighlightStroke: 'rgba(0, 255, 0, 0.5)',
+          data                : [<?php echo qtdEntradas(); ?>]
+        },
+        
+        {
+          label               : 'Saídas',
+          backgroundColor     : 'rgba(255, 0, 0, 0.5)',
+          borderColor         : 'rgba(255, 0, 0, 0.5)',
+          borderWidth         : 0,
+          pointRadius         : false,
+          pointColor          : 'rgba(255, 0, 0, 0.5)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(255, 0, 0, 0.5)',
+          data                : [<?php echo qtdSaidas(); ?>]
         },
         
       ]
@@ -167,12 +218,15 @@
     var barChartCanvas = $('#barChart').get(0).getContext('2d')
     var barChartData = $.extend(true, {}, areaChartData)
     var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
     barChartData.datasets[0] = temp0
+    barChartData.datasets[1] = temp1
 
     var barChartOptions = {
       responsive              : true,
       maintainAspectRatio     : false,
       datasetFill             : false,
+      // Scales para o gráfico começar no valor '0 (zero)'
       scales: {
         yAxes: [{
           ticks: {
@@ -186,6 +240,33 @@
       type: 'bar',
       data: barChartData,
       options: barChartOptions
+    })
+     // GRÁFICO DE PIZZA
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData = {
+      labels: ['Acima de 1 Hora', 'Abaixo de 1 Hora'],
+      datasets: [{
+        data: [<?php echo intval(qtdAcimaHora()); ?>, <?php echo intval(qtdAbaixoHora()); ?>],
+        backgroundColor: ['rgba(0, 255, 0, 0.5)', 'rgba(255, 0, 0, 0.5)'],
+        borderColor: ['#00ff00', '#ff0000'],
+        borderWidth: 1
+      }]
+    }
+
+    var pieOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
     })
 </script>
 

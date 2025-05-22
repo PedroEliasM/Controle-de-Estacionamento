@@ -242,6 +242,27 @@
         
         return $qtd;
     }
+    function qtdVagasAtivasDiario(){
+        $qtd = 0;
+
+        include("conexao.php");
+
+        $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S';";
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        //Validar se tem retorno do BD
+        if (mysqli_num_rows($result) > 0) {
+            
+            foreach ($result as $coluna) {            
+                //***Verificar os dados da consulta SQL
+                $qtd = $coluna['Qtd'];
+            }        
+        }
+        
+        return $qtd;
+    }
     function qtdEntradas(){
         $qtd = 0;
 
@@ -263,12 +284,12 @@
         
         return $qtd;
     }
-    function qtdSaidas(){
+    function qtdEntradasDiario(){
         $qtd = 0;
 
         include("conexao.php");
 
-        $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'S';";
+        $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'E' AND date(data) =  CURDATE();";
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -284,32 +305,239 @@
         
         return $qtd;
     }
-    function qtdEntradasSaidas(){
-    
-        $descricao = "";
-    
+    function qtdSaidas(){
+        $qtd = 0;
+
         include("conexao.php");
-        $sql = "SELECT
-	tipo,
-	COUNT(*) AS total FROM movimentacao WHERE date(data) =  CURDATE() GROUP BY tipo;";        
+
+        $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'S' ;";
+
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
-    
+
         //Validar se tem retorno do BD
         if (mysqli_num_rows($result) > 0) {
-            $i = 1;
+            
             foreach ($result as $coluna) {            
                 //***Verificar os dados da consulta SQL
-                if ($i < 3){
-                    $descricao .= "'".$coluna['COUNT(*)']."',";
-                }else{
-                    $descricao .= "'".$coluna['COUNT(*)']."'";
-                }
-    
-                $i++;
+                $qtd = $coluna['Qtd'];
             }        
-        } 
-    
-        return json_encode($descricao); // Retorna um array JSON válido
+        }
+        
+        return $qtd;
     }
+    function qtdSaidasDiario(){
+        $qtd = 0;
+
+        include("conexao.php");
+
+        $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'S' AND date(data) =  CURDATE();";
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        //Validar se tem retorno do BD
+        if (mysqli_num_rows($result) > 0) {
+            
+            foreach ($result as $coluna) {            
+                //***Verificar os dados da consulta SQL
+                $qtd = $coluna['Qtd'];
+            }        
+        }
+        
+        return $qtd;
+    }
+    function qtdAcimaHora() {
+        $qtd = 0;
+    
+        include("conexao.php");
+    
+        $sql = "SELECT COUNT(*) AS acima_1h
+                FROM (
+                    SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                        (
+                            SELECT MIN(mv_s.data)
+                            FROM movimentacao mv_s
+                            WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                              AND mv_s.tipo = 'S'
+                              AND mv_s.data > mv_e.data
+                        ) AS saida
+                    FROM movimentacao mv_e
+                    WHERE mv_e.tipo = 'E'
+                ) AS sub
+                WHERE saida IS NOT NULL 
+                  AND TIMEDIFF(saida, entrada) > '01:00:00';";
+    
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    
+        if ($row = mysqli_fetch_assoc($result)) {
+            $qtd = $row['acima_1h'];
+        }
+    
+        return $qtd;
+    }
+    
+    function qtdAbaixoHora() {
+        $qtd = 0;
+    
+        include("conexao.php");
+    
+        $sql = "SELECT COUNT(*) AS abaixo_1h
+                FROM (
+                    SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                        (
+                            SELECT MIN(mv_s.data)
+                            FROM movimentacao mv_s
+                            WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                              AND mv_s.tipo = 'S'
+                              AND mv_s.data > mv_e.data
+                        ) AS saida
+                    FROM movimentacao mv_e
+                    WHERE mv_e.tipo = 'E'
+                ) AS sub
+                WHERE saida IS NOT NULL 
+                  AND TIMEDIFF(saida, entrada) <= '01:00:00';";
+    
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    
+        if ($row = mysqli_fetch_assoc($result)) {
+            $qtd = $row['abaixo_1h'];
+        }
+    
+        return $qtd;
+    }
+    function qtdAcimaHoraDiario() {
+        $qtd = 0;
+    
+        include("conexao.php");
+    
+        $sql = "SELECT COUNT(*) AS acima_1h
+                FROM (
+                    SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                        (
+                            SELECT MIN(mv_s.data)
+                            FROM movimentacao mv_s
+                            WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                              AND mv_s.tipo = 'S'
+                              AND mv_s.data > mv_e.data
+                        ) AS saida
+                    FROM movimentacao mv_e
+                    WHERE mv_e.tipo = 'E'
+                      AND DATE(mv_e.data) = CURDATE()
+                ) AS sub
+                WHERE saida IS NOT NULL 
+                  AND TIMEDIFF(saida, entrada) > '01:00:00';";
+    
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    
+        if ($row = mysqli_fetch_assoc($result)) {
+            $qtd = $row['acima_1h'];
+        }
+    
+        return $qtd;
+    }
+    function qtdAbaixoHoraDiario() {
+        $qtd = 0;
+    
+        include("conexao.php");
+    
+        $sql = "SELECT COUNT(*) AS abaixo_1h
+                FROM (
+                    SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                        (
+                            SELECT MIN(mv_s.data)
+                            FROM movimentacao mv_s
+                            WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                              AND mv_s.tipo = 'S'
+                              AND mv_s.data > mv_e.data
+                        ) AS saida
+                    FROM movimentacao mv_e
+                    WHERE mv_e.tipo = 'E'
+                      AND DATE(mv_e.data) = CURDATE()
+                ) AS sub
+                WHERE saida IS NOT NULL 
+                  AND TIMEDIFF(saida, entrada) <= '01:00:00';";
+    
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    
+        if ($row = mysqli_fetch_assoc($result)) {
+            $qtd = $row['abaixo_1h'];
+        }
+    
+        return $qtd;
+    }
+    
+    
+    function TempoMedioTotal() {
+        $qtd = '00:00';
+    
+        include("conexao.php");
+    
+        $sql = "SELECT 
+                    SEC_TO_TIME(AVG(TIME_TO_SEC(TIMEDIFF(saida.data, entrada.data)))) AS media_tempo
+                FROM 
+                    movimentacao entrada
+                JOIN 
+                    movimentacao saida ON saida.fk_id_vaga = entrada.fk_id_vaga
+                                     AND saida.tipo = 'S'
+                                     AND saida.data = (
+                                         SELECT MIN(mv2.data)
+                                         FROM movimentacao mv2
+                                         WHERE mv2.fk_id_vaga = entrada.fk_id_vaga
+                                           AND mv2.tipo = 'S'
+                                           AND mv2.data > entrada.data
+                                     )
+                WHERE 
+                    entrada.tipo = 'E';";
+    
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    
+        if ($row = mysqli_fetch_assoc($result)) {
+            if ($row['media_tempo'] !== null) {
+                $qtd = substr($row['media_tempo'], 0, 5); // HH:MM
+            }
+        }
+    
+        return $qtd;
+    }
+    function TempoMedioDiario() {
+        $qtd = '00:00';
+    
+        include("conexao.php");
+    
+        $sql = "SELECT 
+                    SEC_TO_TIME(AVG(TIME_TO_SEC(TIMEDIFF(saida.data, entrada.data)))) AS media_tempo
+                FROM 
+                    movimentacao entrada
+                JOIN 
+                    movimentacao saida ON saida.fk_id_vaga = entrada.fk_id_vaga
+                                     AND saida.tipo = 'S'
+                                     AND saida.data = (
+                                         SELECT MIN(mv2.data)
+                                         FROM movimentacao mv2
+                                         WHERE mv2.fk_id_vaga = entrada.fk_id_vaga
+                                           AND mv2.tipo = 'S'
+                                           AND mv2.data > entrada.data
+                                     )
+                WHERE 
+                    entrada.tipo = 'E'
+                    AND DATE(entrada.data) = CURDATE();";
+    
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    
+        if ($row = mysqli_fetch_assoc($result)) {
+            if ($row['media_tempo'] !== null) {
+                $qtd = substr($row['media_tempo'], 0, 5); // HH:MM
+            }
+        }
+    
+        return $qtd;
+    }    
+    
 ?>

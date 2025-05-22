@@ -62,22 +62,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?php echo qtdUsuariosAtivos();?></h3>
-
-                <p>Usuários Ativos</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-user"></i>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <!-- <h3>53<sup style="font-size: 20px">%</sup></h3> -->
-                <h3><?php echo qtdVagasAtivas();?></h3>
+                <h3><?php echo qtdVagasAtivasDiario();?></h3>
 
                 <p>Vagas Ativas</p>
               </div>
@@ -91,9 +76,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?php echo qtdEntradas();?></h3>
+                <h3><?php echo qtdEntradasDiario();?></h3>
 
-                <p>Entradas</p>
+                <p>Entradas Diárias</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -105,15 +90,29 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3><?php echo qtdSaidas();?></h3>
+                <h3><?php echo qtdSaidasDiario();?></h3>
 
-                <p>Saídas</p>
+                <p>Saídas Diárias</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
             </div>
           </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3><?php echo TempoMedioDiario();?></h3>
+
+                <p>Tempo Médio de Permanência Diário</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+            </div>
+          </div>
+          
           <!-- ./col -->
         </div>
         <!-- /.row -->
@@ -125,7 +124,7 @@
             <!-- BAR CHART -->
             <div class="card text-success">
               <div class="card-header">
-                <h3 class="card-title">Entradas e Saídas do Dia</h3>
+                <h3 class="card-title">Entradas e Saídas Diarias</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
@@ -138,7 +137,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 50%;"></canvas>
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -152,7 +151,7 @@
             <!-- BAR CHART -->
             <div class="card text-success">
               <div class="card-header">
-                <h3 class="card-title">Tempo Médio Diário</h3>
+                <h3 class="card-title">Permanências por Hora Diária</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
@@ -209,7 +208,7 @@
           pointStrokeColor    : 'rgba(0, 255, 0, 0.5)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(0, 255, 0, 0.5)',
-          data                : [<?php echo qtdEntradas(); ?>]
+          data                : [<?php echo qtdEntradasDiario(); ?>]
         },
         
         {
@@ -222,7 +221,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(255, 0, 0, 0.5)',
-          data                : [<?php echo qtdSaidas(); ?>]
+          data                : [<?php echo qtdSaidasDiario(); ?>]
         },
         
       ]
@@ -260,9 +259,9 @@
      // GRÁFICO DE PIZZA
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
     var pieData = {
-      labels: ['Entradas', 'Saídas'],
+      labels: ['Acima de 1 Hora', 'Abaixo de 1 Hora'],
       datasets: [{
-        data: [<?php echo intval(qtdEntradas()); ?>, <?php echo intval(qtdSaidas()); ?>],
+        data: [<?php echo intval(qtdAcimaHoraDiario()); ?>, <?php echo intval(qtdAbaixoHoraDiario()); ?>],
         backgroundColor: ['rgba(0, 255, 0, 0.5)', 'rgba(255, 0, 0, 0.5)'],
         borderColor: ['#00ff00', '#ff0000'],
         borderWidth: 1
