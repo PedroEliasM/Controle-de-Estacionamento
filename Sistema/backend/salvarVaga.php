@@ -9,6 +9,7 @@
     $idVaga   = $_GET["codigo"];
 
     include("conexao.php");
+
     if (isset($_POST["nAtivo"]) && $_POST["nAtivo"] == "on") {
     $ativo = "S";
     } else {
@@ -19,7 +20,6 @@
     if($funcao == "I"){
 
         //Busca o próximo ID na tabela
-
         $idVaga = proxIdVaga();
 
         //INSERT
