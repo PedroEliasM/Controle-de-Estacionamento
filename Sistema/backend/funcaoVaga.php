@@ -539,5 +539,52 @@
     
         return $qtd;
     }    
-    
+
+    function VagaMaisUsada() {
+        $vaga = 'Nenhuma';
+        $qtd = 0;
+
+        include("conexao.php");
+
+        $sql = "SELECT fk_id_vaga, COUNT(*) AS total_usos
+                FROM movimentacao
+                WHERE tipo = 'E'
+                GROUP BY fk_id_vaga
+                ORDER BY total_usos DESC
+                LIMIT 1;";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            $vaga = $row['fk_id_vaga'];
+            $qtd = $row['total_usos'];
+        }
+
+        return "$vaga, $qtd";
+    }
+    function VagaMenosUsada() {
+        $vaga = 'Nenhuma';
+        $qtd = 0;
+
+        include("conexao.php");
+
+        $sql = "SELECT v.id_vaga, COUNT(m.id_movimentacao) AS total_usos
+                FROM vaga v
+                LEFT JOIN movimentacao m 
+                ON v.id_vaga = m.fk_id_vaga AND m.tipo = 'E'
+                GROUP BY v.id_vaga
+                ORDER BY total_usos ASC
+                LIMIT 1;";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            $vaga = $row['id_vaga'];
+            $qtd = $row['total_usos'];
+        }
+
+        return "$vaga, $qtd";
+    }
 ?>
