@@ -31,17 +31,26 @@
 }
 
 .vaga-card .vaga-id {
-    font-size: 1.5em;
+    font-size: 1em;
     margin-bottom: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-    padding: 5px 10px;
+
+    padding:  0px 0px;
     display: inline-block;
+}
+
+.vaga-card .vaga-descricao {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
 }
 
 .vaga-card .vaga-status {
     font-size: 1.1em;
     margin-top: 5px;
+    padding-bottom: 1em;
     text-transform: uppercase;
 }
 

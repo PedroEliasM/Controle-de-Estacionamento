@@ -140,6 +140,183 @@ foreach ($result as $coluna) {
 // Fim foreach modificado para widgets
 
 
+// foreach modificado para widgets (arrumando a cor das vagas ativas)
+
+// --- INÍCIO DO VELHO BLOCO ---
+// Esta parte será substituída:
+$card_class = '';
+// Normaliza a situação para aplicar o CSS correto
+$situacao_normalizada = strtolower(trim($situacao));
+
+switch ($situacao_normalizada) {
+    case 'inativa':
+        $card_class = 'inativa';
+        break;
+    case 'livre':
+        $card_class = 'livre';
+        break;
+    case 'ocupada':
+        $card_class = 'ocupada';
+        break;
+    default:
+        $card_class = 'inativa'; // Default para caso a situação não seja reconhecida
+        break;
+}
+// --- FIM DO VELHO BLOCO ---
+
+// --- INÍCIO DO NOVO BLOCO ---
+$situacao = $coluna["situacao"]; // Pega o valor 'L' ou 'O' diretamente do banco
+$flg_ativo = $coluna["flg_ativo"]; // Pega o 'S' ou 'N'
+
+// Lógica para definir a classe CSS e o texto a ser exibido no card
+$card_class = '';
+$display_situacao_text = ''; // Variável para o texto que aparece no card ('LIVRE', 'OCUPADA', 'INATIVA')
+
+if ($flg_ativo == 'N') {
+    $card_class = 'inativa';
+    $display_situacao_text = 'INATIVA';
+} else {
+    // Se a vaga está ativa ('S'), usa a coluna 'situacao' (L/O)
+    if ($situacao == 'L') {
+        $card_class = 'livre';
+        $display_situacao_text = 'LIVRE';
+    } elseif ($situacao == 'O') {
+        $card_class = 'ocupada';
+        $display_situacao_text = 'OCUPADA';
+    } else {
+        // Caso um valor inesperado para $situacao (e flg_ativo é 'S')
+        $card_class = 'inativa'; // Pode ser uma classe para 'erro' ou 'desconhecida' se tiver CSS para isso
+        $display_situacao_text = 'DESCONHECIDA';
+    }
+}
+// --- FIM DO NOVO BLOCO ---
+
+// FIM - foreach modificado para widgets (arrumando a cor das vagas ativas)
+
+// ... (código antes)
+$vaga_id = $coluna["id_vaga"];
+$descricao = htmlspecialchars($coluna["descricao"]);
+$situacao_db = $coluna["situacao"]; // Pega o valor 'L' ou 'O' diretamente do banco
+$flg_ativo_db = $coluna["flg_ativo"]; // Pega o 'S' ou 'N'
+$id_empresa = htmlspecialchars($coluna["fk_id_empresa"]);
+$empresa_nome = descrEmpresa($coluna["fk_id_empresa"]);
+
+// Lógica para o checkbox e ícone (mantida)
+if($flg_ativo_db == 'S'){  
+                    $ativo = 'checked';
+                    $icone = '<h6><i class="fas fa-check-circle text-success"></i></h6>'; 
+                }else{
+                    $ativo = '';
+                    $icone = '<h6><i class="fas fa-times-circle text-danger"></i></h6>';
+                } 
+            
+// Lógica para definir a classe CSS e o texto a ser exibido no card
+$card_class = '';
+$display_situacao_text = ''; // Variável para o texto que aparece no card ('LIVRE', 'OCUPADA', 'INATIVA')
+
+if ($flg_ativo_db == 'N') {
+    $card_class = 'inativa';
+    $display_situacao_text = 'INATIVA';
+} else {
+    // Se a vaga está ativa ('S'), usa a coluna 'situacao' (L/O)
+    if ($situacao_db == 'L') {
+        $card_class = 'livre';
+        $display_situacao_text = 'LIVRE';
+    } elseif ($situacao_db == 'O') {
+        $card_class = 'ocupada';
+        $display_situacao_text = 'OCUPADA';
+    } else {
+        // Caso um valor inesperado para situacao_db (e flg_ativo é 'S')
+        $card_class = 'inativa'; // Pode ser uma classe para 'erro' ou 'desconhecida' se tiver CSS para isso
+        $display_situacao_text = 'DESCONHECIDA';
+    }
+}
+            
+                // O novo HTML para o CARD (widget) - ATENÇÃO AQUI: use $display_situacao_text
+                $lista .= '
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                    <div class="vaga-card ' . $card_class . '">
+                        <div class="vaga-id">ID: '.$vaga_id.'</div>
+                        <div class="vaga-descricao">'.$descricao.'</div>
+                        <div class="vaga-status">'.$display_situacao_text.'</div>
+                        <div class="vaga-actions">
+                            <a href="#modalEditVaga'.$vaga_id.'" data-toggle="modal" title="Alterar Vaga">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#modalDeleteVaga'.$vaga_id.'" data-toggle="modal" title="Excluir Vaga">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>';
+                
+                // Modais de Edição e Exclusão (mantidos no loop, gerados para cada vaga)
+                // Usamos os IDs únicos dos modais.
+                $lista .= '
+                <div class="modal fade" id="modalEditVaga'.$vaga_id.'">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-info">
+                                <h4 class="modal-title">Alterar Vaga</h4>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="backend/salvarVaga.php?funcao=A&codigo='.$vaga_id.'" enctype="multipart/form-data">              
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="editDescricao'.$vaga_id.'">Descrição:</label>
+                                                <input type="text" id="editDescricao'.$vaga_id.'" name="nDescricao" value="'.$descricao.'" class="form-control"  maxlength="80">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="editEmpresa'.$vaga_id.'">Empresa:</label>
+                                                <select name="nEmpresa" id="editEmpresa'.$vaga_id.'" class="form-control" required>
+                                                    <option value="'.$id_empresa.'">'.$empresa_nome.'</option>';
+                                $lista .=              optionEmpresa();
+                                $lista .= '
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="editSituacao'.$vaga_id.'">Situação:</label>
+                                <select class="form-control" id="editSituacao'.$vaga_id.'" name="nSituacao">
+                                    <option value="L" '.($situacao_db == 'L' ? 'selected' : '').'>Livre</option>
+                                    <option value="O" '.($situacao_db == 'O' ? 'selected' : '').'>Ocupada</option>
+                                </select>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="checkbox" id="editAtivo'.$vaga_id.'" name="nAtivo" '.$ativo.'>
+                                                <label for="editAtivo'.$vaga_id.'">Vaga Ativa</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                        <button type="submit" class="btn btn-success">Salvar</button>
+                                    </div>
+                                    
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+// ... (resto do código)
+
+
+
+
 
 
 
