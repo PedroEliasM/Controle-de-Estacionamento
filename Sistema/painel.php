@@ -67,7 +67,7 @@
                 <p>Vagas Ativas</p>
               </div>
               <div class="icon">
-                <i class="fas fa-box-open"></i>
+                <i class="fas fa-check-circle"></i>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
                 <p>Entradas Diárias</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fas fa-sign-in-alt"></i>
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@
                 <p>Saídas Diárias</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fas fa-sign-out-alt"></i>
               </div>
             </div>
           </div>
@@ -108,7 +108,7 @@
                 <p>Tempo Médio de Permanência Diário</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fas fa-parking"></i>
               </div>
             </div>
           </div>
