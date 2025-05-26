@@ -105,7 +105,8 @@
               <div class="inner">
                 <h3><?php echo TempoMedioDiario();?></h3>
 
-                <p>Tempo Médio de Permanência Diário</p>
+                <p>Tempo Médio de </p>
+                <p>Permanência Diário</p>
               </div>
               <div class="icon">
                 <i class="fas fa-parking"></i>

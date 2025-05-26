@@ -90,7 +90,8 @@
               <div class="inner">
                 <h3><?php echo TempoMedioTotal();?></h3>
 
-                <p>Tempo Médio de Permanência Total</p>
+                <p>Tempo Médio de</p>
+                <p> Permanência Total</p>
               </div>
               <div class="icon">
                 <i class="fas fa-parking"></i>
