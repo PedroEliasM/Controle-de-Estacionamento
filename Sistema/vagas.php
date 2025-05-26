@@ -143,7 +143,7 @@
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
-        </div>
+      
         
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -157,6 +157,6 @@
   <?php include('partes/js.php'); ?>
   <!-- Fim JS -->
 
-
+ 
   </body>
 </html>
