@@ -39,3 +39,6 @@
   <link rel="stylesheet" href="partes/sidebar/fonts/font.css">
   <link rel="stylesheet" href="partes/sidebar/fonts/font-awesome.min.css">
   <!-- /.css sidebar -->
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">

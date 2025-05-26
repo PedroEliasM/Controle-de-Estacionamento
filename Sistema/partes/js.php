@@ -58,4 +58,8 @@
 <script src="partes/sidebar/js/jquery.min.js"></script>
 <script src="partes/sidebar/js/main.js"></script>
 <script src="partes/sidebar/js/popper.js"></script>
-<!-- /.js sidebar -->
+
+<!-- /.js sidebar --><!-- jQuery (necessário antes do DataTables) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
