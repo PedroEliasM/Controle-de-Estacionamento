@@ -8,6 +8,7 @@
   padding: 20px;
   padding-bottom: 0rem; /* Espaço para os ícones de ação */
   margin: 10px;
+  margin-top: 1rem; /* Espaço entre widgets das vagas */
   color: white;
   font-weight: bold;
   text-align: center;
