@@ -157,6 +157,55 @@
   <?php include('partes/js.php'); ?>
   <!-- Fim JS -->
 
- 
+  <script>
+    //== Inicialização
+    $(document).ready(function() {
+
+      //Lista dinâmica com Ajax
+      $('#iCategoriaAjax').on('change',function(){
+        //Pega o valor selecionado na lista 1
+        var categoria  = $('#iCategoriaAjax').val();
+        
+        //Prepara a lista 2 filtrada
+        var optionProd = '';
+                  
+        //Valida se teve seleção na lista 1
+        if(categoria != "" && categoria != "0"){
+          
+          //Vai no PHP consultar dados para a lista 2
+          $.getJSON('backend/carregaProdutoCategoria.php?categoria='+categoria,
+          function (dados){  
+            
+            //Carrega a primeira option
+            optionProd = '<option value="">Filtrar Vagas por</option>';                  
+            
+            //Valida o retorno do PHP para montar a lista 2
+            if (dados.length > 0){                        
+              
+              //Se tem dados, monta a lista 2
+              $.each(dados, function(i, obj){
+                optionProd += '<option value="'+obj.idProduto+'">'+obj.Descricao+'</option>';	                            
+              })
+
+              //Marca a lista 2 como required e mostra os dados filtrados
+              $('#iProdutoAjax').attr("required", "req");						
+              $('#iProdutoAjax').html(optionProd).show();
+            }else{
+              
+              //Não encontrou itens para a lista 2
+              optionProd += '<option value="">Selecione um Produto</option>';
+              $('#iProdutoAjax').html(optionProd).show();
+            }
+          })                
+        }else{
+          //Sem seleção na lista 1 não consulta
+          optionProd += '<option value="">Selecione um Produto</option>';
+          $('#iProdutoAjax').html(optionProd).show();
+        }			
+      });
+    
+    });
+  </script>
+
   </body>
 </html>
