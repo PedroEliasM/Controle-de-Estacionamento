@@ -11,3 +11,9 @@ div.card-body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Cards dos gráficos */
+.small-box > .inner {
+    min-height: 8.3rem !important;
+    max-height: 8.3rem !important;
+}

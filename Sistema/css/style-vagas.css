@@ -6,6 +6,7 @@
 .vaga-card {
   border-radius: 10px;
   padding: 20px;
+  padding-bottom: 0rem; /* Espaço para os ícones de ação */
   margin: 10px;
   color: white;
   font-weight: bold;
@@ -56,15 +57,19 @@
 
 .vaga-card .vaga-actions {
     position: absolute;
-    bottom: 10px;
+    bottom: -1.7rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 15px; /* Espaçamento entre os ícones */
 }
 
-.vaga-card .vaga-actions a {
-    color: black;
+.vaga-card .vaga-actions a .fa-edit{
+    color: rgba(0, 140, 255, 1);
+    font-size: 1.2em;
+}
+.vaga-card .vaga-actions a .fa-trash{
+    color: rgba(220, 0, 0, 1);
     font-size: 1.2em;
 }
 
