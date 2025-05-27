@@ -15,7 +15,7 @@
     <!-- Fim CSS -->
 
   </head>
-  <body class="hold-transition sidebar-mini layout-fixed">
+  <body class="hold-transition sidebar-mini layout-fixed pagina-vagas">
     <div class="wrapper">
 
       <!-- Navbar -->
