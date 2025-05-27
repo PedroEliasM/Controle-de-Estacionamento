@@ -14,8 +14,7 @@
   text-align: center;
   width: 9.375rem; /* Largura fixa para os cards (150px) */
   display: inline-block; /* Para que os cards fiquem lado a lado */
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
-  /*box-shadow: 2px 2px 5px rgba(0,0,0,0.2);*/
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
   position: relative; /* Para posicionamento dos ícones */
   min-height: 9.375rem; /* Altura mínima para o card (120px) */
   height: 10.2rem; /* Altura fixa para o card (162.3px) */
@@ -23,45 +22,24 @@
   vertical-align: top; /* Alinha os cards ao topo */
 }
 .vaga-card:hover {
-    /*box-shadow: 4px 4px 10px rgba(0,0,0,0.3); /* Sombra mais intensa ao passar o mouse */
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.3); /* Sombra mais intensa ao passar o mouse */
     transform: scale(1.02); /* Leve aumento de tamanho ao passar o mouse */
 }
 
 .vaga-card.inativa {
-    background-color: rgba(0, 0, 0, 1); /* Verde claro */
-    /*background-color: rgba(128, 128, 128, 1); /* Cinza */
+    background-color: rgba(128, 128, 128, 1); /* Cinza */
     /* Hexadecimal: #808080 / RGBA: rgba(128, 128, 128, 1) */
 }
-    .vaga-card.inativa .vaga-status {
-        color: rgba(128, 128, 128, 1) !important;
-    }
-        .vaga-card.inativa:hover {
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 1); /* Sombra mais intensa ao passar o mouse */
-        }
 
 .vaga-card.livre {
-    background-color: rgba(0, 0, 0, 1); /* Verde claro */
-    /*background-color: rgba(144, 238, 144, 1); /* Verde claro */
+    background-color: rgba(144, 238, 144, 1); /* Verde claro */
     /* Hexadecimal: #90EE90 / RGBA: rgba(144, 238, 144, 1) */
 }
-    .vaga-card.livre .vaga-status {
-        color: rgba(144, 238, 144, 1) !important;
-    }
-        .vaga-card.livre:hover {
-            box-shadow: 0px 0px 10px rgba(144, 238, 144, 1); /* Sombra mais intensa ao passar o mouse */
-        }
 
 .vaga-card.ocupada {
-    background-color: rgba(0, 0, 0, 1); /* Verde claro */
-    /*background-color: rgba(220, 20, 60, 1); /* Vermelho */
+    background-color: rgba(220, 20, 60, 1); /* Vermelho */
     /* Hexadecimal: #DC143C / RGBA: rgba(220, 20, 60, 1) */
 }
-    .vaga-card.ocupada .vaga-status {
-        color: rgba(220, 20, 60, 1) !important;
-    }
-        .vaga-card.ocupada:hover {
-            box-shadow: 0px 0px 10px rgba(220, 20, 60, 1); /* Sombra mais intensa ao passar o mouse */
-        }
 
 .vaga-card .vaga-id {
     font-size: 1em;

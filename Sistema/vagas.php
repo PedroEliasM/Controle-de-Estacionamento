@@ -124,7 +124,7 @@
                       <div class="col-12">
                         <div class="form-group">
                           <input type="checkbox" id="iAtivo" name="nAtivo">
-                          <label for="iAtivo">Usuário Ativo</label>
+                          <label for="iAtivo">Vaga Ativa</label>
                         </div>
                       </div>
 
@@ -164,7 +164,7 @@
                           <label for="iCategoriaAjax">Categoria:</label>
                           <select name="nCategoriaAjax" id="iCategoriaAjax" class="form-control" required>
                             <option value="">Selecione...</option>
-                            <?php echo optionCategoria();?>
+                            <?php //echo optionCategoria();?>
                           </select>
                         </div>
                       </div>

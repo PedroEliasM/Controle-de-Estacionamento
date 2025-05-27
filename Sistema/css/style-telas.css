@@ -2,6 +2,7 @@
 .content-wrapper {
     background-color: #000 !important; /* Claro: #f4f6f9 */
     /*background-image: url(../../../img/fundo-login.jpg) !important;*/
+    min-height: 100vh !important;
 }
 div.os-content {
     background: transparent !important;
@@ -16,10 +17,15 @@ div.card {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0);
 }
+body.pagina-vagas div.card-header{
+    background-color: rgba(100, 100, 250, 1) !important;
+    color: white !important;
+}
 body.pagina-vagas div.card div.card-body {
     background-color: rgba(0, 0, 0, 1) !important;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    min-height: 77vh !important;
 
 }
 
