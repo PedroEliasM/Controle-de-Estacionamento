@@ -12,7 +12,7 @@ div.card-body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Cards dos gráficos */
+/* Cards de informações diárias/totais nas telas de Dashboard */
 .small-box > .inner {
     min-height: 8.3rem !important;
     max-height: 8.3rem !important;

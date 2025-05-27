@@ -8,16 +8,22 @@
   padding: 20px;
   padding-bottom: 0rem; /* Espaço para os ícones de ação */
   margin: 10px;
-  margin-top: 1rem; /* Espaço entre widgets das vagas */
+  margin-bottom: 1.7rem; /* Espaço entre widgets das vagas */
   color: white;
   font-weight: bold;
   text-align: center;
-  width: 150px; /* Largura fixa para os cards */
+  width: 9.375rem; /* Largura fixa para os cards (150px) */
   display: inline-block; /* Para que os cards fiquem lado a lado */
   box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
   position: relative; /* Para posicionamento dos ícones */
-  min-height: 120px; /* Altura mínima para o card */
+  min-height: 9.375rem; /* Altura mínima para o card (120px) */
+  height: 10.2rem; /* Altura fixa para o card (162.3px) */
+  max-height: 10.2rem; /* Altura máxima para o card (162.3px) */
   vertical-align: top; /* Alinha os cards ao topo */
+}
+.vaga-card:hover {
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.3); /* Sombra mais intensa ao passar o mouse */
+    transform: scale(1.02); /* Leve aumento de tamanho ao passar o mouse */
 }
 
 .vaga-card.inativa {
@@ -62,7 +68,7 @@
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 15px; /* Espaçamento entre os ícones */
+    gap: 20px; /* Espaçamento entre os ícones */
 }
 
 .vaga-card .vaga-actions a .fa-edit{
@@ -74,6 +80,9 @@
     font-size: 1.2em;
 }
 
-.vaga-card .vaga-actions a:hover {
-    color: #f0f0f0;
+.vaga-card .vaga-actions a .fa-edit:hover {
+    color: rgba(0, 80, 255, 1);
+}
+.vaga-card .vaga-actions a .fa-trash:hover {
+    color: rgba(255, 10, 10, 1);
 }
