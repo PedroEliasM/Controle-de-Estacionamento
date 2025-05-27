@@ -27,15 +27,18 @@
 }
 
 .vaga-card.inativa {
-    background-color: #808080; /* Cinza */
+    background-color: rgba(128, 128, 128, 1); /* Cinza */
+    /* Hexadecimal: #808080 / RGBA: rgba(128, 128, 128, 1) */
 }
 
 .vaga-card.livre {
-    background-color: #90EE90; /* Verde claro */
+    background-color: rgba(144, 238, 144, 1); /* Verde claro */
+    /* Hexadecimal: #90EE90 / RGBA: rgba(144, 238, 144, 1) */
 }
 
 .vaga-card.ocupada {
-    background-color: #DC143C; /* Vermelho */
+    background-color: rgba(220, 20, 60, 1); /* Vermelho */
+    /* Hexadecimal: #DC143C / RGBA: rgba(220, 20, 60, 1) */
 }
 
 .vaga-card .vaga-id {
