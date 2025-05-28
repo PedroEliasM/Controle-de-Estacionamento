@@ -202,14 +202,14 @@ $id_empresa = htmlspecialchars($coluna["fk_id_empresa"]);
 $empresa_nome = descrEmpresa($coluna["fk_id_empresa"]);
 
 // Lógica para o checkbox e ícone (mantida)
-if($flg_ativo_db == 'S'){  
-                    $ativo = 'checked';
-                    $icone = '<h6><i class="fas fa-check-circle text-success"></i></h6>'; 
-                }else{
-                    $ativo = '';
-                    $icone = '<h6><i class="fas fa-times-circle text-danger"></i></h6>';
-                } 
-            
+if($flg_ativo_db == 'S'){
+    $ativo = 'checked';
+    $icone = '<h6><i class="fas fa-check-circle text-success"></i></h6>'; 
+}else{
+    $ativo = '';
+    $icone = '<h6><i class="fas fa-times-circle text-danger"></i></h6>';
+} 
+
 // Lógica para definir a classe CSS e o texto a ser exibido no card
 $card_class = '';
 $display_situacao_text = ''; // Variável para o texto que aparece no card ('LIVRE', 'OCUPADA', 'INATIVA')
@@ -231,8 +231,7 @@ if ($flg_ativo_db == 'N') {
         $display_situacao_text = 'DESCONHECIDA';
     }
 }
-            
-                // O novo HTML para o CARD (widget) - ATENÇÃO AQUI: use $display_situacao_text
+// O novo HTML para o CARD (widget) - ATENÇÃO AQUI: use $display_situacao_text
                 $lista .= '
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                     <div class="vaga-card ' . $card_class . '">
