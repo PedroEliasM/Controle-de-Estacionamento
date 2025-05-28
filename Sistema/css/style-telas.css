@@ -21,13 +21,15 @@ body.pagina-vagas div.card-header{
     background-color: rgba(100, 100, 250, 1) !important;
     color: white !important;
 }
-body.pagina-vagas div.card div.card-body {
+body.pagina-vagas div.card-body {
     background-color: rgba(0, 0, 0, 1) !important;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     min-height: 77vh !important;
-
 }
+    body.pagina-vagas div.card{
+        background-color: rgba(0, 0, 0, 1) !important;
+    }
 
 /* Cards de informações diárias/totais nas telas de Dashboard */
 .small-box > .inner {
