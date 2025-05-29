@@ -484,31 +484,53 @@
         }
         
         return $qtd;
-    }function qtdAcimaHora() {
+    }
+    function qtdAcimaHora() {
         $qtd = 0;
     
         include("conexao.php");
     
-        if (isset($_SESSION['idEmpresa'])) {
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
             $idEmpresaUsuario = $_SESSION['idEmpresa'];
     
-            $sql = "SELECT COUNT(*) AS acima_1h
-                    FROM (
-                        SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
-                            (
-                                SELECT MIN(mv_s.data)
-                                FROM movimentacao mv_s
-                                WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
-                                  AND mv_s.tipo = 'S'
-                                  AND mv_s.data > mv_e.data
-                            ) AS saida
-                        FROM movimentacao mv_e
-                        INNER JOIN vaga v ON mv_e.fk_id_vaga = v.id_vaga
-                        WHERE mv_e.tipo = 'E'
-                          AND v.fk_id_empresa = $idEmpresaUsuario
-                    ) AS sub
-                    WHERE saida IS NOT NULL 
-                      AND TIMEDIFF(saida, entrada) > '01:00:00';";
+            if ($idTipoUsuario == 3) { // Dono - sem filtro de empresa
+                $sql = "SELECT COUNT(*) AS acima_1h
+                        FROM (
+                            SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                                (
+                                    SELECT MIN(mv_s.data)
+                                    FROM movimentacao mv_s
+                                    WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                                      AND mv_s.tipo = 'S'
+                                      AND mv_s.data > mv_e.data
+                                ) AS saida
+                            FROM movimentacao mv_e
+                            WHERE mv_e.tipo = 'E'
+                        ) AS sub
+                        WHERE saida IS NOT NULL 
+                          AND TIMEDIFF(saida, entrada) > '01:00:00';";
+            } else if ($idTipoUsuario == 1 || $idTipoUsuario == 2) { // Funcionário ou Admin
+                $sql = "SELECT COUNT(*) AS acima_1h
+                        FROM (
+                            SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                                (
+                                    SELECT MIN(mv_s.data)
+                                    FROM movimentacao mv_s
+                                    WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                                      AND mv_s.tipo = 'S'
+                                      AND mv_s.data > mv_e.data
+                                ) AS saida
+                            FROM movimentacao mv_e
+                            INNER JOIN vaga v ON mv_e.fk_id_vaga = v.id_vaga
+                            WHERE mv_e.tipo = 'E'
+                              AND v.fk_id_empresa = $idEmpresaUsuario
+                        ) AS sub
+                        WHERE saida IS NOT NULL 
+                          AND TIMEDIFF(saida, entrada) > '01:00:00';";
+            } else {
+                return "Tipo de usuário inválido.";
+            }
     
             $result = mysqli_query($conn, $sql);
             mysqli_close($conn);
@@ -519,17 +541,36 @@
     
             return $qtd;
         } else {
-            return "Empresa não definida na sessão.";
+            return "Sessão não iniciada ou dados do usuário não definidos.";
         }
-    }    
+    }
+    
     function qtdAbaixoHora() {
-        $qtd = 0;
-    
-        include("conexao.php");
-    
-        if (isset($_SESSION['idEmpresa'])) {
-            $idEmpresaUsuario = $_SESSION['idEmpresa'];
-    
+    $qtd = 0;
+
+    include("conexao.php");
+
+    if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+        $idTipoUsuario = $_SESSION['idTipoUsuario'];
+        $idEmpresaUsuario = $_SESSION['idEmpresa'];
+
+        if ($idTipoUsuario == 3) { // Dono - sem filtro de empresa
+            $sql = "SELECT COUNT(*) AS abaixo_1h
+                    FROM (
+                        SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                            (
+                                SELECT MIN(mv_s.data)
+                                FROM movimentacao mv_s
+                                WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                                  AND mv_s.tipo = 'S'
+                                  AND mv_s.data > mv_e.data
+                            ) AS saida
+                        FROM movimentacao mv_e
+                        WHERE mv_e.tipo = 'E'
+                    ) AS sub
+                    WHERE saida IS NOT NULL 
+                      AND TIMEDIFF(saida, entrada) <= '01:00:00';";
+        } else if ($idTipoUsuario == 1 || $idTipoUsuario == 2) { // Funcionário ou Admin
             $sql = "SELECT COUNT(*) AS abaixo_1h
                     FROM (
                         SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
@@ -547,18 +588,21 @@
                     ) AS sub
                     WHERE saida IS NOT NULL 
                       AND TIMEDIFF(saida, entrada) <= '01:00:00';";
-    
-            $result = mysqli_query($conn, $sql);
-            mysqli_close($conn);
-    
-            if ($row = mysqli_fetch_assoc($result)) {
-                $qtd = $row['abaixo_1h'];
-            }
-    
-            return $qtd;
         } else {
-            return "Empresa não definida na sessão.";
+            return "Tipo de usuário inválido.";
         }
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            $qtd = $row['abaixo_1h'];
+        }
+
+        return $qtd;
+    } else {
+        return "Sessão não iniciada ou dados do usuário não definidos.";
+    }
     }
     
     function qtdAcimaHoraDiario() {
@@ -566,27 +610,49 @@
     
         include("conexao.php");
     
-        if (isset($_SESSION['idEmpresa'])) {
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
             $idEmpresaUsuario = $_SESSION['idEmpresa'];
     
-            $sql = "SELECT COUNT(*) AS acima_1h
-                    FROM (
-                        SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
-                            (
-                                SELECT MIN(mv_s.data)
-                                FROM movimentacao mv_s
-                                WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
-                                  AND mv_s.tipo = 'S'
-                                  AND mv_s.data > mv_e.data
-                            ) AS saida
-                        FROM movimentacao mv_e
-                        INNER JOIN vaga v ON mv_e.fk_id_vaga = v.id_vaga
-                        WHERE mv_e.tipo = 'E'
-                          AND v.fk_id_empresa = $idEmpresaUsuario
-                          AND DATE(mv_e.data) = CURDATE()
-                    ) AS sub
-                    WHERE saida IS NOT NULL 
-                      AND TIMEDIFF(saida, entrada) > '01:00:00';";
+            if ($idTipoUsuario == 3) { // Dono - sem filtro de empresa
+                $sql = "SELECT COUNT(*) AS acima_1h
+                        FROM (
+                            SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                                (
+                                    SELECT MIN(mv_s.data)
+                                    FROM movimentacao mv_s
+                                    WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                                      AND mv_s.tipo = 'S'
+                                      AND mv_s.data > mv_e.data
+                                ) AS saida
+                            FROM movimentacao mv_e
+                            WHERE mv_e.tipo = 'E'
+                              AND DATE(mv_e.data) = CURDATE()
+                        ) AS sub
+                        WHERE saida IS NOT NULL 
+                          AND TIMEDIFF(saida, entrada) > '01:00:00';";
+            } else if ($idTipoUsuario == 1 || $idTipoUsuario == 2) { // Funcionário ou Admin
+                $sql = "SELECT COUNT(*) AS acima_1h
+                        FROM (
+                            SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                                (
+                                    SELECT MIN(mv_s.data)
+                                    FROM movimentacao mv_s
+                                    WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                                      AND mv_s.tipo = 'S'
+                                      AND mv_s.data > mv_e.data
+                                ) AS saida
+                            FROM movimentacao mv_e
+                            INNER JOIN vaga v ON mv_e.fk_id_vaga = v.id_vaga
+                            WHERE mv_e.tipo = 'E'
+                              AND v.fk_id_empresa = $idEmpresaUsuario
+                              AND DATE(mv_e.data) = CURDATE()
+                        ) AS sub
+                        WHERE saida IS NOT NULL 
+                          AND TIMEDIFF(saida, entrada) > '01:00:00';";
+            } else {
+                return "Tipo de usuário inválido.";
+            }
     
             $result = mysqli_query($conn, $sql);
             mysqli_close($conn);
@@ -597,35 +663,58 @@
     
             return $qtd;
         } else {
-            return "Empresa não definida na sessão.";
+            return "Sessão não iniciada ou dados do usuário não definidos.";
         }
     }
+    
     function qtdAbaixoHoraDiario() {
         $qtd = 0;
     
         include("conexao.php");
     
-        if (isset($_SESSION['idEmpresa'])) {
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
             $idEmpresaUsuario = $_SESSION['idEmpresa'];
     
-            $sql = "SELECT COUNT(*) AS abaixo_1h
-                    FROM (
-                        SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
-                            (
-                                SELECT MIN(mv_s.data)
-                                FROM movimentacao mv_s
-                                WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
-                                  AND mv_s.tipo = 'S'
-                                  AND mv_s.data > mv_e.data
-                            ) AS saida
-                        FROM movimentacao mv_e
-                        INNER JOIN vaga v ON mv_e.fk_id_vaga = v.id_vaga
-                        WHERE mv_e.tipo = 'E'
-                          AND v.fk_id_empresa = $idEmpresaUsuario
-                          AND DATE(mv_e.data) = CURDATE()
-                    ) AS sub
-                    WHERE saida IS NOT NULL 
-                      AND TIMEDIFF(saida, entrada) <= '01:00:00';";
+            if ($idTipoUsuario == 3) { // Dono - considera todas as empresas
+                $sql = "SELECT COUNT(*) AS abaixo_1h
+                        FROM (
+                            SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                                (
+                                    SELECT MIN(mv_s.data)
+                                    FROM movimentacao mv_s
+                                    WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                                      AND mv_s.tipo = 'S'
+                                      AND mv_s.data > mv_e.data
+                                ) AS saida
+                            FROM movimentacao mv_e
+                            WHERE mv_e.tipo = 'E'
+                              AND DATE(mv_e.data) = CURDATE()
+                        ) AS sub
+                        WHERE saida IS NOT NULL 
+                          AND TIMEDIFF(saida, entrada) <= '01:00:00';";
+            } else if ($idTipoUsuario == 1 || $idTipoUsuario == 2) { // Funcionário ou Admin - filtra por empresa
+                $sql = "SELECT COUNT(*) AS abaixo_1h
+                        FROM (
+                            SELECT mv_e.id_movimentacao, mv_e.data AS entrada,
+                                (
+                                    SELECT MIN(mv_s.data)
+                                    FROM movimentacao mv_s
+                                    WHERE mv_s.fk_id_vaga = mv_e.fk_id_vaga
+                                      AND mv_s.tipo = 'S'
+                                      AND mv_s.data > mv_e.data
+                                ) AS saida
+                            FROM movimentacao mv_e
+                            INNER JOIN vaga v ON mv_e.fk_id_vaga = v.id_vaga
+                            WHERE mv_e.tipo = 'E'
+                              AND v.fk_id_empresa = $idEmpresaUsuario
+                              AND DATE(mv_e.data) = CURDATE()
+                        ) AS sub
+                        WHERE saida IS NOT NULL 
+                          AND TIMEDIFF(saida, entrada) <= '01:00:00';";
+            } else {
+                return "Tipo de usuário inválido.";
+            }
     
             $result = mysqli_query($conn, $sql);
             mysqli_close($conn);
@@ -636,36 +725,59 @@
     
             return $qtd;
         } else {
-            return "Empresa não definida na sessão.";
+            return "Sessão não iniciada ou dados do usuário não definidos.";
         }
-    }    
+    }
+    
     function TempoMedioTotal() {
         $qtd = '00:00';
     
         include("conexao.php");
     
-        if (isset($_SESSION['idEmpresa'])) {
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
             $idEmpresaUsuario = $_SESSION['idEmpresa'];
     
-            $sql = "SELECT 
-                        SEC_TO_TIME(AVG(TIME_TO_SEC(TIMEDIFF(saida.data, entrada.data)))) AS media_tempo
-                    FROM 
-                        movimentacao entrada
-                    JOIN 
-                        movimentacao saida ON saida.fk_id_vaga = entrada.fk_id_vaga
-                                           AND saida.tipo = 'S'
-                                           AND saida.data = (
-                                               SELECT MIN(mv2.data)
-                                               FROM movimentacao mv2
-                                               WHERE mv2.fk_id_vaga = entrada.fk_id_vaga
-                                                 AND mv2.tipo = 'S'
-                                                 AND mv2.data > entrada.data
-                                           )
-                    JOIN 
-                        vaga v ON entrada.fk_id_vaga = v.id_vaga
-                    WHERE 
-                        entrada.tipo = 'E'
-                        AND v.fk_id_empresa = $idEmpresaUsuario;";
+            if ($idTipoUsuario == 3) { // Dono - sem filtro de empresa
+                $sql = "SELECT 
+                            SEC_TO_TIME(AVG(TIME_TO_SEC(TIMEDIFF(saida.data, entrada.data)))) AS media_tempo
+                        FROM 
+                            movimentacao entrada
+                        JOIN 
+                            movimentacao saida ON saida.fk_id_vaga = entrada.fk_id_vaga
+                                               AND saida.tipo = 'S'
+                                               AND saida.data = (
+                                                   SELECT MIN(mv2.data)
+                                                   FROM movimentacao mv2
+                                                   WHERE mv2.fk_id_vaga = entrada.fk_id_vaga
+                                                     AND mv2.tipo = 'S'
+                                                     AND mv2.data > entrada.data
+                                               )
+                        WHERE 
+                            entrada.tipo = 'E';";
+            } else if ($idTipoUsuario == 1 || $idTipoUsuario == 2) { // Admin ou Funcionário - filtra por empresa
+                $sql = "SELECT 
+                            SEC_TO_TIME(AVG(TIME_TO_SEC(TIMEDIFF(saida.data, entrada.data)))) AS media_tempo
+                        FROM 
+                            movimentacao entrada
+                        JOIN 
+                            movimentacao saida ON saida.fk_id_vaga = entrada.fk_id_vaga
+                                               AND saida.tipo = 'S'
+                                               AND saida.data = (
+                                                   SELECT MIN(mv2.data)
+                                                   FROM movimentacao mv2
+                                                   WHERE mv2.fk_id_vaga = entrada.fk_id_vaga
+                                                     AND mv2.tipo = 'S'
+                                                     AND mv2.data > entrada.data
+                                               )
+                        JOIN 
+                            vaga v ON entrada.fk_id_vaga = v.id_vaga
+                        WHERE 
+                            entrada.tipo = 'E'
+                            AND v.fk_id_empresa = $idEmpresaUsuario;";
+            } else {
+                return "Tipo de usuário inválido.";
+            }
     
             $result = mysqli_query($conn, $sql);
             mysqli_close($conn);
@@ -678,37 +790,61 @@
     
             return $qtd;
         } else {
-            return "Empresa não definida na sessão.";
+            return "Sessão não iniciada ou dados do usuário não definidos.";
         }
     }
+    
     function TempoMedioDiario() {
         $qtd = '00:00';
     
         include("conexao.php");
     
-        if (isset($_SESSION['idEmpresa'])) {
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
             $idEmpresaUsuario = $_SESSION['idEmpresa'];
     
-            $sql = "SELECT 
-                        SEC_TO_TIME(AVG(TIME_TO_SEC(TIMEDIFF(saida.data, entrada.data)))) AS media_tempo
-                    FROM 
-                        movimentacao entrada
-                    JOIN 
-                        movimentacao saida ON saida.fk_id_vaga = entrada.fk_id_vaga
-                                           AND saida.tipo = 'S'
-                                           AND saida.data = (
-                                               SELECT MIN(mv2.data)
-                                               FROM movimentacao mv2
-                                               WHERE mv2.fk_id_vaga = entrada.fk_id_vaga
-                                                 AND mv2.tipo = 'S'
-                                                 AND mv2.data > entrada.data
-                                           )
-                    JOIN 
-                        vaga v ON entrada.fk_id_vaga = v.id_vaga
-                    WHERE 
-                        entrada.tipo = 'E'
-                        AND v.fk_id_empresa = $idEmpresaUsuario
-                        AND DATE(entrada.data) = CURDATE();";
+            if ($idTipoUsuario == 3) { // Dono - sem filtro por empresa
+                $sql = "SELECT 
+                            SEC_TO_TIME(AVG(TIME_TO_SEC(TIMEDIFF(saida.data, entrada.data)))) AS media_tempo
+                        FROM 
+                            movimentacao entrada
+                        JOIN 
+                            movimentacao saida ON saida.fk_id_vaga = entrada.fk_id_vaga
+                                               AND saida.tipo = 'S'
+                                               AND saida.data = (
+                                                   SELECT MIN(mv2.data)
+                                                   FROM movimentacao mv2
+                                                   WHERE mv2.fk_id_vaga = entrada.fk_id_vaga
+                                                     AND mv2.tipo = 'S'
+                                                     AND mv2.data > entrada.data
+                                               )
+                        WHERE 
+                            entrada.tipo = 'E'
+                            AND DATE(entrada.data) = CURDATE();";
+            } else if ($idTipoUsuario == 1 || $idTipoUsuario == 2) { // Admin ou Funcionário - filtra por empresa
+                $sql = "SELECT 
+                            SEC_TO_TIME(AVG(TIME_TO_SEC(TIMEDIFF(saida.data, entrada.data)))) AS media_tempo
+                        FROM 
+                            movimentacao entrada
+                        JOIN 
+                            movimentacao saida ON saida.fk_id_vaga = entrada.fk_id_vaga
+                                               AND saida.tipo = 'S'
+                                               AND saida.data = (
+                                                   SELECT MIN(mv2.data)
+                                                   FROM movimentacao mv2
+                                                   WHERE mv2.fk_id_vaga = entrada.fk_id_vaga
+                                                     AND mv2.tipo = 'S'
+                                                     AND mv2.data > entrada.data
+                                               )
+                        JOIN 
+                            vaga v ON entrada.fk_id_vaga = v.id_vaga
+                        WHERE 
+                            entrada.tipo = 'E'
+                            AND v.fk_id_empresa = $idEmpresaUsuario
+                            AND DATE(entrada.data) = CURDATE();";
+            } else {
+                return "Tipo de usuário inválido.";
+            }
     
             $result = mysqli_query($conn, $sql);
             mysqli_close($conn);
@@ -721,55 +857,97 @@
     
             return $qtd;
         } else {
-            return "Empresa não definida na sessão.";
+            return "Sessão não iniciada ou dados do usuário não definidos.";
         }
-    }
+    }    
     
     function VagaMaisUsada() {
         $vaga = 'Nenhuma';
         $qtd = 0;
-
+    
         include("conexao.php");
-
-        $sql = "SELECT fk_id_vaga, COUNT(*) AS total_usos
-                FROM movimentacao
-                WHERE tipo = 'E'
-                GROUP BY fk_id_vaga
-                ORDER BY total_usos DESC
-                LIMIT 1;";
-
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
-
-        if ($row = mysqli_fetch_assoc($result)) {
-            $vaga = $row['fk_id_vaga'];
-            $qtd = $row['total_usos'];
+    
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
+            $idEmpresaUsuario = $_SESSION['idEmpresa'];
+    
+            // Define SQL com base no tipo de usuário
+            if ($idTipoUsuario == 3) { // Dono - pode ver todas as vagas
+                $sql = "SELECT fk_id_vaga, COUNT(*) AS total_usos
+                        FROM movimentacao
+                        WHERE tipo = 'E'
+                        GROUP BY fk_id_vaga
+                        ORDER BY total_usos DESC
+                        LIMIT 1;";
+            } else if ($idTipoUsuario == 1 || $idTipoUsuario == 2) { // Admin ou Funcionário - apenas da empresa
+                $sql = "SELECT m.fk_id_vaga, COUNT(*) AS total_usos
+                        FROM movimentacao m
+                        INNER JOIN vaga v ON m.fk_id_vaga = v.id_vaga
+                        WHERE m.tipo = 'E' AND v.fk_id_empresa = $idEmpresaUsuario
+                        GROUP BY m.fk_id_vaga
+                        ORDER BY total_usos DESC
+                        LIMIT 1;";
+            } else {
+                return "Tipo de usuário inválido.";
+            }
+    
+            $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
+    
+            if ($row = mysqli_fetch_assoc($result)) {
+                $vaga = $row['fk_id_vaga'];
+                $qtd = $row['total_usos'];
+            }
+    
+            return "$vaga, $qtd";
+        } else {
+            return "Sessão não iniciada ou dados do usuário não definidos.";
         }
-
-        return "$vaga, $qtd";
     }
+    
     function VagaMenosUsada() {
         $vaga = 'Nenhuma';
         $qtd = 0;
-
+    
         include("conexao.php");
-
-        $sql = "SELECT v.id_vaga, COUNT(m.id_movimentacao) AS total_usos
-                FROM vaga v
-                LEFT JOIN movimentacao m 
-                ON v.id_vaga = m.fk_id_vaga AND m.tipo = 'E'
-                GROUP BY v.id_vaga
-                ORDER BY total_usos ASC
-                LIMIT 1;";
-
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
-
-        if ($row = mysqli_fetch_assoc($result)) {
-            $vaga = $row['id_vaga'];
-            $qtd = $row['total_usos'];
+    
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
+            $idEmpresaUsuario = $_SESSION['idEmpresa'];
+    
+            // SQL baseado no tipo de usuário
+            if ($idTipoUsuario == 3) { // Dono - pode ver todas as vagas
+                $sql = "SELECT v.id_vaga, COUNT(m.id_movimentacao) AS total_usos
+                        FROM vaga v
+                        LEFT JOIN movimentacao m 
+                            ON v.id_vaga = m.fk_id_vaga AND m.tipo = 'E'
+                        GROUP BY v.id_vaga
+                        ORDER BY total_usos ASC
+                        LIMIT 1;";
+            } else if ($idTipoUsuario == 1 || $idTipoUsuario == 2) { // Admin ou Funcionário - apenas da empresa
+                $sql = "SELECT v.id_vaga, COUNT(m.id_movimentacao) AS total_usos
+                        FROM vaga v
+                        LEFT JOIN movimentacao m 
+                            ON v.id_vaga = m.fk_id_vaga AND m.tipo = 'E'
+                        WHERE v.fk_id_empresa = $idEmpresaUsuario
+                        GROUP BY v.id_vaga
+                        ORDER BY total_usos ASC
+                        LIMIT 1;";
+            } else {
+                return "Tipo de usuário inválido.";
+            }
+    
+            $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
+    
+            if ($row = mysqli_fetch_assoc($result)) {
+                $vaga = $row['id_vaga'];
+                $qtd = $row['total_usos'];
+            }
+    
+            return "$vaga, $qtd";
+        } else {
+            return "Sessão não iniciada ou dados do usuário não definidos.";
         }
-
-        return "$vaga, $qtd";
     }
 ?>
