@@ -4,7 +4,24 @@
 
         include("conexao.php");
 
-        $sql = "SELECT * FROM vaga;";
+        // Verifica o tipo de usuário na sessão
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
+            $idEmpresaUsuario = $_SESSION['idEmpresa']; // Empresa à qual o usuário pertence
+
+            // Ajusta a consulta SQL com base no tipo de usuário
+            if ($idTipoUsuario == 3) { // Dono
+                $sql = "SELECT * FROM vaga;"; // Lista todas as vagas
+            } else if ($idTipoUsuario == 2 || $idTipoUsuario == 1) { // Admin ou Funcionário
+                $sql = "SELECT * FROM vaga WHERE fk_id_empresa = $idEmpresaUsuario;"; // Lista vagas da empresa do usuário
+            } else {
+                return "Tipo de usuário inválido.";
+            }
+        } else {
+            return "Sessão não iniciada ou dados do usuário não definidos.";
+        }
+
+        //$sql = "SELECT * FROM vaga;";
         //var_dump($sql);
         //die();
 
@@ -12,8 +29,6 @@
         mysqli_close($conn);
 
         if(mysqli_num_rows($result) > 0){
-
-            
 
             foreach ($result as $coluna) {
                 $vaga_id = $coluna["id_vaga"];
@@ -250,7 +265,22 @@
 
         include("conexao.php");
 
-        $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S';";
+        // Verifica o tipo de usuário na sessão
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
+            $idEmpresaUsuario = $_SESSION['idEmpresa']; // Empresa à qual o usuário pertence
+
+            // Ajusta a consulta SQL com base no tipo de usuário
+            if ($idTipoUsuario == 3) { // Dono
+                $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S';"; // Lista todas as vagas
+            } else if ($idTipoUsuario == 2 || $idTipoUsuario == 1) { // Admin ou Funcionário
+                $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S' AND fk_id_empresa = $idEmpresaUsuario;"; // Lista vagas da empresa do usuário
+            } else {
+                return "Tipo de usuário inválido.";
+            }
+        } else {
+            return "Sessão não iniciada ou dados do usuário não definidos.";
+        }
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -270,8 +300,23 @@
         $qtd = 0;
 
         include("conexao.php");
+        
+        // Verifica o tipo de usuário na sessão
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
+            $idEmpresaUsuario = $_SESSION['idEmpresa']; // Empresa à qual o usuário pertence
 
-        $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S';";
+            // Ajusta a consulta SQL com base no tipo de usuário
+            if ($idTipoUsuario == 3) { // Dono
+                $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S';"; // Lista todas as vagas
+            } else if ($idTipoUsuario == 2 || $idTipoUsuario == 1) { // Admin ou Funcionário
+                $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S' AND fk_id_empresa = $idEmpresaUsuario;"; // Lista vagas da empresa do usuário
+            } else {
+                return "Tipo de usuário inválido.";
+            }
+        } else {
+            return "Sessão não iniciada ou dados do usuário não definidos.";
+        }
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -291,8 +336,26 @@
         $qtd = 0;
 
         include("conexao.php");
+        
+        // Verifica o tipo de usuário na sessão
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
+            $idEmpresaUsuario = $_SESSION['idEmpresa']; // Empresa à qual o usuário pertence
 
-        $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'E';";
+            // Ajusta a consulta SQL com base no tipo de usuário
+            if ($idTipoUsuario == 3) { // Dono
+                $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'E';"; // Lista todas as vagas
+            } else if ($idTipoUsuario == 2 || $idTipoUsuario == 1) { // Admin ou Funcionário
+                $sql = "SELECT COUNT(*) AS Qtd
+                        FROM movimentacao as mov
+                        INNER JOIN vaga AS vag ON mov.id_movimentacao = vag.id_vaga
+                        WHERE tipo = 'E' AND vag.fk_id_empresa = $idEmpresaUsuario;"; // Lista vagas da empresa do usuário
+            } else {
+                return "Tipo de usuário inválido.";
+            }
+        } else {
+            return "Sessão não iniciada ou dados do usuário não definidos.";
+        }   
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -312,8 +375,26 @@
         $qtd = 0;
 
         include("conexao.php");
+        
+        // Verifica o tipo de usuário na sessão
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
+            $idEmpresaUsuario = $_SESSION['idEmpresa']; // Empresa à qual o usuário pertence
 
-        $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'E' AND date(data) =  CURDATE();";
+            // Ajusta a consulta SQL com base no tipo de usuário
+            if ($idTipoUsuario == 3) { // Dono
+                $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'E' AND date(data) =  CURDATE();"; // Lista todas as vagas
+            } else if ($idTipoUsuario == 2 || $idTipoUsuario == 1) { // Admin ou Funcionário
+                $sql = "SELECT COUNT(*) AS Qtd
+                        FROM movimentacao as mov
+                        INNER JOIN vaga AS vag ON mov.id_movimentacao = vag.id_vaga
+                        WHERE tipo = 'E' AND vag.fk_id_empresa = $idEmpresaUsuario AND date(data) =  CURDATE();"; // Lista vagas da empresa do usuário
+            } else {
+                return "Tipo de usuário inválido.";
+            }
+        } else {
+            return "Sessão não iniciada ou dados do usuário não definidos.";
+        }   
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -333,8 +414,26 @@
         $qtd = 0;
 
         include("conexao.php");
+        
+        // Verifica o tipo de usuário na sessão
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
+            $idEmpresaUsuario = $_SESSION['idEmpresa']; // Empresa à qual o usuário pertence
 
-        $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'S' ;";
+            // Ajusta a consulta SQL com base no tipo de usuário
+            if ($idTipoUsuario == 3) { // Dono
+                $sql = "SELECT COUNT(*) AS Qtd FROM movimentacao WHERE tipo = 'S';"; // Lista todas as vagas
+            } else if ($idTipoUsuario == 2 || $idTipoUsuario == 1) { // Admin ou Funcionário
+                $sql = "SELECT COUNT(*) AS Qtd
+                        FROM movimentacao as mov
+                        INNER JOIN vaga AS vag ON mov.id_movimentacao = vag.id_vaga
+                        WHERE tipo = 'S' AND vag.fk_id_empresa = $idEmpresaUsuario;"; // Lista vagas da empresa do usuário
+            } else {
+                return "Tipo de usuário inválido.";
+            }
+        } else {
+            return "Sessão não iniciada ou dados do usuário não definidos.";
+        }   
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);

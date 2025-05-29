@@ -17,6 +17,10 @@ function listaUsuario(){
         
         
         foreach ($result as $coluna) {
+            // Ignorar um tipo de usuário específico (exemplo: tipo 3)
+            if ($coluna["fk_id_tipo_usuario"] == 3) {
+                continue; // Pula para o próximo registro
+            }
 
             //Ativo: S ou N
             //if($coluna["flg_ativo"] == 'S')  $ativo = 'checked'; else $ativo = '';

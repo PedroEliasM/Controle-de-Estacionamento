@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/05/2025 às 20:50
+-- Tempo de geração: 29/05/2025 às 02:13
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -48,7 +48,9 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`id_empresa`, `nome`, `cnpj`, `telefone`, `foto`, `cep`, `endereco`, `numero`, `complemento`, `bairro`, `cidade`, `uf`, `flg_ativo`) VALUES
-(1, 'Senai', '03776284000109', 2147483647, NULL, '89219510', 'R. Arno Waldemar Döhler', 957, '', 'Zona Industrial Norte', 'Joinville', 'SC', 'S');
+(1, 'Senai', '03776284000109', 2147483647, NULL, '89219510', 'R. Arno Waldemar Döhler', 957, '', 'Zona Industrial Norte', 'Joinville', 'SC', 'S'),
+(2, 'Senai Sul', '12345678900012', 2147483647, 'dist/img/empresas/foto-2.png', '89219-510', 'Rua Arno Waldemar Dohler', 6545, '', 'Zona Industrial Norte', 'Joinville', 'SC', 'S'),
+(3, 'ParkWay Systems', '12345678901234', 1234567890, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'S');
 
 -- --------------------------------------------------------
 
@@ -68,11 +70,18 @@ CREATE TABLE `movimentacao` (
 --
 
 INSERT INTO `movimentacao` (`id_movimentacao`, `tipo`, `data`, `fk_id_vaga`) VALUES
-(1, 'E', '2025-05-21 12:10:37', 1),
+(1, 'E', '2025-05-20 12:10:37', 1),
 (2, 'E', '2025-05-21 12:10:37', 2),
 (3, 'E', '2025-05-21 12:10:55', 3),
 (4, 'S', '2025-05-21 12:12:14', 3),
-(5, 'S', '2025-05-21 12:12:14', 1);
+(5, 'S', '2025-05-20 12:12:14', 1),
+(6, 'E', '2025-05-21 18:57:31', 1),
+(7, 'S', '2025-05-21 19:46:43', 1),
+(8, 'S', '2025-05-21 19:46:43', 2),
+(9, 'E', '2025-05-21 20:58:50', 1),
+(10, 'S', '2025-05-21 21:21:59', 1),
+(11, 'E', '2025-05-21 21:22:56', 2),
+(12, 'S', '2025-05-21 21:27:56', 2);
 
 -- --------------------------------------------------------
 
@@ -91,7 +100,8 @@ CREATE TABLE `tipo_usuario` (
 
 INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `descricao`) VALUES
 (1, 'Admin'),
-(2, 'Funcionário');
+(2, 'Funcionário'),
+(3, 'Dono');
 
 -- --------------------------------------------------------
 
@@ -115,7 +125,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `foto`, `flg_ativo`, `fk_id_empresa`, `fk_id_tipo_usuario`) VALUES
-(1, 'Pedro', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-1.png', 'S', 1, 1);
+(1, 'Usuario', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-1.png', 'S', 1, 1),
+(2, 'henrique', 'henrique@email.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-2.jpg', 'S', 2, 2),
+(3, 'parkway', 'parkway@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-3.png', 'S', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -137,8 +149,10 @@ CREATE TABLE `vaga` (
 
 INSERT INTO `vaga` (`id_vaga`, `descricao`, `situacao`, `flg_ativo`, `fk_id_empresa`) VALUES
 (1, 'Vaga01', 'L', 'S', 1),
-(2, 'Vaga02', 'O', 'S', 1),
-(3, 'Vaga03', 'L', 'N', 1);
+(2, 'Vaga02', 'L', 'S', 1),
+(3, 'Vaga03', 'L', 'S', 1),
+(4, 'Vaga04', 'L', 'S', 2),
+(5, 'Vaga05', 'O', 'S', 2);
 
 --
 -- Índices para tabelas despejadas
@@ -186,31 +200,31 @@ ALTER TABLE `vaga`
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da empresa', AUTO_INCREMENT=2;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da empresa', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `movimentacao`
 --
 ALTER TABLE `movimentacao`
-  MODIFY `id_movimentacao` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da Movimentação', AUTO_INCREMENT=6;
+  MODIFY `id_movimentacao` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da Movimentação', AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Tipo Usuário', AUTO_INCREMENT=3;
+  MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Tipo Usuário', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Usuário', AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Usuário', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `vaga`
 --
 ALTER TABLE `vaga`
-  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga', AUTO_INCREMENT=4;
+  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga', AUTO_INCREMENT=6;
 
 --
 -- Restrições para tabelas despejadas
