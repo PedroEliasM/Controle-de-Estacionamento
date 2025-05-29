@@ -47,7 +47,11 @@ function optionTipoUsuario(){
             array_push($array,$linha);
         }
         
-        foreach ($array as $coluna) {            
+        foreach ($array as $coluna) {
+            // Ignorar um tipo de usuário específico (exemplo: id_tipo_usuario = 3)
+            if ($coluna['id_tipo_usuario'] == 3) {
+                continue; // Pula para o próximo registro
+            }           
             //***Verificar os dados da consulta SQL            
             $option .= '<option value="'.$coluna['id_tipo_usuario'].'">'.$coluna['descricao'].'</option>';
         }        
@@ -155,4 +159,30 @@ function qtdTipoUsuarioInativo($tipoUsuario){
     return $qtdTipoUsuarioInativo;
 }
 
+function idTipoUsuario(){
+
+    include("conexao.php");
+
+    // Monta a consulta SQL com base no tipo de usuário
+    $sql = "SELECT * FROM usuario WHERE fk_id_tipo_usuario = 1";
+    $result = mysqli_query($conn,$sql);
+    mysqli_close($conn);
+
+    //Validar se tem retorno do BD
+    if (mysqli_num_rows($result) > 0) {
+                
+        $array = array();
+        
+        while ($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($array,$linha);
+        }
+        
+        foreach ($array as $coluna) {            
+            //***Verificar os dados da consulta SQL
+            $tipo = $coluna["fk_id_tipo_usuario"];
+        }        
+    } 
+
+    return $tipo;
+}
 ?>

@@ -18,7 +18,7 @@
     <!-- Fim CSS -->
 
   </head>
-  <body class="hold-transition sidebar-mini layout-fixed">
+  <body class="hold-transition sidebar-mini layout-fixed pagina-perfil">
     <div class="wrapper">
 
       <!-- Navbar -->
@@ -59,10 +59,10 @@
                   </div>
                   <!-- /.card-header -->
                   
-                  <div class="card-body">
+                  <div class="card-body card-body1-perfil">
 
                     <form method="POST" action="backend/salvarPerfil.php" enctype="multipart/form-data">
-                      <div class="card-body">
+                      <div class="card-body card-body2-perfil">
                           <div class="row">	
                               
                               <div class="col-12">

@@ -17,17 +17,83 @@ div.card {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0);
 }
+
 body.pagina-vagas div.card-header{
     background-color: rgba(100, 100, 250, 1) !important;
     color: white !important;
 }
-body.pagina-vagas div.card div.card-body {
-    background-color: rgba(0, 0, 0, 1) !important;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    min-height: 77vh !important;
+    body.pagina-vagas div.card-body {
+        background-color: rgba(0, 0, 0, 1) !important;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        min-height: 77vh !important;
+    }
+        body.pagina-vagas div.card{
+            background-color: rgba(0, 0, 0, 1) !important;
+        }
 
+body.pagina-usuarios div.card-header {
+    background-color: rgba(100, 100, 250, 1) !important;
+    color: white !important;
 }
+    body.pagina-usuarios div.card-body {
+        background-color: rgba(0, 0, 0, 1) !important;
+        color: white !important;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+        body.pagina-usuarios div.card{
+            background-color: rgba(0, 0, 0, 1) !important;
+        }
+            body.pagina-usuarios select, input {
+                background-color: rgba(0, 0, 0, 1) !important;
+                color: white !important;
+            }
+
+body.pagina-empresas div.card-header {
+    background-color: rgba(100, 100, 250, 1) !important;
+    color: white !important;
+}
+    body.pagina-empresas div.card-body {
+        background-color: rgba(0, 0, 0, 1) !important;
+        color: white !important;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+        body.pagina-empresas div.card{
+            background-color: rgba(0, 0, 0, 1) !important;
+        }
+            body.pagina-empresas select, input {
+                background-color: rgba(0, 0, 0, 1) !important;
+                color: white !important;
+            }
+
+body.pagina-perfil div.card-header {
+    background-color: rgba(100, 100, 250, 1) !important;
+    color: white !important;
+}
+    body.pagina-perfil div.card-body1-perfil {
+        background-color: rgba(0, 0, 0, 1) !important;
+        color: white !important;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    body.pagina-perfil div.card-body2-perfil {
+        background-color: rgba(0, 0, 0, 1) !important;
+        color: white !important;
+        border-radius: 5px;
+    }
+        body.pagina-perfil div.card{
+            background-color: rgba(0, 0, 0, 1) !important;
+        }
+            body.pagina-perfil input {
+                background-color: rgba(0, 0, 0, 1) !important;
+                color: white !important;
+            }
+            body.pagina-perfil input.btn-success {
+                background-color: #28A745 !important;
+                color: white !important;
+            }
 
 /* Cards de informações diárias/totais nas telas de Dashboard */
 .small-box > .inner {
