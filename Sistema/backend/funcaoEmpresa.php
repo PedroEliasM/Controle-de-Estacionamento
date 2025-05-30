@@ -88,7 +88,7 @@ function listaEmpresa(){
                                     .'<div class="col-4">'
                                         .'<div class="form-group">'
                                             .'<label for="iTelefone">Telefone</label>'
-                                            .'<input required type="number" value="'.$coluna["telefone"].'" class="form-control" id="iTelefone" name="nTelefone" maxlength="13" placeholder="Telefone da Empresa">'
+                                            .'<input type="number" value="'.$coluna["telefone"].'" class="form-control" id="iTelefone" name="nTelefone" maxlength="13" placeholder="Telefone da Empresa" required>'
                                         .'</div>'
                                     .'</div>'
                                     
