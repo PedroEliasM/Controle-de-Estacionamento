@@ -148,7 +148,7 @@
                   <div class="col-3">
                     <div class="form-group">
                       <label for="iCEP">CEP</label>
-                      <input id="iCEP" required name="nCEP" type="text" maxlength="9" class="form-control cep" placeholder="Digite o CEP sem hífen">
+                      <input id="iCEP"  name="nCEP" type="text" maxlength="9" class="form-control cep" placeholder="Digite o CEP sem hífen" required>
                     </div>
                   </div>
                   

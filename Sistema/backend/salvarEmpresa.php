@@ -102,6 +102,8 @@
                     flg_ativo = '$ativo' 
                     WHERE id_empresa = $idEmpresa;";
 
+ // Debugging line to check the SQL query
+
         //Foto do perfil
         $diretorioImg = '';
         
