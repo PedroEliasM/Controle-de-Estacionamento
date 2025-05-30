@@ -33,7 +33,7 @@ function montaMenu($n1,$n2){
             $opcPainel = 'active';
             break;
             
-        case 'painel-simples':
+        case 'painel-total':
             $opcPainelSimples = 'active';
             break;
             
@@ -67,7 +67,7 @@ function montaMenu($n1,$n2){
                 <a href="#" class="nav-link '.$acaoAdmin.'">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
-                        Administrador
+                        Menu - Dono
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -83,7 +83,7 @@ function montaMenu($n1,$n2){
 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="./painel-simples.php" class="nav-link '.$opcPainelSimples.'">
+                        <a href="./painel-total.php" class="nav-link '.$opcPainelSimples.'">
                         <i class="ion ion-pie-graph nav-icon"></i>
                         <p>Dados Totais</p>
                         </a>

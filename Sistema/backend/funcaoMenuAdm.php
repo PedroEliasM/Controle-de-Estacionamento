@@ -5,15 +5,18 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 function montaMenu($n1,$n2){
     
-    $menuAdmin = '';
-    $acaoAdmin = '';
+    $menuAdmin      = '';
+    $acaoAdmin      = '';
+    $menuRelatorio  = '';
+    $acaoRelatorio  = '';
 
-    $opcPainel        = '';
-    $opcPainelSimples = '';
-    $opcUsuarios      = '';
-    $opcVagas         = '';
-    $opcEmpresas      = '';
-    $opcPerfil        = '';
+    $opcPainel          = '';
+    $opcPainelSimples   = '';
+    $opcUsuarios        = '';
+    $opcVagas           = '';
+    $opcEmpresas        = '';
+    $opcRelatVagas      = '';
+    $opcPerfil          = '';
     
     //Primeiro nível do menu
     switch ($n1) {
@@ -21,6 +24,11 @@ function montaMenu($n1,$n2){
             $menuAdmin = 'menu-open';
             $acaoAdmin = 'active';
             break;
+
+            case 'relatorio':
+                $menuRelatorio = 'menu-open';
+                $acaoRelatorio = 'active';
+                break;
         
         default:
             # code...
@@ -33,7 +41,7 @@ function montaMenu($n1,$n2){
             $opcPainel = 'active';
             break;
             
-        case 'painel-simples':
+        case 'painel-total':
             $opcPainelSimples = 'active';
             break;
             
@@ -43,6 +51,10 @@ function montaMenu($n1,$n2){
             
         case 'vagas':
             $opcVagas = 'active';
+            break;   
+
+        case 'relatorio-vagas':
+            $opcRelatVagas = 'active';
             break;   
 
         case 'perfil':
@@ -63,7 +75,7 @@ function montaMenu($n1,$n2){
                 <a href="#" class="nav-link '.$acaoAdmin.'">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
-                        Administrador
+                        Menu - Administrador
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -79,7 +91,7 @@ function montaMenu($n1,$n2){
 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="./painel-simples.php" class="nav-link '.$opcPainelSimples.'">
+                        <a href="./painel-total.php" class="nav-link '.$opcPainelSimples.'">
                         <i class="ion ion-pie-graph nav-icon"></i>
                         <p>Dados Totais</p>
                         </a>
@@ -104,6 +116,25 @@ function montaMenu($n1,$n2){
                     </li>              
                 </ul>
 
+            </li>
+
+            <li class="nav-item '.$menuRelatorio.'">
+                <a href="#" class="nav-link '.$acaoRelatorio.'">
+                    <i class="nav-icon fas fa-print"></i>
+                    <p>
+                        Relatórios
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="./relatorio-vagas.php" class="nav-link '.$opcRelatVagas.'">
+                        <i class="fas fa-file-alt nav-icon"></i>
+                        <p>Vagas</p>
+                        </a>
+                    </li>              
+                </ul>
             </li>
 
             <li class="nav-item">

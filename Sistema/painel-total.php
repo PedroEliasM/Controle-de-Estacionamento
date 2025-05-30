@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projeto Modelo - Dashboard</title>
+  <title>ParkWay - Dashboard</title>
 
   <!-- CSS -->
   <?php include('partes/css.php'); ?>
@@ -25,7 +25,7 @@
   <!-- Sidebar -->
   <?php 
     $_SESSION['menu-n1'] = 'administrador';
-    $_SESSION['menu-n2'] = 'painel-simples';
+    $_SESSION['menu-n2'] = 'painel-total';
     include('partes/sidebar.php'); 
   ?>
   <!-- Fim Sidebar -->

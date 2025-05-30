@@ -3,7 +3,7 @@
     <head lang="pt-br">
 
         <meta charset="UTF-8">
-        <title>PHP</title>
+        <title>ParkWay - Login</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="Sistema/css/style-index.css">

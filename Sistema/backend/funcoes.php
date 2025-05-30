@@ -22,12 +22,12 @@
     include("funcaoEmpresa.php");
     include("funcaoVaga.php");
         
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    use PHPMailer\PHPMailer\SMTP;
+    //use PHPMailer\PHPMailer\PHPMailer;
+    //use PHPMailer\PHPMailer\Exception;
+    //use PHPMailer\PHPMailer\SMTP;
 
     //Função que envia o e-mail com a nova senha para o usuário
-    function enviarEmail($email,$msg,$assunto,$nome){
+    /*function enviarEmail($email,$msg,$assunto,$nome){
 
         require '../PHPMailer/vendor/autoload.php';
         $mail = new PHPMailer(true);
@@ -81,5 +81,5 @@
         } else {
             return 'Não';
         }
-    }
+    }*/
 ?>
