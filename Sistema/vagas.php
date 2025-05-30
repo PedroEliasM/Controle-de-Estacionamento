@@ -107,7 +107,11 @@
                       <div class="col-12">
                         <div class="form-group">
                           <label for="iSituacao">Situação:</label>
-                          <input type="text" class="form-control" id="iSituacao" name="nSituacao" maxlength="80">
+                          <select name="nSituacao" id="iSituacao" class="form-control" required>
+                            <option value="">Selecione...</option>
+                            <option value="L">Livre</option>
+                            <option value="O">Ocupada</option>
+                          </select>
                         </div>
                       </div>
 
