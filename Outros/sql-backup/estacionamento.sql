@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/05/2025 às 02:13
+-- Tempo de geração: 30/05/2025 às 01:59
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `empresa` (
   `id_empresa` int(11) NOT NULL COMMENT 'ID da empresa',
   `nome` varchar(30) NOT NULL COMMENT 'Nome da Empresa',
   `cnpj` varchar(14) NOT NULL COMMENT 'CNPJ da Empresa',
-  `telefone` int(13) NOT NULL COMMENT 'Telefone da Empresa',
+  `telefone` varchar(13) NOT NULL COMMENT 'Telefone da Empresa',
   `foto` varchar(200) DEFAULT NULL COMMENT 'Foto da Empresa',
   `cep` varchar(9) DEFAULT NULL COMMENT 'CEP da Empresa',
   `endereco` varchar(30) DEFAULT NULL COMMENT 'Endereço da Empresa (rua, avenida, etc.)',
@@ -48,9 +48,9 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`id_empresa`, `nome`, `cnpj`, `telefone`, `foto`, `cep`, `endereco`, `numero`, `complemento`, `bairro`, `cidade`, `uf`, `flg_ativo`) VALUES
-(1, 'Senai', '03776284000109', 2147483647, NULL, '89219510', 'R. Arno Waldemar Döhler', 957, '', 'Zona Industrial Norte', 'Joinville', 'SC', 'S'),
-(2, 'Senai Sul', '12345678900012', 2147483647, 'dist/img/empresas/foto-2.png', '89219-510', 'Rua Arno Waldemar Dohler', 6545, '', 'Zona Industrial Norte', 'Joinville', 'SC', 'S'),
-(3, 'ParkWay Systems', '12345678901234', 1234567890, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'S');
+(1, 'Senai', '03776284000109', '1234567890123', NULL, '89219510', 'R. Arno Waldemar Döhler', 957, '', 'Zona Industrial Norte', 'Joinville', 'SC', 'S'),
+(2, 'Senai Sul', '12345678900012', '1234567890123', 'dist/img/empresas/foto-2.png', '89219-510', 'Rua Arno Waldemar Dohler', 6545, '', 'Zona Industrial Norte', 'Joinville', 'SC', 'S'),
+(3, 'ParkWay Systems', '12345678901234', '1234567890123', NULL, '', '', 0, '', '', '', '', 'S');
 
 -- --------------------------------------------------------
 
@@ -81,7 +81,13 @@ INSERT INTO `movimentacao` (`id_movimentacao`, `tipo`, `data`, `fk_id_vaga`) VAL
 (9, 'E', '2025-05-21 20:58:50', 1),
 (10, 'S', '2025-05-21 21:21:59', 1),
 (11, 'E', '2025-05-21 21:22:56', 2),
-(12, 'S', '2025-05-21 21:27:56', 2);
+(12, 'S', '2025-05-21 21:27:56', 2),
+(14, 'E', '2025-05-29 17:55:56', 4),
+(15, 'E', '2025-05-29 19:09:05', 6),
+(16, 'S', '2025-05-29 19:10:05', 6),
+(17, 'E', '2025-05-29 19:09:29', 3),
+(18, 'S', '2025-05-29 19:10:29', 3),
+(19, 'S', '2025-05-29 19:11:45', 4);
 
 -- --------------------------------------------------------
 
@@ -127,7 +133,9 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `foto`, `flg_ativo`, `fk_id_empresa`, `fk_id_tipo_usuario`) VALUES
 (1, 'Usuario', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-1.png', 'S', 1, 1),
 (2, 'henrique', 'henrique@email.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-2.jpg', 'S', 2, 2),
-(3, 'parkway', 'parkway@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-3.png', 'S', 3, 3);
+(3, 'parkway', 'parkway@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-3.png', 'S', 3, 3),
+(4, 'nicolas', 'nico@las.com', '202cb962ac59075b964b07152d234b70', NULL, 'S', 2, 1),
+(5, 'kleberson', 'kleber@son.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-5.jpg', 'S', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -150,9 +158,10 @@ CREATE TABLE `vaga` (
 INSERT INTO `vaga` (`id_vaga`, `descricao`, `situacao`, `flg_ativo`, `fk_id_empresa`) VALUES
 (1, 'Vaga01', 'L', 'S', 1),
 (2, 'Vaga02', 'L', 'S', 1),
-(3, 'Vaga03', 'L', 'S', 1),
+(3, 'Vaga03', 'L', 'S', 2),
 (4, 'Vaga04', 'L', 'S', 2),
-(5, 'Vaga05', 'O', 'S', 2);
+(5, 'Vaga05', 'O', 'S', 2),
+(6, 'Vaga06', 'L', 'S', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -206,7 +215,7 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de tabela `movimentacao`
 --
 ALTER TABLE `movimentacao`
-  MODIFY `id_movimentacao` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da Movimentação', AUTO_INCREMENT=13;
+  MODIFY `id_movimentacao` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da Movimentação', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_usuario`
@@ -218,13 +227,13 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Usuário', AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Usuário', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `vaga`
 --
 ALTER TABLE `vaga`
-  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga', AUTO_INCREMENT=6;
+  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga', AUTO_INCREMENT=7;
 
 --
 -- Restrições para tabelas despejadas
