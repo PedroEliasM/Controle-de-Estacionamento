@@ -1,106 +1,102 @@
 /* Background das telas */
 .content-wrapper {
-    background-color: #121212 !important;
+    background-color: #000 !important; /* Claro: #f4f6f9 */
+    /*background-image: url(../../../img/fundo-login.jpg) !important;*/
     min-height: 100vh !important;
 }
 div.os-content {
-    background:  #1e1e1e !important;
-    border-top: none !important;
-    margin-top: 0 !important;
+    background: transparent !important;
 }
-
-/* Estilo base dos cards */
-div.card,
 div.card-body {
-    background-color: #1e1e1e !important;
+    background-color: rgba(245, 245, 245, 1) !important;
     border-radius: 5px;
-    color: white !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+div.card {
+    background-color: rgba(245, 245, 245, 1) !important;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0);
 }
 
-/* Página de Vagas */
-body.pagina-vagas div.card-header {
-    background-color: #2c2c2c !important; /* Azul escuro */
+body.pagina-vagas div.card-header{
+    background-color: rgba(100, 100, 250, 1) !important;
     color: white !important;
 }
-body.pagina-vagas div.card-body {
-    background-color: #121212 !important;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-}
+    body.pagina-vagas div.card-body {
+        background-color: rgba(0, 0, 0, 1) !important;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        min-height: 77vh !important;
+    }
+        body.pagina-vagas div.card{
+            background-color: rgba(0, 0, 0, 1) !important;
+        }
 
-/* Página de Usuários */
 body.pagina-usuarios div.card-header {
-    background-color: #2c2c2c !important;
+    background-color: rgba(100, 100, 250, 1) !important;
     color: white !important;
 }
-body.pagina-usuarios div.card-body {
-    background-color: #121212 !important;
-    color: white !important;
-}
-body.pagina-usuarios div.card {
-    background-color: #1e1e1e !important;
-}
-body.pagina-usuarios select,
-body.pagina-usuarios input {
-    background-color: #2c2c2c !important;
-    color: white !important;
-    border: 1px solid #444 !important;
-}
+    body.pagina-usuarios div.card-body {
+        background-color: rgba(0, 0, 0, 1) !important;
+        color: white !important;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+        body.pagina-usuarios div.card{
+            background-color: rgba(0, 0, 0, 1) !important;
+        }
+            body.pagina-usuarios select, input {
+                background-color: rgba(0, 0, 0, 1) !important;
+                color: white !important;
+            }
 
-/* Página de Empresas */
 body.pagina-empresas div.card-header {
-    background-color: #2c2c2c !important;
+    background-color: rgba(100, 100, 250, 1) !important;
     color: white !important;
 }
-body.pagina-empresas div.card-body {
-    background-color: #121212 !important;
-    color: white !important;
-}
-body.pagina-empresas div.card {
-    background-color: #1e1e1e !important;
-}
-body.pagina-empresas select,
-body.pagina-empresas input {
-    background-color: #2c2c2c !important;
-    color: white !important;
-    border: 1px solid #444 !important;
-}
+    body.pagina-empresas div.card-body {
+        background-color: rgba(0, 0, 0, 1) !important;
+        color: white !important;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+        body.pagina-empresas div.card{
+            background-color: rgba(0, 0, 0, 1) !important;
+        }
+            body.pagina-empresas select, input {
+                background-color: rgba(0, 0, 0, 1) !important;
+                color: white !important;
+            }
 
-/* Página de Perfil */
 body.pagina-perfil div.card-header {
-    background-color: #2c2c2c !important;
+    background-color: rgba(100, 100, 250, 1) !important;
     color: white !important;
 }
-body.pagina-perfil div.card-body1-perfil,
-body.pagina-perfil div.card-body2-perfil {
-    background-color: #121212 !important;
-    color: white !important;
-    border-radius: 5px;
-    box-shadow: none !important;
-    border: none !important;
-}
-body.pagina-perfil div.card {
-    background-color: #1e1e1e !important;
-}
-body.pagina-perfil input {
-    background-color: #2c2c2c !important;
-    color: white !important;
-    border: 1px solid #444 !important;
-}
-body.pagina-perfil input.btn-verde-escuro {
-  background-color: #1a331f !important;
-  box-shadow: 0px 0px 5px #000000 !important;
-  color: #fff !important;
-}
-
-body.pagina-perfil input.btn-verde-escuro:hover {
-  background-color: #162a19 !important;
-  border-color: #000000 !important;
-}
+    body.pagina-perfil div.card-body1-perfil {
+        background-color: rgba(0, 0, 0, 1) !important;
+        color: white !important;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    body.pagina-perfil div.card-body2-perfil {
+        background-color: rgba(0, 0, 0, 1) !important;
+        color: white !important;
+        border-radius: 5px;
+    }
+        body.pagina-perfil div.card{
+            background-color: rgba(0, 0, 0, 1) !important;
+        }
+            body.pagina-perfil input {
+                background-color: rgba(0, 0, 0, 1) !important;
+                color: white !important;
+            }
+            body.pagina-perfil input.btn-success {
+                background-color: #28A745 !important;
+                color: white !important;
+            }
 
 /* Cards de informações diárias/totais nas telas de Dashboard */
 .small-box > .inner {
     min-height: 8.3rem !important;
     max-height: 8.3rem !important;
-    background-color: #1e1e1e !important;
-    color: white !important;
 }

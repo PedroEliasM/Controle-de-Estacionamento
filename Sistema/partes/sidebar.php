@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Logo -->
-	  		<div class="img bg-wrap text-center py-4" style="background-color: rgb(45, 45, 45);">
+	  		<div class="img bg-wrap text-center py-4" style="background-image: url(/estacionamento/Sistema/partes/sidebar/images/bg_1.jpg);">
 	  			<div class="user-logo">
 	  				<div class="img" style="background-image: url(/estacionamento/Sistema/img/logo.png);"></div>
 	  				<h3>ParkWay Systems</h3>
