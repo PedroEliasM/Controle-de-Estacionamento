@@ -35,17 +35,17 @@
         foreach ($resultLogin as $coluna) {
                         
             //***Verificar os dados da consulta SQL
-            $_SESSION['idTipoUsuario']  = $coluna['fk_id_tipo_usuario'];
-            $_SESSION['DescricaoTipoUsuario']  = $coluna['descricao_tipo_usuario'];
-            $_SESSION['logado']         = 1;
-            $_SESSION['idLogin']        = $coluna['id_usuario'];
-            $_SESSION['NomeLogin']      = $coluna['nome'];
-            $_SESSION['EmailLogin']     = $coluna['email'];
-            $_SESSION['FotoLogin']      = $coluna['foto'];
-            $_SESSION['AtivoLogin']     = $coluna['flg_ativo'];
-            $_SESSION['idEmpresa']      = $coluna['fk_id_empresa'];
-            $_SESSION['NomeEmpresa']      = $coluna['nome_empresa'];
-            $_SESSION['FotoEmpresa']      = $coluna['foto_empresa'];
+            $_SESSION['idTipoUsuario']          = $coluna['fk_id_tipo_usuario'];
+            $_SESSION['DescricaoTipoUsuario']   = $coluna['descricao_tipo_usuario'];
+            $_SESSION['logado']                 = 1;
+            $_SESSION['idLogin']                = $coluna['id_usuario'];
+            $_SESSION['NomeLogin']              = $coluna['nome'];
+            $_SESSION['EmailLogin']             = $coluna['email'];
+            $_SESSION['FotoLogin']              = $coluna['foto'];
+            $_SESSION['AtivoLogin']             = $coluna['flg_ativo'];
+            $_SESSION['idEmpresa']              = $coluna['fk_id_empresa'];
+            $_SESSION['NomeEmpresa']            = $coluna['nome_empresa'];
+            $_SESSION['FotoEmpresa']            = $coluna['foto_empresa'];
 
             //Acessar a tela inicial
             header('location: ../painel.php');

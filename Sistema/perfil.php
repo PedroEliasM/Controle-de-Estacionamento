@@ -107,7 +107,7 @@
                                               <div class="form-group">
                                                 <label>Alterar Senha</label>
                                                 <input name="nAlterarSenha" id="iAlterarSenha" type="password" class="form-control" 
-                                                  value="" placeholder="Digite sua nova senha...">
+                                                  value="" placeholder="Digite sua nova senha..." autocomplete="new-password">
                                                   <i class="fas fa-eye-slash toggle-password"
                                                     style="cursor: pointer;"></i>
                                               </div>
@@ -131,10 +131,10 @@
                       </div>	
 
                       <div class="card-action" align="right">
-                        <a href="perfil.php" class="btn btn-danger" data-toggle="tooltip" title="Cancelar a operação">
+                        <a href="perfil.php" class="btn btn-vermelho-escuro" data-toggle="tooltip" title="Cancelar a operação">
                           <span>Cancelar</span>
                         </a>
-                        <input type="submit" class="btn btn-success" value="Salvar" data-toggle="tooltip" title="Salvar as alterações no perfil">
+                          <input type="submit" class="btn btn-verde-escuro" value="Salvar" data-toggle="tooltip" title="Salvar as alterações no perfil">
                       </div>
                     </form>
                   </div>

@@ -40,7 +40,13 @@ img {
     .container {
         min-width: 992px !important; }
     .navbar {
-        display: none; }
+        display: none;
+        border-bottom: none !important;
+        box-shadow: none !important; }
+    .content-wrapper {
+        border-top: none !important;
+        margin-top: 0 !important;
+    }
     .badge {
         border: 1px solid #000; }
     .table {
@@ -116,15 +122,15 @@ img {
 
 /* Sidebar Menu styles */
 .sidebar-style {
-    background: rgba(0, 0, 0, 0.6) !important; }
+    background: #1e1e1e !important; }
 
     .sidebar-style i {
-        color: #007bff; }
+        color: #ffffff; }
 
 /* Background das opções principais selecionadas no menu da sidebar (opção Perfil e Administrador) */
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
-    background-color: rgb(255, 255, 255, 0.24) !important;
+    background-color: rgb(255, 255, 255, 0.18) !important;
     color: #fff !important;
 }
 /* Background da tela das opções secundárias no menu da sidebar */
