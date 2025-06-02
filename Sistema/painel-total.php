@@ -15,7 +15,7 @@
   <!-- Fim CSS -->
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed paginas-dashboard">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -80,7 +80,7 @@
                 <p>Saídas Totais</p>
               </div>
               <div class="icon">
-                <i class="fas fa-sign-out-alt"></i>
+                <i class="fas fa-sign-out-alt signout-exclusive"></i>
               </div>
             </div>
           </div>

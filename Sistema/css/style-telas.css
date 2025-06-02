@@ -1,6 +1,6 @@
 /* Background das telas */
 .content-wrapper {
-    background-color: #000 !important; /* Claro: #f4f6f9 */
+    background-color: rgba(40, 40, 40, 1) !important; /* Claro: #f4f6f9 */
     /*background-image: url(../../../img/fundo-login.jpg) !important;*/
     min-height: 100vh !important;
 }
@@ -18,6 +18,30 @@ div.card {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0);
 }
 
+body.paginas-dashboard div.card-header{
+    background-color: rgba(100, 100, 250, 1) !important;
+    color: white !important;
+}
+    body.paginas-dashboard div.card-body {
+        background-color: rgba(230, 230, 230, 1) !important;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(230, 230, 230, 0.2);
+    }
+        body.paginas-dashboard div.card{
+            background-color: rgba(230, 230, 230, 1) !important;
+        }
+            body.paginas-dashboard button {
+                color: black !important;
+            }
+                body.paginas-dashboard div.inner {
+                    background-color: rgba(80, 80, 250, 1) !important;
+                    color: rgb(230, 230, 230) !important;
+                }
+                    body.paginas-dashboard i[class*="fas fa-check-circle"], i[class*="fas fa-sign-in-alt"],
+                    i.signout-exclusive,i[class*="fas fa-parking"] {
+                        color: rgb(230, 230, 230) !important;
+                    }
+
 body.pagina-vagas div.card-header{
     background-color: rgba(100, 100, 250, 1) !important;
     color: white !important;
@@ -34,39 +58,45 @@ body.pagina-vagas div.card-header{
 
 body.pagina-usuarios div.card-header {
     background-color: rgba(100, 100, 250, 1) !important;
-    color: white !important;
+    color: black !important;
 }
     body.pagina-usuarios div.card-body {
-        background-color: rgba(0, 0, 0, 1) !important;
-        color: white !important;
+        background-color: rgba(230, 230, 230, 1) !important;
+        color: black !important;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
         body.pagina-usuarios div.card{
-            background-color: rgba(0, 0, 0, 1) !important;
+            background-color: rgba(230, 230, 230, 1) !important;
         }
             body.pagina-usuarios select, input {
-                background-color: rgba(0, 0, 0, 1) !important;
-                color: white !important;
+                background-color: rgba(230, 230, 230, 1) !important;
+                color: black !important;
             }
+                body.pagina-usuarios td {
+                    border-color: rgba(15, 15, 15, 0.2);
+                }
 
 body.pagina-empresas div.card-header {
     background-color: rgba(100, 100, 250, 1) !important;
-    color: white !important;
+    color: black !important;
 }
     body.pagina-empresas div.card-body {
-        background-color: rgba(0, 0, 0, 1) !important;
-        color: white !important;
+        background-color: rgba(230, 230, 230, 1) !important;
+        color: black !important;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
         body.pagina-empresas div.card{
-            background-color: rgba(0, 0, 0, 1) !important;
+            background-color: rgba(230, 230, 230, 1) !important;
         }
             body.pagina-empresas select, input {
-                background-color: rgba(0, 0, 0, 1) !important;
-                color: white !important;
+                background-color: rgba(230, 230, 230, 1) !important;
+                color: black !important;
             }
+                body.pagina-empresas td {
+                    border-color: rgba(15, 15, 15, 0.2);
+                }
 
 body.pagina-perfil div.card-header {
     background-color: rgba(100, 100, 250, 1) !important;
