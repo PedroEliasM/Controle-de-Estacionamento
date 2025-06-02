@@ -57,11 +57,14 @@
                         <h3 class="card-title">Vagas</h3>
                       </div>
                       
+                      <?php if (isset($_SESSION['idTipoUsuario']) && $_SESSION['idTipoUsuario'] != 2): ?>
+                      <div class="modal fade" id="novaVagaModal"></div>
                       <div class="col-6" align="right">
                         <button type="button" class="btn btn-verde-escuro" data-toggle="modal" data-target="#novaVagaModal">
                           Nova Vaga
                         </button>
                       </div>
+                      <?php endif; ?>
 
                     </div>
                   </div>
@@ -86,7 +89,7 @@
             <!-- /.row -->
           </div>
           <!-- /.container-fluid -->
-
+          <?php if (isset($_SESSION['idTipoUsuario']) && $_SESSION['idTipoUsuario'] != 2): ?>
           <div class="modal fade" id="novaVagaModal">
             <div class="modal-dialog">
               <div class="modal-content dark-modal">
@@ -103,7 +106,7 @@
                       <div class="col-12">
                         <div class="form-group">
                           <label for="iDescricao">Descrição:</label>
-                          <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="80">
+                          <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="80" required>
                         </div>
                       </div>
 
@@ -151,6 +154,7 @@
             </div>
             <!-- /.modal-dialog -->
           </div>
+          <?php endif; ?>
           <!-- /.modal -->
 
           <div class="modal fade" id="testeAjaxModal">

@@ -98,8 +98,8 @@
                 $lista .= '
                 <div class="modal fade" id="modalEditVaga'.$vaga_id.'">
                     <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header bg-info">
+                        <div class="modal-content dark-modal">
+                            <div class="modal-header bg-verde-escuro    ">
                                 <h4 class="modal-title">Alterar Vaga</h4>
                                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -145,8 +145,8 @@
                                     </div>
                                     
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                                        <button type="submit" class="btn btn-success">Salvar</button>
+                                        <button type="button" class="btn btn-vermelho-escuro" data-dismiss="modal">Fechar</button>
+                                        <button type="submit" class="btn btn-verde-escuro">Salvar</button>
                                     </div>
                                     
                                 </form>
@@ -159,8 +159,8 @@
                 $lista .= '
                 <div class="modal fade" id="modalDeleteVaga'.$vaga_id.'">
                     <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header bg-danger">
+                        <div class="modal-content dark-modal">
+                            <div class="modal-header bg-verde-escuro">
                                 <h4 class="modal-title">Excluir Vaga: '.$vaga_id.'</h4>
                                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>

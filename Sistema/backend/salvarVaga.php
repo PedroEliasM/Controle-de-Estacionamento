@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include('funcoes.php');
 
 $descricao   = $_POST["nDescricao"];
@@ -61,7 +61,11 @@ if ($funcao == "I") {
 
 } elseif ($funcao == "D") {
 
-    // DELETE
+    // Exclui primeiro da tabela movimentacao
+    $sql = "DELETE FROM movimentacao WHERE fk_id_vaga = $idVaga;";
+    mysqli_query($conn, $sql);
+
+    // Depois exclui da tabela vaga
     $sql = "DELETE FROM vaga WHERE id_vaga = $idVaga;";
     mysqli_query($conn, $sql);
 }
