@@ -1,6 +1,6 @@
 /* Background das telas */
 .content-wrapper {
-    background-color: rgba(40, 40, 40, 1) !important; /* Claro: #f4f6f9 */
+    background-color: rgba(60, 60, 60, 1) !important; /* Claro: #f4f6f9 */
     /*background-image: url(../../../img/fundo-login.jpg) !important;*/
     min-height: 100vh !important;
 }
@@ -31,15 +31,15 @@ body.paginas-dashboard div.card-header{
             background-color: rgba(230, 230, 230, 1) !important;
         }
             body.paginas-dashboard button {
-                color: black !important;
+                color: white !important;
             }
                 body.paginas-dashboard div.inner {
                     background-color: rgba(80, 80, 250, 1) !important;
-                    color: rgb(230, 230, 230) !important;
+                    color: rgb(240, 240, 240) !important;
                 }
                     body.paginas-dashboard i[class*="fas fa-check-circle"], i[class*="fas fa-sign-in-alt"],
                     i.signout-exclusive,i[class*="fas fa-parking"] {
-                        color: rgb(230, 230, 230) !important;
+                        color: rgb(210, 210, 210) !important;
                     }
 
 body.pagina-vagas div.card-header{
@@ -58,7 +58,7 @@ body.pagina-vagas div.card-header{
 
 body.pagina-usuarios div.card-header {
     background-color: rgba(100, 100, 250, 1) !important;
-    color: black !important;
+    color: white !important;
 }
     body.pagina-usuarios div.card-body {
         background-color: rgba(230, 230, 230, 1) !important;
@@ -79,7 +79,7 @@ body.pagina-usuarios div.card-header {
 
 body.pagina-empresas div.card-header {
     background-color: rgba(100, 100, 250, 1) !important;
-    color: black !important;
+    color: white !important;
 }
     body.pagina-empresas div.card-body {
         background-color: rgba(230, 230, 230, 1) !important;
@@ -103,22 +103,25 @@ body.pagina-perfil div.card-header {
     color: white !important;
 }
     body.pagina-perfil div.card-body1-perfil {
-        background-color: rgba(0, 0, 0, 1) !important;
-        color: white !important;
+        background-color: rgba(230, 230, 230, 1) !important;
+        color: black !important;
+        border-color: rgb(120, 120, 120) !important;
         border-radius: 5px;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
     body.pagina-perfil div.card-body2-perfil {
-        background-color: rgba(0, 0, 0, 1) !important;
-        color: white !important;
+        background-color: rgba(230, 230, 230, 1) !important;
+        color: black !important;
+        border-color: rgb(120, 120, 120) !important;
         border-radius: 5px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     }
         body.pagina-perfil div.card{
-            background-color: rgba(0, 0, 0, 1) !important;
+            background-color: rgba(230, 230, 230, 1) !important;
         }
             body.pagina-perfil input {
-                background-color: rgba(0, 0, 0, 1) !important;
-                color: white !important;
+                background-color: rgba(230, 230, 230, 1) !important;
+                color: black !important;
+                border-color: rgb(120, 120, 120) !important;
             }
             body.pagina-perfil input.btn-success {
                 background-color: #28A745 !important;

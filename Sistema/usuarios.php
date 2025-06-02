@@ -52,7 +52,7 @@
                       </div>
                       
                       <div class="col-3" align="right">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#novoUsuarioModal">
+                        <button type="button" class="btn btn-success new-user-but" data-toggle="modal" data-target="#novoUsuarioModal">
                           Novo Usuário
                         </button>
                       </div>
