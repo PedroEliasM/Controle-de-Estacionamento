@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/06/2025 às 02:11
+-- Tempo de geração: 03/06/2025 às 04:43
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -131,11 +131,13 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `foto`, `flg_ativo`, `fk_id_empresa`, `fk_id_tipo_usuario`) VALUES
-(1, 'Pedro Elias', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-1.jpg', 'S', 1, 1),
-(2, 'henrique', 'henrique@email.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-2.jpg', 'S', 2, 2),
+(1, 'Pedro Elias', 'pedro@gmail.com', '4297f44b13955235245b2497399d7a93', 'dist/img/usuarios/foto-1.jpg', 'S', 1, 1),
+(2, 'henrique', 'henrique@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-2.jpg', 'S', 1, 1),
 (3, 'ParkWay Systems', 'parkway@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-3.png', 'S', 3, 3),
-(4, 'nicolas', 'nico@las.com', '202cb962ac59075b964b07152d234b70', NULL, 'S', 2, 1),
-(5, 'kleberson', 'kleber@son.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-5.jpg', 'S', 1, 2);
+(4, 'nicolas', 'nicolas@gmail.com', '202cb962ac59075b964b07152d234b70', NULL, 'S', 1, 1),
+(5, 'kleberson', 'kleberson@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-5.jpg', 'S', 1, 1),
+(6, 'Daniel', 'daniel@gmail.com', '123', NULL, 'S', 1, 1),
+(7, 'Funcionário', 'funcionario@gmail.com', '123', NULL, 'S', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -227,7 +229,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Usuário', AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID - Usuário', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `vaga`
