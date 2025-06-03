@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/06/2025 às 04:43
+-- Tempo de geração: 04/06/2025 às 00:53
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -136,8 +136,8 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `foto`, `flg_ativ
 (3, 'ParkWay Systems', 'parkway@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-3.png', 'S', 3, 3),
 (4, 'nicolas', 'nicolas@gmail.com', '202cb962ac59075b964b07152d234b70', NULL, 'S', 1, 1),
 (5, 'kleberson', 'kleberson@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-5.jpg', 'S', 1, 1),
-(6, 'Daniel', 'daniel@gmail.com', '123', NULL, 'S', 1, 1),
-(7, 'Funcionário', 'funcionario@gmail.com', '123', NULL, 'S', 1, 2);
+(6, 'Daniel', 'daniel@gmail.com', '202cb962ac59075b964b07152d234b70', NULL, 'S', 1, 1),
+(7, 'Funcionário', 'funcionario@gmail.com', '202cb962ac59075b964b07152d234b70', NULL, 'S', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -147,7 +147,7 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `foto`, `flg_ativ
 
 CREATE TABLE `vaga` (
   `id_vaga` int(11) NOT NULL COMMENT 'ID da vaga',
-  `descricao` varchar(12) NOT NULL COMMENT 'Nome da Vaga',
+  `descricao` varchar(7) NOT NULL COMMENT 'Nome da Vaga',
   `situacao` char(1) NOT NULL COMMENT 'Status da vaga: O-Ocupada / L-Livre',
   `flg_ativo` char(1) NOT NULL COMMENT 'Vaga ativa? S-Sim / N-Não',
   `fk_id_empresa` int(11) NOT NULL COMMENT 'FK - ID da Empresa'
@@ -163,7 +163,8 @@ INSERT INTO `vaga` (`id_vaga`, `descricao`, `situacao`, `flg_ativo`, `fk_id_empr
 (3, 'Vaga03', 'L', 'S', 2),
 (4, 'Vaga04', 'L', 'S', 2),
 (5, 'Vaga05', 'O', 'S', 2),
-(6, 'Vaga06', 'L', 'N', 1);
+(6, 'Vaga06', 'L', 'N', 1),
+(8, 'Vaga999', 'L', 'S', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -235,7 +236,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `vaga`
 --
 ALTER TABLE `vaga`
-  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga', AUTO_INCREMENT=8;
+  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga', AUTO_INCREMENT=9;
 
 --
 -- Restrições para tabelas despejadas
