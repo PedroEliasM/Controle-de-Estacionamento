@@ -63,7 +63,7 @@
 
                   <!-- /.card-header -->
                   <div class="card-body">
-                    <table id="tabela" class="table table-bordered table-hover">
+                    <table id="tabela" class="table table-bordered">
                       <thead>
                           <tr>
                               <th>ID</th>

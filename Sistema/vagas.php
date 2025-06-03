@@ -58,7 +58,6 @@
                       </div>
                       
                       <?php if (isset($_SESSION['idTipoUsuario']) && $_SESSION['idTipoUsuario'] != 2): ?>
-                      <div class="modal fade" id="novaVagaModal"></div>
                       <div class="col-6" align="right">
                         <button type="button" class="btn btn-verde-escuro" data-toggle="modal" data-target="#novaVagaModal">
                           Nova Vaga
@@ -89,7 +88,6 @@
             <!-- /.row -->
           </div>
           <!-- /.container-fluid -->
-          <?php if (isset($_SESSION['idTipoUsuario']) && $_SESSION['idTipoUsuario'] != 2): ?>
           <div class="modal fade" id="novaVagaModal">
             <div class="modal-dialog">
               <div class="modal-content dark-modal">
@@ -154,7 +152,6 @@
             </div>
             <!-- /.modal-dialog -->
           </div>
-          <?php endif; ?>
           <!-- /.modal -->
 
           <div class="modal fade" id="testeAjaxModal">

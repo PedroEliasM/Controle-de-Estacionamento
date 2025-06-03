@@ -245,18 +245,37 @@
     barChartData.datasets[1] = temp1
 
     var barChartOptions = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      datasetFill             : false,
-      // Scales para o gráfico começar no valor '0 (zero)'
+      responsive: true,
+      maintainAspectRatio: false,
+      datasetFill: false,
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            fontColor: "#f0f0f0" // ✅ cor dos números do eixo Y
+          },
+          gridLines: {
+            color: "#444" // linhas da grade
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            fontColor: "#f0f0f0" // ✅ cor dos textos do eixo X
+          },
+          gridLines: {
+            color: "#444"
           }
         }]
+      },
+      legend: {
+        labels: {
+          fontColor: "#f0f0f0" // ✅ cor do texto da legenda
+        }
+      },
+      title: {
+        display: false
       }
-    }
+    };
 
     new Chart(barChartCanvas, {
       type: 'bar',
@@ -268,7 +287,7 @@
     var pieData = {
       labels: ['Acima de 1 Hora', 'Abaixo de 1 Hora'],
       datasets: [{
-        data: [<?php echo intval(qtdAcimaHoraDiario()); ?>, <?php echo intval(qtdAbaixoHoraDiario()); ?>],
+        data: [<?php echo intval(qtdAcimaHora()); ?>, <?php echo intval(qtdAbaixoHora()); ?>],
         backgroundColor: ['#1a331f', '#360a0a'],
         borderColor: ['#1a331f', '#360a0a'],
         borderWidth: 1
@@ -278,12 +297,16 @@
     var pieOptions = {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'bottom'
+      legend: {
+        position: 'bottom',
+        labels: {
+          fontColor: '#f0f0f0' // ✅ cor da legenda
         }
+      },
+      title: {
+        display: false
       }
-    }
+    };
 
     new Chart(pieChartCanvas, {
       type: 'pie',
