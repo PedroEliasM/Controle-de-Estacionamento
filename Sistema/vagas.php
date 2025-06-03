@@ -23,11 +23,17 @@
       <!-- Fim Navbar -->
 
       <!-- Sidebar -->
-      <?php 
-        $_SESSION['menu-n1'] = 'administrador';
-        $_SESSION['menu-n2'] = 'vagas';
-        include('partes/sidebar.php'); 
-      ?>
+    <?php 
+      if ($_SESSION['idTipoUsuario'] == 1 || $_SESSION['idTipoUsuario'] == 3) {
+          $_SESSION['menu-n1'] = 'administrador';
+      } else if ($_SESSION['idTipoUsuario'] == 2) {
+          $_SESSION['menu-n1'] = 'funcionario';
+      } else {
+          $_SESSION['menu-n1'] = ''; // ou outro valor padrão
+      }
+      $_SESSION['menu-n2'] = 'vagas'; // submenu que quer ativar
+      include('partes/sidebar.php'); 
+    ?>
       <!-- Fim Sidebar -->
 
       <!-- Content Wrapper. Contains page content -->
@@ -53,10 +59,7 @@
                       
                       <?php if (isset($_SESSION['idTipoUsuario']) && $_SESSION['idTipoUsuario'] != 2): ?>
                       <div class="col-6" align="right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#testeAjaxModal">
-                          Filtrar Vagas
-                        </button>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#novaVagaModal">
+                        <button type="button" class="btn btn-verde-escuro" data-toggle="modal" data-target="#novaVagaModal">
                           Nova Vaga
                         </button>
                       </div>
@@ -87,8 +90,8 @@
           <!-- /.container-fluid -->
           <div class="modal fade" id="novaVagaModal">
             <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header bg-success">
+              <div class="modal-content dark-modal">
+                <div class="modal-header bg-verde-escuro">
                   <h4 class="modal-title">Nova Vaga</h4>
                   <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -138,8 +141,8 @@
                     </div>
 
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                      <button type="submit" class="btn btn-success">Salvar</button>
+                      <button type="button" class="btn btn-vermelho-escuro" data-dismiss="modal">Fechar</button>
+                      <button type="submit" class="btn btn-verde-escuro">Salvar</button>
                     </div>
                     
                   </form>

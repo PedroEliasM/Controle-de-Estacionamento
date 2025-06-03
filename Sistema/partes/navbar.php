@@ -1,7 +1,7 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+<nav class="main-header navbar navbar-expand navbar-dark" style="background-color: rgb(45, 45, 45);">
 <!-- Left navbar links -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav" style="background-color: rgb(45, 45, 45);">
         <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>     
