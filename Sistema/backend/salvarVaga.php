@@ -1,49 +1,75 @@
 <?php
+session_start();
+include('funcoes.php');
 
-    include('funcoes.php');
+$descricao   = $_POST["nDescricao"];
+$situacao    = $_POST["nSituacao"];
+$idEmpresa   = $_POST["nEmpresa"];
+$funcao      = $_GET["funcao"];
+$idVaga      = $_GET["codigo"];
 
-    $descricao   = $_POST["nDescricao"];
-    $situacao = $_POST["nSituacao"];
-    $idEmpresa   = $_POST["nEmpresa"];
-    $funcao      = $_GET["funcao"];
-    $idVaga   = $_GET["codigo"];
+include("conexao.php");
 
-    include("conexao.php");
+$ativo = (isset($_POST["nAtivo"]) && $_POST["nAtivo"] == "on") ? "S" : "N";
 
-    if (isset($_POST["nAtivo"]) && $_POST["nAtivo"] == "on") {
-    $ativo = "S";
-    } else {
-    $ativo = "N";
+// Validar se é Inclusão, Alteração ou Exclusão
+if ($funcao == "I") {
+
+    // Busca o próximo ID na tabela
+    $idVaga = proxIdVaga();
+
+    // INSERT
+    $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa)
+            VALUES ($idVaga, '$descricao', '$situacao', '$ativo', $idEmpresa);";
+    
+    mysqli_query($conn, $sql);
+
+} elseif ($funcao == "A") {
+
+    // Verifica situação atual da vaga antes de atualizar
+    $query = "SELECT situacao FROM vaga WHERE id_vaga = $idVaga";
+    $resultado = mysqli_query($conn, $query);
+    $situacaoAtual = null;
+    if ($linha = mysqli_fetch_assoc($resultado)) {
+        $situacaoAtual = $linha['situacao'];
     }
 
-    //Validar se é Inclusão ou Alteração ou Deletar
-    if($funcao == "I"){
+    // UPDATE
+    $sql = "UPDATE vaga
+            SET descricao = '$descricao',
+                situacao = '$situacao',
+                flg_ativo = '$ativo'
+            WHERE id_vaga = $idVaga;";
+    
+    mysqli_query($conn, $sql);
 
-        //Busca o próximo ID na tabela
-        $idVaga = proxIdVaga();
+    // Verifica se houve alteração na situação
+    if ($situacaoAtual !== null && $situacaoAtual !== $situacao) {
+        if ($situacao === 'O') {
+            $tipoMov = 'E'; // Entrada
+        } elseif ($situacao === 'L') {
+            $tipoMov = 'S'; // Saída
+        }
 
-        //INSERT
-        $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa) "
-     . "VALUES (" . $idVaga . ", '" . $descricao . "', '" . $situacao . "', '" . $ativo . "', " . $idEmpresa . ");";
-
-    }elseif($funcao == "A"){
-        //UPDATE
-        $sql = "UPDATE vaga "
-     . "SET descricao = '" . $descricao . "', "
-     . "    situacao = '" . $situacao . "', "
-     . "    flg_ativo = '" . $ativo . "', "
-     . "    fk_id_empresa = '" . $idEmpresa . "' "
-     . "WHERE id_vaga = " . $idVaga . ";";
-
-    }elseif($funcao == "D"){
-        //DELETE
-        $sql = "DELETE FROM vaga "
-                ." WHERE id_vaga = ".$idVaga.";";
+        if (isset($tipoMov)) {
+            $sqlMov = "INSERT INTO movimentacao (fk_id_vaga, tipo, data)
+                       VALUES ($idVaga, '$tipoMov', NOW());";
+            mysqli_query($conn, $sqlMov);
+        }
     }
 
-    $result = mysqli_query($conn,$sql);
-    mysqli_close($conn);
+} elseif ($funcao == "D") {
 
-    header("location: ../vagas.php");
+    // Exclui primeiro da tabela movimentacao
+    $sql = "DELETE FROM movimentacao WHERE fk_id_vaga = $idVaga;";
+    mysqli_query($conn, $sql);
+
+    // Depois exclui da tabela vaga
+    $sql = "DELETE FROM vaga WHERE id_vaga = $idVaga;";
+    mysqli_query($conn, $sql);
+}
+
+mysqli_close($conn);
+header("location: ../vagas.php");
 
 ?>
