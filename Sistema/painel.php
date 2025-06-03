@@ -137,9 +137,6 @@
                   <button type="button" class="btn btn-tool text-verde-escuro" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool text-vermelho-escuro" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
                 </div>
               </div>
               <div class="card-body">
@@ -163,9 +160,6 @@
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool text-verde-escuro" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool text-vermelho-escuro" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -287,7 +281,7 @@
     var pieData = {
       labels: ['Acima de 1 Hora', 'Abaixo de 1 Hora'],
       datasets: [{
-        data: [<?php echo intval(qtdAcimaHora()); ?>, <?php echo intval(qtdAbaixoHora()); ?>],
+        data: [<?php echo intval(qtdAcimaHoraDiario()); ?>, <?php echo intval(qtdAbaixoHoraDiario()); ?>],
         backgroundColor: ['#1a331f', '#360a0a'],
         borderColor: ['#1a331f', '#360a0a'],
         borderWidth: 1

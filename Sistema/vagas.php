@@ -104,7 +104,7 @@
                       <div class="col-12">
                         <div class="form-group">
                           <label for="iDescricao">Descrição:</label>
-                          <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="80" required>
+                          <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="8" required>
                         </div>
                       </div>
 
@@ -119,6 +119,7 @@
                         </div>
                       </div>
 
+                      <?php if (isset($_SESSION['idTipoUsuario']) && $_SESSION['idTipoUsuario'] == 3): ?>
                       <div class="col-8">
                         <div class="form-group">
                           <label for="iEmpresa">Empresa:</label>
@@ -128,6 +129,7 @@
                           </select>
                         </div>
                       </div>
+                      <?php endif; ?> 
 
                       <div class="col-12">
                         <div class="form-group">

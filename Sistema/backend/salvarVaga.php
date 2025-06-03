@@ -38,8 +38,7 @@ if ($funcao == "I") {
     $sql = "UPDATE vaga
             SET descricao = '$descricao',
                 situacao = '$situacao',
-                flg_ativo = '$ativo',
-                fk_id_empresa = $idEmpresa
+                flg_ativo = '$ativo'
             WHERE id_vaga = $idVaga;";
     
     mysqli_query($conn, $sql);

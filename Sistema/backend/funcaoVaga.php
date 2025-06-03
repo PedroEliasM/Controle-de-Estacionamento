@@ -99,7 +99,7 @@
                 <div class="modal fade" id="modalEditVaga'.$vaga_id.'">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content dark-modal">
-                            <div class="modal-header bg-verde-escuro    ">
+                            <div class="modal-header bg-verde-escuro">
                                 <h4 class="modal-title">Alterar Vaga</h4>
                                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -111,21 +111,26 @@
                                         <div class="col-8">
                                             <div class="form-group">
                                                 <label for="editDescricao'.$vaga_id.'">Descrição:</label>
-                                                <input type="text" id="editDescricao'.$vaga_id.'" name="nDescricao" value="'.$descricao.'" class="form-control"  maxlength="80">
+                                                <input type="text" id="editDescricao'.$vaga_id.'" name="nDescricao" value="'.$descricao.'" class="form-control" maxlength="80">
                                             </div>
-                                        </div>
-                                        
+                                        </div>';
+                
+                // Se o usuário for do tipo 3 (Dono), mostra o campo Empresa
+                if ($_SESSION["idTipoUsuario"] == 3) {
+                    $lista .= '
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <label for="editEmpresa'.$vaga_id.'">Empresa:</label>
                                                 <select name="nEmpresa" id="editEmpresa'.$vaga_id.'" class="form-control" required>
                                                     <option value="'.$id_empresa.'">'.$empresa_nome.'</option>';
-                                                    $lista .= optionEmpresa();
-                $lista .= '
+                    $lista .= optionEmpresa();
+                    $lista .= '
                                                 </select>
                                             </div>
-                                        </div>
-                                        
+                                        </div>';
+                }
+            
+                $lista .= '
                                         <div class="col-8">
                                             <div class="form-group">
                                                 <label for="editSituacao'.$vaga_id.'">Situação:</label>
