@@ -41,6 +41,10 @@ body.paginas-dashboard div.card-header{
                     i.signout-exclusive,i[class*="fas fa-parking"] {
                         color: rgb(210, 210, 210) !important;
                     }
+                        body.paginas-dashboard button.filtrar-empresa {
+                            margin-top: -1.2rem !important;
+                            margin-bottom: 1rem !important;
+                        }
 
 body.pagina-vagas div.card-header{
     background-color: rgba(100, 100, 250, 1) !important;

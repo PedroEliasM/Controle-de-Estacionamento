@@ -165,28 +165,22 @@
                     <div class="row">
                       <div class="col-4">
                         <div class="form-group">
-                          <label for="iCategoriaAjax">Categoria:</label>
+                          <label for="iCategoriaAjax">Filtrar por:</label>
                           <select name="nCategoriaAjax" id="iCategoriaAjax" class="form-control" required>
                             <option value="">Selecione...</option>
-                            <?php //echo optionCategoria();?>
+                            <option value="">Vagas Livres</option>
+                            <option value="">Vagas Ocupadas</option>
+                            <option value="">Vagas Inativas</option>
                           </select>
                         </div>
                       </div>
 
-                      <div class="col-8">
-                        <div class="form-group">
-                          <label for="iProdutoAjax">Produtos:</label>
-                          <select name="nProdutoAjax" id="iProdutoAjax" class="form-control" required>
-                            <option value="">Selecione...</option>
-                          </select>
-                        </div>
-                      </div>
 
                     </div>
 
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                      <button type="submit" class="btn btn-success">Salvar</button>
+                      <button type="submit" class="btn btn-success">Filtrar</button>
                     </div>
                     
                   </form>

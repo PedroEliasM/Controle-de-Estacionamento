@@ -21,6 +21,7 @@
     include("funcaoUsuario.php");
     include("funcaoEmpresa.php");
     include("funcaoVaga.php");
+    include("funcaoPainel.php");
         
     //use PHPMailer\PHPMailer\PHPMailer;
     //use PHPMailer\PHPMailer\Exception;
