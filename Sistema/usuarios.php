@@ -52,7 +52,7 @@
                       </div>
                       
                       <div class="col-3" align="right">
-                        <button type="button" class="btn btn-verde-escuro" data-toggle="modal" data-target="#novoUsuarioModal">
+                        <button type="button" class="btn btn-success new-user-but" data-toggle="modal" data-target="#novoUsuarioModal">
                           Novo Usuário
                         </button>
                       </div>
@@ -63,23 +63,23 @@
 
                   <!-- /.card-header -->
                   <div class="card-body">
-                    <table id="tabela" class="table table-bordered">
+                    <table id="tabela" class="table table-bordered table-hover">
                       <thead>
-                          <tr>
-                              <th>ID</th>
-                              <th>Tipo Usuário</th>
-                              <th>Nome</th>
-                              <th>Email</th>
-                              <?php if ($_SESSION['idTipoUsuario'] == 3) { ?>
-                                  <th>Empresa</th>
-                              <?php } ?>
-                              <th>Status</th>
-                              <th>Ações</th>
-                          </tr>
+                      <tr>
+                          <th>ID</th>
+                          <th>Tipo de Usuário</th>
+                          <th>Nome</th>
+                          <th>Login</th>
+                          <th>Ativo</th>                
+                          <th>Ações</th>
+                      </tr>
                       </thead>
                       <tbody>
-                          <?php echo listaUsuario() ?>
+
+                      <?php echo listaUsuario(); ?>
+                      
                       </tbody>
+                      
                     </table>
                   </div>
                   <!-- /.card-body -->
@@ -95,8 +95,8 @@
 
           <div class="modal fade" id="novoUsuarioModal">
             <div class="modal-dialog modal-lg">
-              <div class="modal-content dark-modal">
-                <div class="modal-header bg-verde-escuro">
+              <div class="modal-content">
+                <div class="modal-header bg-success">
                   <h4 class="modal-title">Novo Usuário</h4>
                   <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -152,10 +152,12 @@
                       </div>
 
                     </div>
+
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-vermelho-escuro" data-dismiss="modal">Fechar</button>
-                      <button type="submit" class="btn btn-verde-escuro">Salvar</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                      <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
+                    
                   </form>
                 </div>
                 
@@ -199,5 +201,6 @@
         });
       });
     </script>
+
   </body>
 </html>

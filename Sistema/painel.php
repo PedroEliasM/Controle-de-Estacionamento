@@ -30,7 +30,7 @@
   <!-- Fim CSS -->
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed dados-diarios">
+<body class="hold-transition sidebar-mini layout-fixed paginas-dashboard">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -39,14 +39,8 @@
 
   <!-- Sidebar -->
   <?php 
-    if ($_SESSION['idTipoUsuario'] == 1 || $_SESSION['idTipoUsuario'] == 3) {
-        $_SESSION['menu-n1'] = 'administrador';
-    } else if ($_SESSION['idTipoUsuario'] == 2) {
-        $_SESSION['menu-n1'] = 'funcionario';
-    } else {
-        $_SESSION['menu-n1'] = ''; // ou outro valor padrão
-    }
-    $_SESSION['menu-n2'] = 'painel'; // submenu que quer ativar
+    $_SESSION['menu-n1'] = 'administrador';
+    $_SESSION['menu-n2'] = 'painel';
     include('partes/sidebar.php'); 
   ?>
   <!-- Fim Sidebar -->
@@ -70,7 +64,7 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
-              <div class="inner" style="background-color: #263c52 !important;">
+              <div class="inner">
                 <h3><?php echo qtdVagasAtivasDiario();?></h3>
 
                 <p>Vagas Ativas</p>
@@ -84,7 +78,7 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
-              <div class="inner" style="background-color: #1a331f !important;">
+              <div class="inner">
                 <h3><?php echo qtdEntradasDiario();?></h3>
 
                 <p>Entradas Diárias</p>
@@ -98,20 +92,20 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-              <div class="inner" style="background-color: #360a0a !important;">
+              <div class="inner">
                 <h3><?php echo qtdSaidasDiario();?></h3>
 
                 <p>Saídas Diárias</p>
               </div>
               <div class="icon">
-                <i class="fas fa-sign-out-alt"></i>
+                <i class="fas fa-sign-out-alt signout-exclusive"></i>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-              <div class="inner" style="background-color: #323b3f !important;">
+              <div class="inner">
                 <h3><?php echo TempoMedioDiario();?></h3>
 
                 <p>Tempo Médio de </p>
@@ -137,8 +131,11 @@
                 <h3 class="card-title">Entradas e Saídas Diarias</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool text-verde-escuro" data-card-widget="collapse">
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -161,8 +158,11 @@
                 <h3 class="card-title">Permanências por Hora Diária</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool text-verde-escuro" data-card-widget="collapse">
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool text-success" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -204,27 +204,27 @@
         
         {
           label               : 'Entradas',
-          backgroundColor     : '#1a331f',
-          borderColor         : '#1a331f',
+          backgroundColor     : 'rgba(0, 255, 0, 0.5)',
+          borderColor         : 'rgba(0, 255, 0, 0.5)',
           borderWidth         : 0,
           pointRadius          : false,
           pointColor          : '#3b8bba',
-          pointStrokeColor    : '#1a331f',
+          pointStrokeColor    : 'rgba(0, 255, 0, 0.5)',
           pointHighlightFill  : '#fff',
-          pointHighlightStroke: '#1a331f',
+          pointHighlightStroke: 'rgba(0, 255, 0, 0.5)',
           data                : [<?php echo qtdEntradasDiario(); ?>]
         },
         
         {
           label               : 'Saídas',
-          backgroundColor     : '#360a0a',
-          borderColor         : '#360a0a',
+          backgroundColor     : 'rgba(255, 0, 0, 0.5)',
+          borderColor         : 'rgba(255, 0, 0, 0.5)',
           borderWidth         : 0,
           pointRadius         : false,
-          pointColor          : '#360a0a',
+          pointColor          : 'rgba(255, 0, 0, 0.5)',
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
-          pointHighlightStroke: '#360a0a',
+          pointHighlightStroke: 'rgba(255, 0, 0, 0.5)',
           data                : [<?php echo qtdSaidasDiario(); ?>]
         },
         
@@ -242,37 +242,18 @@
     barChartData.datasets[1] = temp1
 
     var barChartOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      datasetFill: false,
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false,
+      // Scales para o gráfico começar no valor '0 (zero)'
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true,
-            fontColor: "#f0f0f0" // ✅ cor dos números do eixo Y
-          },
-          gridLines: {
-            color: "#444" // linhas da grade
-          }
-        }],
-        xAxes: [{
-          ticks: {
-            fontColor: "#f0f0f0" // ✅ cor dos textos do eixo X
-          },
-          gridLines: {
-            color: "#444"
+            beginAtZero: true
           }
         }]
-      },
-      legend: {
-        labels: {
-          fontColor: "#f0f0f0" // ✅ cor do texto da legenda
-        }
-      },
-      title: {
-        display: false
       }
-    };
+    }
 
     new Chart(barChartCanvas, {
       type: 'bar',
@@ -285,8 +266,8 @@
       labels: ['Acima de 1 Hora', 'Abaixo de 1 Hora'],
       datasets: [{
         data: [<?php echo intval(qtdAcimaHoraDiario()); ?>, <?php echo intval(qtdAbaixoHoraDiario()); ?>],
-        backgroundColor: ['#1a331f', '#360a0a'],
-        borderColor: ['#1a331f', '#360a0a'],
+        backgroundColor: ['rgba(0, 255, 0, 0.5)', 'rgba(255, 0, 0, 0.5)'],
+        borderColor: ['#00ff00', '#ff0000'],
         borderWidth: 1
       }]
     }
@@ -294,16 +275,12 @@
     var pieOptions = {
       responsive: true,
       maintainAspectRatio: false,
-      legend: {
-        position: 'bottom',
-        labels: {
-          fontColor: '#f0f0f0' // ✅ cor da legenda
+      plugins: {
+        legend: {
+          position: 'bottom'
         }
-      },
-      title: {
-        display: false
       }
-    };
+    }
 
     new Chart(pieChartCanvas, {
       type: 'pie',
