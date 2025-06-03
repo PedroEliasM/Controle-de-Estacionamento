@@ -1,100 +1,95 @@
 <?php
     function listaVagas(){
-    $lista = "";
+        $lista = "";
 
-    include("conexao.php");
+        include("conexao.php");
 
-    // Verifica o tipo de usuário na sessão
-    if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
-        $idTipoUsuario = $_SESSION['idTipoUsuario'];
-        $idEmpresaUsuario = $_SESSION['idEmpresa']; // Empresa à qual o usuário pertence
+        // Verifica o tipo de usuário na sessão
+        if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+            $idTipoUsuario = $_SESSION['idTipoUsuario'];
+            $idEmpresaUsuario = $_SESSION['idEmpresa']; // Empresa à qual o usuário pertence
 
-        // Ajusta a consulta SQL com base no tipo de usuário
-        if ($idTipoUsuario == 3) { // Dono
-            $sql = "SELECT * FROM vaga;"; // Lista todas as vagas
-        } else if ($idTipoUsuario == 2 || $idTipoUsuario == 1) { // Admin ou Funcionário
-            $sql = "SELECT * FROM vaga WHERE fk_id_empresa = $idEmpresaUsuario;"; // Lista vagas da empresa do usuário
-        } else {
-            return "Tipo de usuário inválido.";
-        }
-    } else {
-        return "Sessão não iniciada ou dados do usuário não definidos.";
-    }
-
-    $result = mysqli_query($conn,$sql);
-    mysqli_close($conn);
-
-    if(mysqli_num_rows($result) > 0){
-
-        foreach ($result as $coluna) {
-            $vaga_id = $coluna["id_vaga"];
-            $descricao = htmlspecialchars($coluna["descricao"]);
-            $situacao = htmlspecialchars($coluna["situacao"]); // 'L' ou 'O'
-            $flg_ativo = $coluna["flg_ativo"]; // 'S' ou 'N'
-            $id_empresa = htmlspecialchars($coluna["fk_id_empresa"]);
-            $empresa_nome = descrEmpresa($coluna["fk_id_empresa"]); 
-            
-            if($coluna["flg_ativo"] == 'S'){  
-                $ativo = 'checked';
-                $icone = '<h6><i class="fas fa-check-circle text-success"></i></h6>'; 
-            }else{
-                $ativo = '';
-                $icone = '<h6><i class="fas fa-times-circle text-danger"></i></h6>';
-            } 
-        
-            $card_class = '';
-            $display_situacao_text = ''; 
-            
-            if ($flg_ativo == 'N') {
-                $card_class = 'inativa';
-                $display_situacao_text = 'INATIVA';
+            // Ajusta a consulta SQL com base no tipo de usuário
+            if ($idTipoUsuario == 3) { // Dono
+                $sql = "SELECT * FROM vaga;"; // Lista todas as vagas
+            } else if ($idTipoUsuario == 2 || $idTipoUsuario == 1) { // Admin ou Funcionário
+                $sql = "SELECT * FROM vaga WHERE fk_id_empresa = $idEmpresaUsuario;"; // Lista vagas da empresa do usuário
             } else {
-                if ($situacao == 'L') {
-                    $card_class = 'livre';
-                    $display_situacao_text = 'LIVRE';
-                } elseif ($situacao == 'O') {
-                    $card_class = 'ocupada';
-                    $display_situacao_text = 'OCUPADA';
-                } else {
+                return "Tipo de usuário inválido.";
+            }
+        } else {
+            return "Sessão não iniciada ou dados do usuário não definidos.";
+        }
+
+        //$sql = "SELECT * FROM vaga;";
+        //var_dump($sql);
+        //die();
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        if(mysqli_num_rows($result) > 0){
+
+            foreach ($result as $coluna) {
+                $vaga_id = $coluna["id_vaga"];
+                $descricao = htmlspecialchars($coluna["descricao"]);
+                $situacao = htmlspecialchars($coluna["situacao"]); // Pega o valor 'L' ou 'O' diretamente do banco
+                $flg_ativo = $coluna["flg_ativo"]; // Pega o 'S' ou 'N'
+                $id_empresa = htmlspecialchars($coluna["fk_id_empresa"]); // Usa fk_id_empresa
+                // Chama descrEmpresa para obter o nome da empresa, como você já faz
+                $empresa_nome = descrEmpresa($coluna["fk_id_empresa"]); 
+                
+                //Ativo: S ou N
+                //if($coluna["FlgAtivo"] == 'S')  $ativo = 'checked'; else $ativo = '';
+                if($coluna["flg_ativo"] == 'S'){  
+                    $ativo = 'checked';
+                    $icone = '<h6><i class="fas fa-check-circle text-success"></i></h6>'; 
+                }else{
+                    $ativo = '';
+                    $icone = '<h6><i class="fas fa-times-circle text-danger"></i></h6>';
+                } 
+            
+                $card_class = '';
+                $display_situacao_text = ''; // Variável para o texto que aparece no card ('LIVRE', 'OCUPADA', 'INATIVA')
+                
+                if ($flg_ativo == 'N') {
                     $card_class = 'inativa';
-                    $display_situacao_text = 'DESCONHECIDA';
+                    $display_situacao_text = 'INATIVA';
+                } else {
+                    // Se a vaga está ativa ('S'), usa a coluna 'situacao' (L/O)
+                    if ($situacao == 'L') {
+                        $card_class = 'livre';
+                        $display_situacao_text = 'LIVRE';
+                    } elseif ($situacao == 'O') {
+                        $card_class = 'ocupada';
+                        $display_situacao_text = 'OCUPADA';
+                    } else {
+                        // Caso um valor inesperado para $situacao (e flg_ativo é 'S')
+                        $card_class = 'inativa'; // Pode ser uma classe para 'erro' ou 'desconhecida' se tiver CSS para isso
+                        $display_situacao_text = 'DESCONHECIDA';
+                    }
                 }
-            }
-
-            // Ícone toggle para o botão trocar situação
-            $iconToggle = ($situacao == 'L') ? 'fa-toggle-off text-success' : 'fa-toggle-on text-danger';
-
-            $lista .= '
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                <div class="vaga-card ' . $card_class . '">
-                    <div class="vaga-id">ID: '.$vaga_id.'</div>
-                    <div class="vaga-descricao">'.$descricao.'</div>
-                    <div class="vaga-status">'.$display_situacao_text.'</div>
-                    <div class="vaga-actions">
-                        <!-- Botão trocar situação disponível para todos -->
-                        <a href="backend/trocarSituacaoVaga.php?id='.$vaga_id.'" title="Trocar Situação" class="ml-2">
-                            <i class="fas '.$iconToggle.'" style="font-size: 1.3em; cursor: pointer;"></i>
-                        </a>';
-
-            // Botões editar e excluir apenas para admin e dono
-            if ($idTipoUsuario == 1 || $idTipoUsuario == 3) {
+            
+                // O novo HTML para o CARD (widget) - ATENÇÃO AQUI: use $display_situacao_text
                 $lista .= '
-                        <a href="#modalEditVaga'.$vaga_id.'" data-toggle="modal" title="Alterar Vaga">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="#modalDeleteVaga'.$vaga_id.'" data-toggle="modal" title="Excluir Vaga">
-                            <i class="fas fa-trash"></i>
-                        </a>';
-            }
-
-            $lista .= '
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                    <div class="vaga-card ' . $card_class . '">
+                        <div class="vaga-id">ID: '.$vaga_id.'</div>
+                        <div class="vaga-descricao">'.$descricao.'</div>
+                        <div class="vaga-status">'.$display_situacao_text.'</div>
+                        <div class="vaga-actions">
+                            <a href="#modalEditVaga'.$vaga_id.'" data-toggle="modal" title="Alterar Vaga">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#modalDeleteVaga'.$vaga_id.'" data-toggle="modal" title="Excluir Vaga">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>';
-
-            // Gerar modais apenas para admin e dono
-            if ($idTipoUsuario == 1 || $idTipoUsuario == 3) {
-                // Modal de edição
+                </div>';
+                
+                // Modais de Edição e Exclusão (mantidos no loop, gerados para cada vaga)
+                // Usamos os IDs únicos dos modais.
                 $lista .= '
                 <div class="modal fade" id="modalEditVaga'.$vaga_id.'">
                     <div class="modal-dialog modal-lg">
@@ -123,8 +118,14 @@
                                                 <label for="editEmpresa'.$vaga_id.'">Empresa:</label>
                                                 <select name="nEmpresa" id="editEmpresa'.$vaga_id.'" class="form-control" required>
                                                     <option value="'.$id_empresa.'">'.$empresa_nome.'</option>';
+<<<<<<< HEAD
                     $lista .= optionEmpresa();
                     $lista .= '
+=======
+                                                    // optionEmpresa() já gera todas as outras opções, mantendo a função original
+                                $lista .=              optionEmpresa();
+                                $lista .= '
+>>>>>>> ed3c60125e62d1443038dc2dd1895940f0901a03
                                                 </select>
                                             </div>
                                         </div>';
@@ -155,12 +156,12 @@
                                     </div>
                                     
                                 </form>
+                                
                             </div>
                         </div>
                     </div>
                 </div>';
-
-                // Modal de exclusão
+                
                 $lista .= '
                 <div class="modal fade" id="modalDeleteVaga'.$vaga_id.'">
                     <div class="modal-dialog">
@@ -183,17 +184,19 @@
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
                                         <button type="submit" class="btn btn-success">Sim</button>
                                     </div>
+                                    
                                 </form>
+                                
                             </div>
                         </div>
                     </div>
-                </div>';
+                </div>';                
             }
         }
-    }
 
-    return $lista;
-}
+        return $lista;
+    }
+    
     function optionEmpresa(){
 
         $option = "";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/05/2025 às 01:59
+-- Tempo de geração: 03/06/2025 às 02:11
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -131,9 +131,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `foto`, `flg_ativo`, `fk_id_empresa`, `fk_id_tipo_usuario`) VALUES
-(1, 'Usuario', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-1.png', 'S', 1, 1),
+(1, 'Pedro Elias', 'pedro@teste.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-1.jpg', 'S', 1, 1),
 (2, 'henrique', 'henrique@email.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-2.jpg', 'S', 2, 2),
-(3, 'parkway', 'parkway@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-3.png', 'S', 3, 3),
+(3, 'ParkWay Systems', 'parkway@gmail.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-3.png', 'S', 3, 3),
 (4, 'nicolas', 'nico@las.com', '202cb962ac59075b964b07152d234b70', NULL, 'S', 2, 1),
 (5, 'kleberson', 'kleber@son.com', '202cb962ac59075b964b07152d234b70', 'dist/img/usuarios/foto-5.jpg', 'S', 1, 2);
 
@@ -161,7 +161,7 @@ INSERT INTO `vaga` (`id_vaga`, `descricao`, `situacao`, `flg_ativo`, `fk_id_empr
 (3, 'Vaga03', 'L', 'S', 2),
 (4, 'Vaga04', 'L', 'S', 2),
 (5, 'Vaga05', 'O', 'S', 2),
-(6, 'Vaga06', 'L', 'S', 1);
+(6, 'Vaga06', 'L', 'N', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -233,7 +233,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `vaga`
 --
 ALTER TABLE `vaga`
-  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga', AUTO_INCREMENT=7;
+  MODIFY `id_vaga` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da vaga', AUTO_INCREMENT=8;
 
 --
 -- Restrições para tabelas despejadas
