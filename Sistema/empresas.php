@@ -52,7 +52,7 @@
                   </div>
                   
                   <div class="col-3" align="right">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#novaEmpresaModal">
+                    <button type="button" class="btn btn-verde-escuro" data-toggle="modal" data-target="#novaEmpresaModal">
                       Nova Empresa
                     </button>
                   </div>
@@ -64,7 +64,7 @@
 
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="tabela" class="table table-bordered table-hover">
+                <table id="tabela" class="table table-bordered">
                   <thead>
                   <tr>
                       <th>ID</th>
@@ -99,8 +99,8 @@
 
       <div class="modal fade" id="novaEmpresaModal">
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header bg-success">
+          <div class="modal-content dark-modal">
+            <div class="modal-header bg-verde-escuro">
               <h4 class="modal-title">Nova Empresa</h4>
               <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -197,8 +197,8 @@
                 </div>
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                  <button type="submit" class="btn btn-success">Salvar</button>
+                  <button type="button" class="btn btn-vermelho-escuro" data-dismiss="modal">Fechar</button>
+                  <button type="submit" class="btn btn-verde-escuro">Salvar</button>
                 </div>
                 
               </form>
