@@ -100,7 +100,7 @@
                       <div class="col-12">
                         <div class="form-group">
                           <label for="iDescricao">Descrição:</label>
-                          <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="80">
+                          <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="7" required>
                         </div>
                       </div>
 
@@ -168,9 +168,9 @@
                           <label for="iCategoriaAjax">Filtrar por:</label>
                           <select name="nCategoriaAjax" id="iCategoriaAjax" class="form-control" required>
                             <option value="">Selecione...</option>
-                            <option value="">Vagas Livres</option>
-                            <option value="">Vagas Ocupadas</option>
-                            <option value="">Vagas Inativas</option>
+                            <option value="L">Vagas Livres</option>
+                            <option value="O">Vagas Ocupadas</option>
+                            <option value="N">Vagas Inativas</option>
                           </select>
                         </div>
                       </div>
