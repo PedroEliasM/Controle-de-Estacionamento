@@ -73,8 +73,8 @@
                 // O novo HTML para o CARD (widget) - ATENÇÃO AQUI: use $display_situacao_text
                 $lista .= '
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                    <div class="vaga-card ' . $card_class . '">
-                        <div class="vaga-id">ID: '.$vaga_id.'</div>
+                    <div class=" '. reduzTamanhoVagaFuncionario() .' ' . $card_class . '">
+                        ' . mostraIdVaga($vaga_id) . '
                         <div class="vaga-descricao">'.$descricao.'</div>
                         <div class="vaga-status">'.$display_situacao_text.'</div>
                         <div class="vaga-actions">
@@ -949,5 +949,35 @@
         } else {
             return "Sessão não iniciada ou dados do usuário não definidos.";
         }
+    }
+
+    function mostraIdVaga($vaga_id) {
+        $mostraId = "";
+
+        // Apenas mostra se for Dono ou Admin
+        if ($_SESSION['idTipoUsuario'] == 1 || $_SESSION['idTipoUsuario'] == 3){
+            $mostraId = '<div class="vaga-id">ID: '.$vaga_id.'</div>';
+        }elseif ($_SESSION['idTipoUsuario'] == 2) {
+            // Funcionário não vê o ID
+            $mostraId = '';
+        }
+        return $mostraId;
+    }
+
+    function reduzTamanhoVagaFuncionario() {
+        $class_css = "";
+
+        if ($_SESSION['idTipoUsuario'] == 2){
+            // Funcionário
+            $class_css = "vaga-card-funcionario";
+        }else {
+            // Dono e Admin
+            $class_css = "vaga-card";
+        }
+        return $class_css;
+    }
+
+    function botaoNovaVaga() {
+        
     }
 ?>
