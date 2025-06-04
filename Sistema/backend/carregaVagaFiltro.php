@@ -8,24 +8,23 @@
     require_once('conexaoPDO.php');
 
     //Pega o id enviado por GET na URL
-    $idCategoria = isset($_GET['categoria']) ? $_GET['categoria'] : '';
+    $idSituacao = isset($_GET['situacao']) ? $_GET['situacao'] : '';
     
-    if (! empty($idCategoria)){
+    if (! empty($idSituacao)){
         //Monta a lista no banco
-        echo getProdutoCategoria($idCategoria);
+        echo getVagaSituacao($idSituacao);
     }
 
     //Função para montar a lista filtrada
-    function getProdutoCategoria($idCat){
+    function getVagaSituacao($idSit){
         //Conexão PDO
         $pdo = Conectar();
 
         //Consulta SQL
-        $sql = "SELECT idProduto, "
-					." Descricao "
-			." FROM produto "
-			." WHERE idCategoria = ".$idCat
-			." ORDER BY Descricao;";
+        $sql = "SELECT id_vaga, descricao 
+			    FROM vaga 
+			    WHERE id_vaga = $idSit
+			    ORDER BY descricao;";
 
         //Executar por PDO
         $stm = $pdo->prepare($sql);

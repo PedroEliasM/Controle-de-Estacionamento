@@ -104,8 +104,8 @@
                     <div class="row">
                       <div class="col-4">
                         <div class="form-group">
-                          <label for="iFiltroVagas">Filtrar por:</label>
-                          <select name="nFiltroVagas" id="iFiltroVagas" class="form-control" required>
+                          <label for="iSituacaoAjax">Filtrar por:</label>
+                          <select name="nSituacaoAjax" id="iSituacaoAjax" class="form-control" required>
                             <option value="">Selecione...</option>
                             <option value="L">Vagas Livres</option>
                             <option value="O">Vagas Ocupadas</option>
@@ -155,45 +155,45 @@
       $(document).ready(function() {
 
         //Lista dinâmica com Ajax
-        $('#iFiltroVagas').on('change',function(){
+        $('#iSituacaoAjax').on('change',function(){
           //Pega o valor selecionado na lista 1
-          var categoria  = $('#iFiltroVagas').val();
+          var situacao  = $('#iSituacaoAjax').val();
           
           //Prepara a lista 2 filtrada
-          var optionProd = '';
+          var optionVag = '';
                     
           //Valida se teve seleção na lista 1
-          if(categoria != "" && categoria != "0"){
+          if(situacao != "" && situacao != "0"){
             
             //Vai no PHP consultar dados para a lista 2
-            $.getJSON('backend/carregaProdutoCategoria.php?categoria='+categoria,
+            $.getJSON('backend/carregaVagaFiltro.php?situacao='+situacao,
             function (dados){  
               
               //Carrega a primeira option
-              optionProd = '<option value="">Filtrar Vagas por</option>';                  
+              optionVag = '<option value="">Filtrar Vagas por</option>';                  
               
               //Valida o retorno do PHP para montar a lista 2
               if (dados.length > 0){                        
                 
                 //Se tem dados, monta a lista 2
                 $.each(dados, function(i, obj){
-                  optionProd += '<option value="'+obj.idProduto+'">'+obj.Descricao+'</option>';	                            
+                  optionVag += '<option value="'+obj.idVaga+'">'+obj.Descricao+'</option>';	                            
                 })
 
                 //Marca a lista 2 como required e mostra os dados filtrados
-                $('#iProdutoAjax').attr("required", "req");						
-                $('#iProdutoAjax').html(optionProd).show();
+                $('#iFiltroVagas').attr("required", "req");						
+                $('#iFiltroVagas').html(optionVag).show();
               }else{
                 
                 //Não encontrou itens para a lista 2
-                optionProd += '<option value="">Selecione um Produto</option>';
-                $('#iProdutoAjax').html(optionProd).show();
+                optionVag += '<option value="">Selecione uma Vaga</option>';
+                $('#iFiltroVagas').html(optionVag).show();
               }
             })                
           }else{
             //Sem seleção na lista 1 não consulta
-            optionProd += '<option value="">Selecione um Produto</option>';
-            $('#iProdutoAjax').html(optionProd).show();
+            optionVag += '<option value="">Selecione uma Vaga</option>';
+            $('#iFiltroVagas').html(optionVag).show();
           }			
         });
       
