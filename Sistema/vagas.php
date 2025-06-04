@@ -57,7 +57,7 @@
                       </div>
                       
                       <div class="col-6" align="right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#testeAjaxModal">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filtrarVagas">
                           Filtrar Vagas
                         </button>
                         <?php echo botaoNovaVaga(); ?>
@@ -89,11 +89,11 @@
 
           <?php echo renderizarNovaVagaModal(); ?>
 
-          <div class="modal fade" id="testeAjaxModal">
+          <div class="modal fade" id="filtrarVagas">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header bg-primary">
-                  <h4 class="modal-title">Teste Ajax</h4>
+                  <h4 class="modal-title">Filtro de Vagas</h4>
                   <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -104,8 +104,8 @@
                     <div class="row">
                       <div class="col-4">
                         <div class="form-group">
-                          <label for="iCategoriaAjax">Filtrar por:</label>
-                          <select name="nCategoriaAjax" id="iCategoriaAjax" class="form-control" required>
+                          <label for="iFiltroVagas">Filtrar por:</label>
+                          <select name="nFiltroVagas" id="iFiltroVagas" class="form-control" required>
                             <option value="">Selecione...</option>
                             <option value="L">Vagas Livres</option>
                             <option value="O">Vagas Ocupadas</option>
@@ -155,9 +155,9 @@
       $(document).ready(function() {
 
         //Lista dinâmica com Ajax
-        $('#iCategoriaAjax').on('change',function(){
+        $('#iFiltroVagas').on('change',function(){
           //Pega o valor selecionado na lista 1
-          var categoria  = $('#iCategoriaAjax').val();
+          var categoria  = $('#iFiltroVagas').val();
           
           //Prepara a lista 2 filtrada
           var optionProd = '';

@@ -44,4 +44,27 @@ function qtdCategoria(){
     return $qtd;
 
 }
+
+//Função para descrição de categoria
+function descrCategoria($id){
+
+    $descr = '';
+    
+    include("conexao.php");
+    $sql = "SELECT Descricao FROM categoria WHERE idCategoria = ".$id.";";  
+    
+    $result = mysqli_query($conn,$sql);
+    mysqli_close($conn);
+
+    //Validar se tem retorno do BD
+    if (mysqli_num_rows($result) > 0) {
+        
+        foreach ($result as $coluna) {            
+            $descr = $coluna['Descricao'];
+        }        
+    } 
+
+    return $descr;
+
+}
 ?>
