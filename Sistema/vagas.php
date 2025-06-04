@@ -60,9 +60,7 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#testeAjaxModal">
                           Filtrar Vagas
                         </button>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#novaVagaModal">
-                          Nova Vaga
-                        </button>
+                        <?php echo botaoNovaVaga(); ?>
                       </div>
 
                     </div>
@@ -89,71 +87,7 @@
           </div>
           <!-- /.container-fluid -->
 
-          <div class="modal fade" id="novaVagaModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header bg-success">
-                  <h4 class="modal-title">Nova Vaga</h4>
-                  <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form method="POST" action="backend/salvarVaga.php?funcao=I" enctype="multipart/form-data">              
-                    
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group">
-                          <label for="iDescricao">Descrição:</label>
-                          <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="7" required>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="form-group">
-                          <label for="iSituacao">Situação:</label>
-                          <select name="nSituacao" id="iSituacao" class="form-control" required>
-                            <option value="">Selecione...</option>
-                            <option value="L">Livre</option>
-                            <option value="O">Ocupada</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="col-8">
-                        <div class="form-group">
-                          <label for="iEmpresa">Empresa:</label>
-                          <select name="nEmpresa" id="iEmpresa" class="form-control" required>
-                            <option value="">Selecione...</option>
-                            <?php echo optionEmpresa();?>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="form-group">
-                          <input type="checkbox" id="iAtivo" name="nAtivo">
-                          <label for="iAtivo">Vaga Ativa</label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                      <button type="submit" class="btn btn-success">Salvar</button>
-                    </div>
-                    
-                  </form>
-
-                </div>
-                
-              </div>
-              <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-          </div>
-          <!-- /.modal -->
+          <?php echo renderizarNovaVagaModal(); ?>
 
           <div class="modal fade" id="testeAjaxModal">
             <div class="modal-dialog">

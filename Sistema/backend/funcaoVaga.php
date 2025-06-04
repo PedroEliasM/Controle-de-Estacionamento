@@ -78,12 +78,7 @@
                         <div class="vaga-descricao">'.$descricao.'</div>
                         <div class="vaga-status">'.$display_situacao_text.'</div>
                         <div class="vaga-actions">
-                            <a href="#modalEditVaga'.$vaga_id.'" data-toggle="modal" title="Alterar Vaga">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="#modalDeleteVaga'.$vaga_id.'" data-toggle="modal" title="Excluir Vaga">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            '. mostraVagaActions($vaga_id) .'
                         </div>
                     </div>
                 </div>';
@@ -964,6 +959,26 @@
         return $mostraId;
     }
 
+    function mostraVagaActions($vaga_id) {
+        $vaga_actions = "";
+    
+        if ($_SESSION['idTipoUsuario'] == 2) {
+            // Funcionário não tem ações de Editar e Excluir
+            $vaga_actions = "";
+        } else {
+            // Dono e Admin tem ações de Editar e Excluir
+            $vaga_actions = "
+                <a href=\"#modalEditVaga{$vaga_id}\" data-toggle=\"modal\" title=\"Alterar Vaga\">
+                    <i class=\"fas fa-edit\"></i>
+                </a>
+                <a href=\"#modalDeleteVaga{$vaga_id}\" data-toggle=\"modal\" title=\"Excluir Vaga\">
+                    <i class=\"fas fa-trash\"></i>
+                </a>
+            ";
+        }
+        return $vaga_actions;
+    }
+
     function reduzTamanhoVagaFuncionario() {
         $class_css = "";
 
@@ -978,6 +993,99 @@
     }
 
     function botaoNovaVaga() {
-        
+        $botao_vaga = "";
+    
+        if ($_SESSION['idTipoUsuario'] == 2) {
+            // Funcionário
+            $botao_vaga = "";
+        } else {
+            // Dono e Admin
+            $botao_vaga = "
+                <button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#novaVagaModal\">
+                    Nova Vaga
+                </button>
+            ";
+        }
+        return $botao_vaga;
+    }
+
+    function renderizarNovaVagaModal() {
+        $nova_modal = "";
+    
+        if ($_SESSION['idTipoUsuario'] == 2) {
+            // Funcionário
+            $nova_modal = "";
+        } else {
+            // Dono e Admin
+            // É importante que a função optionEmpresa() esteja disponível (incluída)
+            // onde renderizarNovaVagaModal() é definida, ou que ela seja incluída aqui.
+    
+            // Se 'optionEmpresa()' está em 'funcoes.php', e 'funcoes.php' já foi incluído
+            // no arquivo principal (como você tem `include('backend/funcoes.php');`),
+            // então ela já está disponível.
+            $options_empresas = optionEmpresa(); // Chama a função e guarda o resultado
+    
+            $nova_modal = "
+                    <div class=\"modal fade\" id=\"novaVagaModal\">
+                        <div class=\"modal-dialog\">
+                        <div class=\"modal-content\">
+                            <div class=\"modal-header bg-success\">
+                            <h4 class=\"modal-title\">Nova Vaga</h4>
+                            <button type=\"button\" class=\"close text-white\" data-dismiss=\"modal\" aria-label=\"Close\">
+                                <span aria-hidden=\"true\">&times;</span>
+                            </button>
+                            </div>
+                            <div class=\"modal-body\">
+                            <form method=\"POST\" action=\"backend/salvarVaga.php?funcao=I\" enctype=\"multipart/form-data\">
+                                <div class=\"row\">
+                                <div class=\"col-12\">
+                                    <div class=\"form-group\">
+                                    <label for=\"iDescricao\">Descrição:</label>
+                                    <input type=\"text\" class=\"form-control\" id=\"iDescricao\" name=\"nDescricao\" maxlength=\"7\" required>
+                                    </div>
+                                </div>
+    
+                                <div class=\"col-12\">
+                                    <div class=\"form-group\">
+                                    <label for=\"iSituacao\">Situação:</label>
+                                    <select name=\"nSituacao\" id=\"iSituacao\" class=\"form-control\" required>
+                                        <option value=\"\">Selecione...</option>
+                                        <option value=\"L\">Livre</option>
+                                        <option value=\"O\">Ocupada</option>
+                                    </select>
+                                    </div>
+                                </div>
+    
+                                <div class=\"col-8\">
+                                    <div class=\"form-group\">
+                                    <label for=\"iEmpresa\">Empresa:</label>
+                                    <select name=\"nEmpresa\" id=\"iEmpresa\" class=\"form-control\" required>
+                                        <option value=\"\">Selecione...</option>
+                                        " . $options_empresas . "  </select>
+                                    </div>
+                                </div>
+    
+                                <div class=\"col-12\">
+                                    <div class=\"form-group\">
+                                    <input type=\"checkbox\" id=\"iAtivo\" name=\"nAtivo\">
+                                    <label for=\"iAtivo\">Vaga Ativa</label>
+                                    </div>
+                                </div>
+    
+                                </div>
+    
+                                <div class=\"modal-footer\">
+                                <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Fechar</button>
+                                <button type=\"submit\" class=\"btn btn-success\">Salvar</button>
+                                </div>
+    
+                            </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                ";
+        }
+        return $nova_modal;
     }
 ?>
