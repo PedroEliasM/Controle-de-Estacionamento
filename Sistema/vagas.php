@@ -88,7 +88,7 @@
                         <div class="form-group">
                           <label for="iOpcaoFiltro">Filtrar por:</label>
                           <select name="nOpcaoFiltro" id="iOpcaoFiltro" class="form-control">
-                            <option value="">Selecione...</option>
+                            <option value="">Todas as Vagas</option>
                             <option value="L">Vagas Livres</option>
                             <option value="O">Vagas Ocupadas</option>
                             <option value="N">Vagas Inativas</option>

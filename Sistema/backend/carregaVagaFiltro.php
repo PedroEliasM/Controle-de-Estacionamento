@@ -70,30 +70,42 @@
                 $id_empresa = htmlspecialchars($coluna["fk_id_empresa"]);
                 $empresa_nome = descrEmpresa($coluna["fk_id_empresa"]);
 
+                // Garante que $ativo e $icone sempre tenham um valor inicial
+                $ativo = '';
+                $icone = '<h6><i class="fas fa-times-circle text-danger"></i></h6>'; // Valor padrão para 'inativa' ou 'desconhecida'
+
                 if ($flg_ativo == 'S') {
                     $ativo = 'checked';
                     $icone = '<h6><i class="fas fa-check-circle text-success"></i></h6>';
-                } else {
-                    $ativo = '';
-                    $icone = '<h6><i class="fas fa-times-circle text-danger"></i></h6>';
                 }
 
-                $card_class = '';
-                $display_situacao_text = '';
+                // Garante que $card_class, $display_situacao_text e $iconToggle sempre tenham um valor inicial
+                $card_class = 'inativa'; // Valor padrão, caso não caia em nenhuma condição específica
+                $display_situacao_text = 'INATIVA'; // Valor padrão
+                $iconToggle = 'fa-toggle-off text-success'; // Valor padrão, pode ser ajustado se a vaga for inativa e não tiver toggle
 
                 if ($flg_ativo == 'N') {
                     $card_class = 'inativa';
                     $display_situacao_text = 'INATIVA';
+                    // Se a vaga está inativa, o toggle de situação não deve aparecer ou ter uma aparência específica
+                    // Você pode decidir se quer que o ícone de toggle apareça para vagas inativas
+                    // Se não, o valor padrão 'fa-toggle-off text-success' não será usado, pois o mostraVagaActions já lida com isso.
+                    // Mas é importante que $iconToggle esteja definido para evitar o Warning.
                 } else {
                     if ($situacao == 'L') {
                         $card_class = 'livre';
                         $display_situacao_text = 'LIVRE';
+                        $iconToggle = 'fa-toggle-off text-success'; // Ícone para trocar para ocupada
                     } elseif ($situacao == 'O') {
                         $card_class = 'ocupada';
                         $display_situacao_text = 'OCUPADA';
+                        $iconToggle = 'fa-toggle-on text-danger'; // Ícone para trocar para livre
                     } else {
-                        $card_class = 'inativa';
+                        // Caso um valor inesperado para $situacao (e flg_ativo é 'S')
+                        $card_class = 'inativa'; // Pode ser uma classe para 'erro' ou 'desconhecida' se tiver CSS para isso
                         $display_situacao_text = 'DESCONHECIDA';
+                        // Para situação desconhecida, defina um ícone padrão ou um que indique erro
+                        $iconToggle = 'fa-question-circle text-warning'; // Exemplo: um ponto de interrogação
                     }
                 }
 
@@ -104,7 +116,7 @@
                         <div class="vaga-descricao">'.$descricao.'</div>
                         <div class="vaga-status">'.$display_situacao_text.'</div>
                         <div class="vaga-actions">
-                            '. mostraVagaActions($vaga_id) .'
+                            '. mostraVagaActions($vaga_id, $iconToggle, $card_class) .'
                         </div>
                     </div>
                 </div>';
