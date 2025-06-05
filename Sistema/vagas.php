@@ -37,13 +37,8 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <div class="content-header">
-          <!-- Espaço -->
-        </div>
-        <!-- /.content-header -->
-
-        <!-- Main content -->
+          </div>
         <section class="content">
           <div class="container-fluid">
             <div class="row">
@@ -51,11 +46,11 @@
                 <div class="card">
                   <div class="card-header">
                     <div class="row">
-                      
+
                       <div class="col-6">
                         <h3 class="card-title">Vagas</h3>
                       </div>
-                      
+
                       <div class="col-6" align="right">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filtrarVagas">
                           Filtrar Vagas
@@ -66,27 +61,15 @@
                     </div>
                   </div>
 
-                  
-
-                  <!-- /.card-header -->
                   <div class="card-body vagas-container">
-                      <div class="row">
-
+                      <div class="row" id="vagas-list-area">
                           <?php echo listaVagas(); ?>
-
                       </div>
                   </div>
-                  <!-- /.card-body -->
+                  </div>
                 </div>
-                <!-- /.card -->
-                
               </div>
-              <!-- /.col -->
             </div>
-            <!-- /.row -->
-          </div>
-          <!-- /.container-fluid -->
-
           <?php echo renderizarNovaVagaModal(); ?>
 
           <div class="modal fade" id="filtrarVagas">
@@ -99,13 +82,12 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form method="POST" action="#" enctype="multipart/form-data">              
-                    
+                  <form method="POST" action="#" enctype="multipart/form-data" id="formFiltroVagas">
                     <div class="row">
-                      <div class="col-4">
+                      <div class="col-12">
                         <div class="form-group">
-                          <label for="iSituacaoAjax">Filtrar por:</label>
-                          <select name="nSituacaoAjax" id="iSituacaoAjax" class="form-control" required>
+                          <label for="iOpcaoFiltro">Filtrar por:</label>
+                          <select name="nOpcaoFiltro" id="iOpcaoFiltro" class="form-control">
                             <option value="">Selecione...</option>
                             <option value="L">Vagas Livres</option>
                             <option value="O">Vagas Ocupadas</option>
@@ -113,29 +95,22 @@
                           </select>
                         </div>
                       </div>
-
-
                     </div>
 
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
                       <button type="submit" class="btn btn-success">Filtrar</button>
                     </div>
-                    
+
                   </form>
 
-                  </div>
-                  
-              </div>
-              <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-          </div>
-          <!-- /.modal fade -->
+                </div>
 
-        </section>
-        <!-- /.content -->
-      </div>
+              </div>
+              </div>
+            </div>
+          </section>
+        </div>
       <!-- /.content-wrapper -->
           
       <!-- Control Sidebar -->
@@ -154,49 +129,34 @@
       //== Inicialização
       $(document).ready(function() {
 
-        //Lista dinâmica com Ajax
-        $('#iSituacaoAjax').on('change',function(){
-          //Pega o valor selecionado na lista 1
-          var situacao  = $('#iSituacaoAjax').val();
-          
-          //Prepara a lista 2 filtrada
-          var optionVag = '';
-                    
-          //Valida se teve seleção na lista 1
-          if(situacao != "" && situacao != "0"){
-            
-            //Vai no PHP consultar dados para a lista 2
-            $.getJSON('backend/carregaVagaFiltro.php?situacao='+situacao,
-            function (dados){  
-              
-              //Carrega a primeira option
-              optionVag = '<option value="">Filtrar Vagas por</option>';                  
-              
-              //Valida o retorno do PHP para montar a lista 2
-              if (dados.length > 0){                        
-                
-                //Se tem dados, monta a lista 2
-                $.each(dados, function(i, obj){
-                  optionVag += '<option value="'+obj.idVaga+'">'+obj.Descricao+'</option>';	                            
-                })
+        // O evento de submit do formulário agora vai enviar o formulário para o PHP
+        $('#formFiltroVagas').submit(function(e) {
+          e.preventDefault(); // Evita o submit padrão do formulário
 
-                //Marca a lista 2 como required e mostra os dados filtrados
-                $('#iFiltroVagas').attr("required", "req");						
-                $('#iFiltroVagas').html(optionVag).show();
-              }else{
-                
-                //Não encontrou itens para a lista 2
-                optionVag += '<option value="">Selecione uma Vaga</option>';
-                $('#iFiltroVagas').html(optionVag).show();
-              }
-            })                
-          }else{
-            //Sem seleção na lista 1 não consulta
-            optionVag += '<option value="">Selecione uma Vaga</option>';
-            $('#iFiltroVagas').html(optionVag).show();
-          }			
+          var opcaoFiltro = $('#iOpcaoFiltro').val();
+
+          // REMOVA O BLOCO 'if (opcaoFiltro !== "" && opcaoFiltro !== "0")'
+          // e o 'else' correspondente que exibe a mensagem de erro.
+          // O PHP agora lida com 'opcaoFiltro' vazio.
+
+          // Requisição Ajax para carregar as vagas filtradas
+          $.ajax({
+            url: 'backend/carregaVagaFiltro.php',
+            type: 'GET',
+            data: { opcaoFiltro: opcaoFiltro }, // Passa o valor (pode ser vazio, como "")
+            success: function(response) {
+              // Insere o HTML retornado no div que lista as vagas
+              $('#vagas-list-area').html(response);
+              $('#filtrarVagas').modal('hide'); // Fecha o modal após o filtro
+            },
+            error: function(xhr, status, error) {
+              console.error("Erro ao carregar vagas filtradas: " + error);
+              // Melhorar a mensagem de erro para o usuário se necessário
+              $('#vagas-list-area').html('<div class="col-12"><p class="text-center text-danger">Erro ao carregar vagas. Tente novamente.</p></div>');
+            }
+          });
         });
-      
+
       });
     </script>
 

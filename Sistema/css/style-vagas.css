@@ -125,7 +125,7 @@
   }
   
   /* Estilos para os cards de vaga */
-  .vaga-card-funcionario {
+  .vaga-card-usuarios {
     border-radius: 10px;
     padding: 20px;
     padding-top: 2rem;
@@ -145,51 +145,51 @@
     max-height: 9.375rem; /* Altura máxima para o card (162.3px) */
     vertical-align: top; /* Alinha os cards ao topo */
   }
-  .vaga-card-funcionario:hover {
+  .vaga-card-usuarios:hover {
       /*box-shadow: 4px 4px 10px rgba(0,0,0,0.3); /* Sombra mais intensa ao passar o mouse */
       transform: scale(1.02); /* Leve aumento de tamanho ao passar o mouse */
   }
   
-  .vaga-card-funcionario.inativa {
+  .vaga-card-usuarios.inativa {
       background-color: rgba(0, 0, 0, 1); /* Verde claro */
       box-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
       /*background-color: rgba(128, 128, 128, 1); /* Cinza */
       /* Hexadecimal: #808080 / RGBA: rgba(128, 128, 128, 1) */
   }
-      .vaga-card-funcionario.inativa .vaga-status {
+      .vaga-card-usuarios.inativa .vaga-status {
           color: rgba(128, 128, 128, 1) !important;
       }
-          .vaga-card-funcionario.inativa:hover {
+          .vaga-card-usuarios.inativa:hover {
               box-shadow: 0px 0px 10px rgba(255, 255, 255, 1); /* Sombra mais intensa ao passar o mouse */
           }
   
-  .vaga-card-funcionario.livre {
+  .vaga-card-usuarios.livre {
       background-color: rgba(0, 0, 0, 1); /* Verde claro */
       box-shadow: 0px 0px 10px rgba(144, 238, 144, 1);
       /*background-color: rgba(144, 238, 144, 1); /* Verde claro */
       /* Hexadecimal: #90EE90 / RGBA: rgba(144, 238, 144, 1) */
   }
-      .vaga-card-funcionario.livre .vaga-status {
+      .vaga-card-usuarios.livre .vaga-status {
           color: rgba(144, 238, 144, 1) !important;
       }
-          .vaga-card-funcionario.livre:hover {
+          .vaga-card-usuarios.livre:hover {
               box-shadow: 0px 0px 10px rgba(144, 238, 144, 1); /* Sombra mais intensa ao passar o mouse */
           }
   
-  .vaga-card-funcionario.ocupada {
+  .vaga-card-usuarios.ocupada {
       background-color: rgba(0, 0, 0, 1); /* Verde claro */
       box-shadow: 0px 0px 10px rgba(220, 20, 60, 1);
       /*background-color: rgba(220, 20, 60, 1); /* Vermelho */
       /* Hexadecimal: #DC143C / RGBA: rgba(220, 20, 60, 1) */
   }
-      .vaga-card-funcionario.ocupada .vaga-status {
+      .vaga-card-usuarios.ocupada .vaga-status {
           color: rgba(220, 20, 60, 1) !important;
       }
-          .vaga-card-funcionario.ocupada:hover {
+          .vaga-card-usuarios.ocupada:hover {
               box-shadow: 0px 0px 10px rgba(220, 20, 60, 1); /* Sombra mais intensa ao passar o mouse */
           }
   
-  .vaga-card-funcionario .vaga-id {
+  .vaga-card-usuarios .vaga-id {
       font-size: 1em;
       margin-bottom: 10px;
   
@@ -197,7 +197,7 @@
       display: inline-block;
   }
   
-  .vaga-card-funcionario .vaga-descricao {
+  .vaga-card-usuarios .vaga-descricao {
     font-size: 1.5em;
     margin-bottom: 10px;
     border: 2px solid rgba(255, 255, 255, 0.5);
@@ -206,14 +206,14 @@
     display: inline-block;
   }
   
-  .vaga-card-funcionario .vaga-status {
+  .vaga-card-usuarios .vaga-status {
       font-size: 1.1em;
       margin-top: 5px;
       padding-bottom: 1em;
       text-transform: uppercase;
   }
   
-  .vaga-card-funcionario .vaga-actions {
+  .vaga-card-usuarios .vaga-actions {
       position: absolute;
       bottom: -1.7rem;
       left: 50%;
@@ -222,18 +222,18 @@
       gap: 20px; /* Espaçamento entre os ícones */
   }
   
-  .vaga-card-funcionario .vaga-actions a .fa-edit{
+  .vaga-card-usuarios .vaga-actions a .fa-edit{
       color: rgba(0, 140, 255, 1);
       font-size: 1.2em;
   }
-  .vaga-card-funcionario .vaga-actions a .fa-trash{
+  .vaga-card-usuarios .vaga-actions a .fa-trash{
       color: rgba(220, 0, 0, 1);
       font-size: 1.2em;
   }
   
-  .vaga-card-funcionario .vaga-actions a .fa-edit:hover {
+  .vaga-card-usuarios .vaga-actions a .fa-edit:hover {
       color: rgba(0, 80, 255, 1);
   }
-  .vaga-card-funcionario .vaga-actions a .fa-trash:hover {
+  .vaga-card-usuarios .vaga-actions a .fa-trash:hover {
       color: rgba(255, 10, 10, 1);
   }

@@ -15,7 +15,6 @@
     }
 
     // Inclui outras funções necessárias
-    include("funcaoCategoria.php");
     include("funcaoTipoUsuario.php");
     include("funcaoUsuario.php");
     include("funcaoEmpresa.php");

@@ -69,8 +69,10 @@
                         $display_situacao_text = 'DESCONHECIDA';
                     }
                 }
+
+                // Ícone toggle para o botão trocar situação
+                $iconToggle = ($situacao == 'L') ? 'fa-toggle-off text-success' : 'fa-toggle-on text-danger';
             
-                // O novo HTML para o CARD (widget) - ATENÇÃO AQUI: use $display_situacao_text
                 $lista .= '
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                     <div class=" '. reduzTamanhoVagaFuncionario() .' ' . $card_class . '">
@@ -78,6 +80,10 @@
                         <div class="vaga-descricao">'.$descricao.'</div>
                         <div class="vaga-status">'.$display_situacao_text.'</div>
                         <div class="vaga-actions">
+                            <!-- Botão trocar situação disponível para todos -->
+                            <a href="backend/trocarSituacaoVaga.php?id='.$vaga_id.'" title="Trocar Situação" class="ml-2">
+                                <i class="fas '.$iconToggle.'" style="font-size: 1.3em; cursor: pointer;"></i>
+                            </a>
                             '. mostraVagaActions($vaga_id) .'
                         </div>
                     </div>
@@ -949,11 +955,11 @@
     function mostraIdVaga($vaga_id) {
         $mostraId = "";
 
-        // Apenas mostra se for Dono ou Admin
-        if ($_SESSION['idTipoUsuario'] == 1 || $_SESSION['idTipoUsuario'] == 3){
+        // Apenas mostra se for Dono
+        if ($_SESSION['idTipoUsuario'] == 3){
             $mostraId = '<div class="vaga-id">ID: '.$vaga_id.'</div>';
-        }elseif ($_SESSION['idTipoUsuario'] == 2) {
-            // Funcionário não vê o ID
+        }elseif ($_SESSION['idTipoUsuario'] == 1 || $_SESSION['idTipoUsuario'] == 2) {
+            // Admin e Funcionário não vê o ID
             $mostraId = '';
         }
         return $mostraId;
@@ -982,11 +988,11 @@
     function reduzTamanhoVagaFuncionario() {
         $class_css = "";
 
-        if ($_SESSION['idTipoUsuario'] == 2){
-            // Funcionário
-            $class_css = "vaga-card-funcionario";
+        if ($_SESSION['idTipoUsuario'] == 1 or $_SESSION['idTipoUsuario'] == 2){
+            // Admin e Funcionário
+            $class_css = "vaga-card-usuarios";
         }else {
-            // Dono e Admin
+            // Dono
             $class_css = "vaga-card";
         }
         return $class_css;
@@ -1088,4 +1094,5 @@
         }
         return $nova_modal;
     }
+
 ?>
