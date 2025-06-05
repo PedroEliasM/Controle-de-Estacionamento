@@ -65,21 +65,23 @@
                         <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="80" value="<?php echo $_SESSION['relatVagasDescr'];?>">
                       </div>
                     </div>
-
+                  
+            
+                    
                     <div class="col-3">
                       <div class="form-group">
-                        <label for="iCategoria">Categoria:</label>
-                        <select name="nCategoria" id="iCategoria" class="form-control">
-                          <?php if($_SESSION['relatVagasIdCat'] != '0' && $_SESSION['relatVagasIdCat'] != ''){ ?>
-                            <option value="<?php echo $_SESSION['relatVagasIdCat']; ?>"><?php echo descrCategoria($_SESSION['relatVagasIdCat']); ?></option>
+                        <label for="iEmpresa">Empresa:</label>
+                        <select name="nEmpresa" id="iEmpresa" class="form-control">
+                          <?php if($_SESSION['relatVagasEmpr'] != '0' && $_SESSION['relatVagasEmpr'] != ''){ ?>
+                            <option value="<?php echo $_SESSION['relatVagasEmpr']; ?>"><?php echo descrEmpresa($_SESSION['relatVagasEmpr']); ?></option>
                           <?php } ?>
                           <option value="0">Todas</option>
-                          <?php echo optionCategoria();?>
+                          <?php echo optionEmpresa();?>
                         </select>
                       </div>
                     </div>
 
-                    <div class="col-2">
+                    <!--<div class="col-2">
                       <div class="form-group">
                         <label for="iQtdMin">Qtd. Mínima:</label>
                         <input type="number" class="form-control" id="iQtdMin" name="nQtdMin" min="0" value="<?php echo $_SESSION['relatVagasMin'];?>">
@@ -91,7 +93,7 @@
                         <label for="iQtdMax">Qtd. Máxima:</label>
                         <input type="number" class="form-control" id="iQtdMax" name="nQtdMax" min="0" value="<?php echo $_SESSION['relatVagasMax'];?>">
                       </div>
-                    </div>
+                    </div>-->
 
                   </div>
 
@@ -118,9 +120,9 @@
                   <thead>
                   <tr>
                       <th>ID</th>
-                      <th>Produto</th>
-                      <th>Categoria</th>
-                      <th>Quantidade</th>    
+                      <th>Descrição</th>
+                      <th>Empresa</th>    
+                      <th>Situação</th>    
                   </tr>
                   </thead>
                   <tbody>

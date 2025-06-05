@@ -7,56 +7,60 @@
 
     //Filtros de tela
     $descricao   = $_POST["nDescricao"];
-    $idCategoria = $_POST["nCategoria"];
-    $qtdMin      = $_POST["nQtdMin"];
-    $qtdMax      = $_POST["nQtdMax"];
+    $idEmpresa = $_POST["nEmpresa"];
+    $situacao = $_POST["nSituacao"];
+    //$qtdMin      = $_POST["nQtdMin"];
+    //$qtdMax      = $_POST["nQtdMax"];
 
     //Campos para WHERE
     $whereDescricao   = '';
-    $whereIdCategoria = '';
-    $whereQtdMin      = '';
-    $whereQtdMax      = '';
+    $whereIdEmpresa = '';
+    //$whereQtdMin      = '';
+    //$whereQtdMax      = '';
 
     //Sessões para retorno
     $_SESSION['relatVagas']      = '';
     $_SESSION['relatVagasDescr'] = '';
-    $_SESSION['relatVagasIdCat'] = '';
-    $_SESSION['relatVagasMin']   = '';
-    $_SESSION['relatVagasMax']   = '';
+    $_SESSION['relatVagasIdEmpr'] = '';
+    //$_SESSION['relatVagasMin']   = '';
+    //$_SESSION['relatVagasMax']   = '';
 
     //Validar filtros
     if($descricao != '') {
-        $whereDescricao = " AND pro.Descricao LIKE '%".$descricao."%' ";
+        $whereDescricao = " AND vg.descricao LIKE '%".$descricao."%' ";
     }
 
-    if($idCategoria != '0') {
-        $whereIdCategoria = " AND pro.idCategoria = ".$idCategoria;
+    if($idEmpresa != '0') {
+        $whereIdEmpresa = " AND vg.fk_id_empresa = ".$idEmpresa;
     }
+    
 
-    if($qtdMin != '') {
+    /*if($qtdMin != '') {
         $whereQtdMin = " AND pro.Quantidade >= ".$qtdMin;
     }
 
     if($qtdMax != '') {
         $whereQtdMax = " AND pro.Quantidade <= ".$qtdMax;
-    }
+    }*/
 
 
     include("conexao.php");
 
-    $sql = "SELECT pro.idProduto, "
-            ." pro.Descricao AS Produto, "
-            ." pro.idCategoria, "
-            ." cat.Descricao AS Categoria, "
-            ." pro.Quantidade "
-        ." FROM produto pro "
-        ." INNER JOIN categoria cat "
-        ." ON cat.idCategoria = pro.idCategoria" 
+    $sql = "SELECT vg.id_vaga, "
+            ." vg.descricao AS Descrição, "
+            ." em.nome AS Nome, "
+            ." em.id_empresa AS IdEmpresa, "
+            ." vg.situacao AS situacao, "
+            ." vg.fk_id_empresa "
+        ." FROM vaga vg "
+        ." INNER JOIN empresa em "
+        ." ON em.id_empresa = vg.fk_id_empresa " 
         ." WHERE 1 = 1 "
         .$whereDescricao
-        .$whereIdCategoria
-        .$whereQtdMin
-        .$whereQtdMax.";";
+        .$whereIdEmpresa
+        //.$whereQtdMin
+        //.$whereQtdMax
+        .";";
             
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
@@ -71,10 +75,10 @@
             //***Verificar os dados da consulta SQL
             $lista .= 
             '<tr>'
-                .'<td>'.$coluna["idProduto"].'</td>'
-                .'<td>'.$coluna["Produto"].'</td>'
-                .'<td>'.$coluna["Categoria"].'</td>'
-                .'<td>'.$coluna["Quantidade"].'</td>'
+                .'<td>'.$coluna["id_vaga"].'</td>'
+                .'<td>'.$coluna["Descrição"].'</td>'
+                .'<td>'.$coluna["Nome"].'</td>'
+                .'<td>'.$coluna["situacao"].'</td>'
             .'</tr>';             
                       
         }    
@@ -82,9 +86,9 @@
     
     $_SESSION['relatVagas']      = $lista;
     $_SESSION['relatVagasDescr'] = $descricao;
-    $_SESSION['relatVagasIdCat'] = $idCategoria;
-    $_SESSION['relatVagasMin']   = $qtdMin;
-    $_SESSION['relatVagasMax']   = $qtdMax;
+    $_SESSION['relatVagasIdEmpr'] = $idEmpresa;
+    //$_SESSION['relatVagasMin']   = $qtdMin;
+    //$_SESSION['relatVagasMax']   = $qtdMax;
 
     header("location: ../relatorio-vagas.php");
 
