@@ -42,12 +42,16 @@
                 //Ativo: S ou N
                 //if($coluna["FlgAtivo"] == 'S')  $ativo = 'checked'; else $ativo = '';
                 if($coluna["flg_ativo"] == 'S'){  
-                    $ativo = 'checked';
+                    $ativo_checked = 'checked';
                     $icone = '<h6><i class="fas fa-check-circle text-success"></i></h6>'; 
                 }else{
-                    $ativo = '';
+                    $ativo_checked = '';
                     $icone = '<h6><i class="fas fa-times-circle text-danger"></i></h6>';
                 } 
+
+                // Variável para determinar se o checkbox de 'Vaga Ativa' deve ser desabilitado
+                // Se a situação for 'O' (Ocupada), o checkbox deve estar desabilitado.
+                $ativo_disabled = ($situacao == 'O') ? 'disabled' : ''; 
             
                 $card_class = '';
                 $display_situacao_text = ''; // Variável para o texto que aparece no card ('LIVRE', 'OCUPADA', 'INATIVA')
@@ -131,8 +135,14 @@
                                     
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="checkbox" id="editAtivo'.$vaga_id.'" name="nAtivo" '.$ativo.'>
+                                                <input type="checkbox" id="editAtivo'.$vaga_id.'" name="nAtivo" '.$ativo_checked.' '.$ativo_disabled.'>
                                                 <label for="editAtivo'.$vaga_id.'">Vaga Ativa</label>
+                                                ';
+                                                // NOVO: Adiciona uma mensagem se o checkbox estiver desabilitado
+                                                if ($situacao == 'O') {
+                                                    $lista .= '<small class="text-danger ml-2">Vaga ocupada não pode ser inativada.</small>';
+                                                }
+                                                $lista .= '
                                             </div>
                                         </div>
                                     </div>
