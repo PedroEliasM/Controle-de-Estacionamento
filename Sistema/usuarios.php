@@ -109,7 +109,7 @@
                       <div class="col-8">
                         <div class="form-group">
                           <label for="iNome">Nome:</label>
-                          <input type="text" class="form-control" id="iNome" name="nNome" maxlength="30">
+                          <input type="text" class="form-control" id="iNome" name="nNome" maxlength="30" required>
                         </div>
                       </div>
 
@@ -126,14 +126,14 @@
                       <div class="col-8">
                         <div class="form-group">
                           <label for="iEmail">Email:</label>
-                          <input type="email" class="form-control" id="iEmail" name="nEmail" maxlength="30">
+                          <input type="email" class="form-control" id="iEmail" name="nEmail" maxlength="30" required>
                         </div>
                       </div>
 
                       <div class="col-4">
                         <div class="form-group">
                           <label for="iSenha">Senha:</label>
-                          <input type="text" class="form-control" id="iSenha" name="nSenha" maxlength="6">
+                          <input type="text" class="form-control" id="iSenha" name="nSenha" maxlength="6" required>
                         </div>
                       </div>
                     
