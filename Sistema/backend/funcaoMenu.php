@@ -7,12 +7,15 @@ function montaMenu($n1,$n2){
     
     $menuAdmin = '';
     $acaoAdmin = '';
+    $menuRelatorio  = '';
+    $acaoRelatorio  = '';
 
     $opcPainel        = '';
     $opcPainelSimples = '';
     $opcUsuarios      = '';
     $opcVagas         = '';
     $opcEmpresas      = '';
+    $opcRelatVagas      = '';
     $opcPerfil        = '';
     
     //Primeiro nível do menu
@@ -20,6 +23,11 @@ function montaMenu($n1,$n2){
         case 'administrador':
             $menuAdmin = 'menu-open';
             $acaoAdmin = 'active';
+            break;
+
+        case 'relatorio':
+            $menuRelatorio = 'menu-open';
+            $acaoRelatorio = 'active';
             break;
         
         default:
@@ -117,6 +125,25 @@ function montaMenu($n1,$n2){
                     </li>              
                 </ul>
 
+            </li>
+
+            <li class="nav-item '.$menuRelatorio.'">
+                <a href="#" class="nav-link '.$acaoRelatorio.'">
+                    <i class="nav-icon fas fa-print"></i>
+                    <p>
+                        Relatórios
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="./relatorio-vagas.php" class="nav-link '.$opcRelatVagas.'">
+                        <i class="fas fa-file-alt nav-icon"></i>
+                        <p>Vagas</p>
+                        </a>
+                    </li>              
+                </ul>
             </li>
 
             <li class="nav-item">
