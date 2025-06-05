@@ -80,11 +80,7 @@
                         <div class="vaga-descricao">'.$descricao.'</div>
                         <div class="vaga-status">'.$display_situacao_text.'</div>
                         <div class="vaga-actions">
-                            <!-- Botão trocar situação disponível para todos -->
-                            <a href="backend/trocarSituacaoVaga.php?id='.$vaga_id.'" title="Trocar Situação" class="ml-2">
-                                <i class="fas '.$iconToggle.'" style="font-size: 1.3em; cursor: pointer;"></i>
-                            </a>
-                            '. mostraVagaActions($vaga_id) .'
+                            '. mostraVagaActions($vaga_id, $iconToggle, $card_class) .'
                         </div>
                     </div>
                 </div>';
@@ -965,15 +961,24 @@
         return $mostraId;
     }
 
-    function mostraVagaActions($vaga_id) {
+    function mostraVagaActions($vaga_id, $iconToggle, $card_class) {
         $vaga_actions = "";
     
-        if ($_SESSION['idTipoUsuario'] == 2) {
-            // Funcionário não tem ações de Editar e Excluir
-            $vaga_actions = "";
-        } else {
-            // Dono e Admin tem ações de Editar e Excluir
+        // Primeiro é construído o HTML para o botão de trocar situação, se aplicável
+        $trocar_situacao_button = "";
+        // O botão de trocar situação SÓ DEVE APARECER se a vaga NÃO estiver inativa
+        if ($card_class != "inativa") {
+            $trocar_situacao_button = "
+                <a href=\"backend/trocarSituacaoVaga.php?id={$vaga_id}\" title=\"Trocar Situação\" class=\"ml-2\">
+                    <i class=\"fas {$iconToggle}\" style=\"font-size: 1.3em; cursor: pointer;\"></i>
+                </a>
+            ";
+        }
+
+        // Agora é adicionado os botões de Editar e Excluir APENAS para Admin ou Dono
+        if ($_SESSION['idTipoUsuario'] == 1 || $_SESSION['idTipoUsuario'] == 3) {
             $vaga_actions = "
+                {$trocar_situacao_button}
                 <a href=\"#modalEditVaga{$vaga_id}\" data-toggle=\"modal\" title=\"Alterar Vaga\">
                     <i class=\"fas fa-edit\"></i>
                 </a>
@@ -981,14 +986,18 @@
                     <i class=\"fas fa-trash\"></i>
                 </a>
             ";
+        } elseif ($_SESSION['idTipoUsuario'] == 2) {
+            // Funcionário: apenas o botão de trocar situação, se a vaga não estiver inativa
+            $vaga_actions = $trocar_situacao_button;
         }
+
         return $vaga_actions;
     }
 
     function reduzTamanhoVagaFuncionario() {
         $class_css = "";
 
-        if ($_SESSION['idTipoUsuario'] == 1 or $_SESSION['idTipoUsuario'] == 2){
+        if ($_SESSION['idTipoUsuario'] == 1 || $_SESSION['idTipoUsuario'] == 2){
             // Admin e Funcionário
             $class_css = "vaga-card-usuarios";
         }else {
