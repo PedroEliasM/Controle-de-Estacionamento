@@ -26,10 +26,10 @@ function montaMenu($n1,$n2){
             $acaoAdmin = 'active';
             break;
 
-            case 'relatorio':
-                $menuRelatorio = 'menu-open';
-                $acaoRelatorio = 'active';
-                break;
+        case 'relatorio':
+            $menuRelatorio = 'menu-open';
+            $acaoRelatorio = 'active';
+            break;
         
         default:
             # code...
