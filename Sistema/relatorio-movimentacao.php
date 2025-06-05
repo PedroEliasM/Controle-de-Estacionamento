@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projeto Modelo - Relatório de Vagas</title>
+  <title> SA - Relatório de Movimentação</title>
 
   <!-- CSS -->
   <?php include('partes/css.php'); ?>
@@ -25,7 +25,7 @@
   <!-- Sidebar -->
   <?php 
     $_SESSION['menu-n1'] = 'relatorio';
-    $_SESSION['menu-n2'] = 'relatorio-vagas';
+    $_SESSION['menu-n2'] = 'relatorio-movimentacao';
     include('partes/sidebar.php'); 
   ?>
   <!-- Fim Sidebar -->
@@ -48,7 +48,7 @@
                 <div class="row">
                   
                   <div class="col-12">
-                    <h3 class="card-title">Relatório de Vagas</h3>
+                    <h3 class="card-title">Relatório de Movimentação</h3>
                   </div>
 
                 </div>
