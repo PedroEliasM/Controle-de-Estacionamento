@@ -69,8 +69,14 @@
 .vaga-card .vaga-id {
     font-size: 1em;
     margin-bottom: 10px;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+    word-break: break-word;
 
     padding:  0px 0px;
+    padding-inline-start: 2rem;
+    padding-inline-end: 3rem;
     display: inline-block;
 }
 

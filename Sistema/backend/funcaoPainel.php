@@ -37,7 +37,7 @@
 
                         <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-success">Filtrar</button>
+                        <button type="button" class="btn btn-success" id="filtrarEmpresaBtn">Filtrar</button>
                         </div>
                         
                     </form>
@@ -55,7 +55,5 @@
         }
         return $filtro_empresa;
     }
-
-
 
 ?>

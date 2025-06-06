@@ -257,7 +257,7 @@
         return $idVaga;
     }
 
-    function qtdVagasAtivas(){
+    function qtdVagasAtivas($idEmpresa = null){
         $qtd = 0;
 
         include("conexao.php");
@@ -269,9 +269,17 @@
 
             // Ajusta a consulta SQL com base no tipo de usuário
             if ($idTipoUsuario == 3) { // Dono
-                $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S';"; // Lista todas as vagas
+                if ($idEmpresa !== null) {
+                    $idEmpresa = intval($idEmpresa);
+                    $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S' AND fk_id_empresa = $idEmpresa;";
+                } else {
+                // Lista todas as vagas
+                $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S';";
+                }
             } else if ($idTipoUsuario == 2 || $idTipoUsuario == 1) { // Admin ou Funcionário
-                $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S' AND fk_id_empresa = $idEmpresaUsuario;"; // Lista vagas da empresa do usuário
+                // Ignora o filtro, sempre filtra pela empresa do usuário
+                // Lista vagas da empresa do usuário
+                $sql = "SELECT COUNT(*) AS Qtd FROM vaga WHERE flg_ativo = 'S' AND fk_id_empresa = $idEmpresaUsuario;";
             } else {
                 return "Tipo de usuário inválido.";
             }
@@ -1024,7 +1032,7 @@
             // onde renderizarNovaVagaModal() é definida, ou que ela seja incluída aqui.
     
             // Se 'optionEmpresa()' está em 'funcoes.php', e 'funcoes.php' já foi incluído
-            // no arquivo principal (como você tem `include('backend/funcoes.php');`),
+            // no arquivo principal (como tem `include('backend/funcoes.php');`),
             // então ela já está disponível.
             $options_empresas = optionEmpresa(); // Chama a função e guarda o resultado
     
@@ -1070,7 +1078,7 @@
     
                                 <div class=\"col-12\">
                                     <div class=\"form-group\">
-                                    <input type=\"checkbox\" id=\"iAtivo\" name=\"nAtivo\">
+                                    <input type=\"checkbox\" id=\"iAtivo\" name=\"nAtivo\" checked>
                                     <label for=\"iAtivo\">Vaga Ativa</label>
                                     </div>
                                 </div>
@@ -1094,7 +1102,7 @@
             // onde renderizarNovaVagaModal() é definida, ou que ela seja incluída aqui.
     
             // Se 'optionEmpresa()' está em 'funcoes.php', e 'funcoes.php' já foi incluído
-            // no arquivo principal (como você tem `include('backend/funcoes.php');`),
+            // no arquivo principal (como tem `include('backend/funcoes.php');`),
             // então ela já está disponível.
             $options_empresas = optionEmpresa(); // Chama a função e guarda o resultado
     
@@ -1131,7 +1139,7 @@
 
                                 <div class=\"col-12\">
                                     <div class=\"form-group\">
-                                    <input type=\"checkbox\" id=\"iAtivo\" name=\"nAtivo\">
+                                    <input type=\"checkbox\" id=\"iAtivo\" name=\"nAtivo\" checked>
                                     <label for=\"iAtivo\">Vaga Ativa</label>
                                     </div>
                                 </div>

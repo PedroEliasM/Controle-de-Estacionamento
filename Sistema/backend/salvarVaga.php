@@ -16,8 +16,7 @@
     $idVaga         = $_GET["codigo"];
 
     // Determina o status 'ativo' com base no checkbox.
-    // Se o checkbox 'nAtivo' foi marcado e enviado ('on'), então 'S', caso contrário 'N'.
-    $ativo = isset($_POST["nAtivo"]) && $_POST["nAtivo"] == "on" ? "S" : "N";
+    $ativo = isset($_POST["nAtivo"]) ? "S" : "N"; // Sua linha corrigida
 
     //Validar se é Inclusão ou Alteração ou Deletar
     if($funcao == "I"){
@@ -29,12 +28,12 @@
             // INSERT usando Prepared Statements para segurança contra SQL Injection
             $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa) VALUES (?, ?, ?, ?, ?);";
             $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "issii", $idVaga, $descricao, $situacao, $ativo, $idEmpresa);
+            mysqli_stmt_bind_param($stmt, "isssi", $idVaga, $descricao, $situacao, $ativo, $idEmpresa);
         } else if ($_SESSION['idTipoUsuario'] == 1) {
             // INSERT usando Prepared Statements para segurança contra SQL Injection
             $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa) VALUES (?, ?, ?, ?, ?);";
             $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "issii", $idVaga, $descricao, $situacao, $ativo, $_SESSION['idEmpresa']);
+            mysqli_stmt_bind_param($stmt, "isssi", $idVaga, $descricao, $situacao, $ativo, $_SESSION['idEmpresa']);
         }
         if (mysqli_stmt_execute($stmt)) {
             $_SESSION['msg'] = '<p class="text-success">Vaga cadastrada com sucesso!</p>';
