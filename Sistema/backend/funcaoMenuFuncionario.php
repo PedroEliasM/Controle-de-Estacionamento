@@ -7,12 +7,9 @@ function montaMenu($n1,$n2){
     
     $menuFuncionario    = '';
     $acaoFuncionario    = '';
-    $menuRelatorio      = '';
-    $acaoRelatorio      = '';
 
     $opcPainel          = '';
     $opcVagas           = '';
-    $opcRelatVagas      = '';
     $opcPerfil          = '';
     
     //Primeiro nível do menu
@@ -21,11 +18,6 @@ function montaMenu($n1,$n2){
             $menuFuncionario = 'menu-open';
             $acaoFuncionario = 'active';
             break;
-
-            case 'relatorio':
-                $menuRelatorio = 'menu-open';
-                $acaoRelatorio = 'active';
-                break;
     
         default:
             # code...
@@ -40,11 +32,7 @@ function montaMenu($n1,$n2){
 
         case 'vagas':
             $opcVagas = 'active';
-            break;   
-
-        case 'relatorio-vagas':
-            $opcRelatVagas = 'active';
-            break;   
+            break;
 
         case 'perfil':
             $opcPerfil = 'active';
@@ -68,13 +56,17 @@ function montaMenu($n1,$n2){
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
+
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="./painel.php" class="nav-link '.$opcPainel.'">
                         <i class="ion ion-pie-graph nav-icon"></i>
-                        <p>Dados diários</p>    
+                        <p>Dados diários</p>
                         </a>
-                    </li>
+                    </li>              
+                </ul>
+
+                <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="./vagas.php" class="nav-link '.$opcVagas.'">
                         <i class="fas fa-car nav-icon"></i>
@@ -82,25 +74,7 @@ function montaMenu($n1,$n2){
                         </a>
                     </li>              
                 </ul>
-            </li>
-
-            <li class="nav-item '.$menuRelatorio.'">
-                <a href="#" class="nav-link '.$acaoRelatorio.'">
-                    <i class="nav-icon fas fa-print"></i>
-                    <p>
-                        Relatórios
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="./relatorio-vagas.php" class="nav-link '.$opcRelatVagas.'">
-                        <i class="fas fa-file-alt nav-icon"></i>
-                        <p>Vagas</p>
-                        </a>
-                    </li>              
-                </ul>
+                
             </li>
 
             <li class="nav-item">
