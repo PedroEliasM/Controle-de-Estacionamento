@@ -38,12 +38,17 @@
   <!-- Fim Navbar -->
 
   <!-- Sidebar -->
-  <?php 
-    $_SESSION['menu-n1'] = 'administrador';
-    $_SESSION['menu-n2'] = 'painel';
-    include('partes/sidebar.php'); 
-  ?>
-  <!-- Fim Sidebar -->
+      <?php 
+          if ($_SESSION['idTipoUsuario'] == 1 || $_SESSION['idTipoUsuario'] == 3) {
+          $_SESSION['menu-n1'] = 'administrador';
+          } else if ($_SESSION['idTipoUsuario'] == 2) {
+          $_SESSION['menu-n1'] = 'funcionario';
+         } else {
+          $_SESSION['menu-n1'] = ''; // ou outro valor padrão
+      }
+      $_SESSION['menu-n2'] = 'painel'; // submenu que quer ativar
+      include('partes/sidebar.php'); 
+    ?><!-- Fim Sidebar -->
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
