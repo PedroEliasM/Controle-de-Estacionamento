@@ -65,7 +65,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?php echo qtdVagasAtivasDiario();?></h3>
+                <h3><?php echo qtdVagasAtivas();?></h3>
 
                 <p>Vagas Ativas</p>
               </div>
