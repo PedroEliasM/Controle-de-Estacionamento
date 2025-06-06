@@ -16,7 +16,7 @@ function montaMenu($n1,$n2){
     $opcVagas         = '';
     $opcEmpresas      = '';
     $opcRelatVagas      = '';
-    $opcRelatMov      = '';
+    $opcRelatMovi      = '';
     $opcPerfil        = '';
     
     //Primeiro nível do menu
@@ -145,6 +145,16 @@ function montaMenu($n1,$n2){
                         </a>
                     </li>              
                 </ul>
+
+                                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="./relatorio-movimentacao.php" class="nav-link '.$opcRelatMovi.'">
+                        <i class="fas fa-file-alt nav-icon"></i>
+                        <p>Movimentação</p>
+                        </a>
+                    </li>              
+                </ul>
+
             </li>
 
             <li class="nav-item">

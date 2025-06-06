@@ -12,7 +12,8 @@
 
     //Campos para WHERE
     $whereDescricao   = '';
-    $whereIdEmpresa = '';
+    $whereMaxima = '';
+    $whereMinima = '';
     
     //Sessões para retorno
     $_SESSION['relatMovi']      = '';
@@ -24,8 +25,16 @@
         $whereMovimentacao = " AND mv.tipo LIKE '%".$movimentacao."%' ";
     }
 
-    if($minima != '') {
-        $whereMinima = " AND mv.tipo LIKE .$minima. ";
+    if($movimentacao == 'T') {
+        $whereMovimentacao = " AND mv.tipo LIKE '%' ";
+    }
+
+    if ($minima != '') {
+        $where .= " AND mv.data >= '" . $minima . "'";
+    }
+    
+    if ($maxima != '') {
+        $where .= " AND mv.data <= '" . $maxima . "'";
     }
      
     include("conexao.php");
@@ -41,6 +50,7 @@
         ." WHERE 1 = 1 "
 
         .$whereMovimentacao
+        .$where
         .";";
             
     $result = mysqli_query($conn,$sql);
@@ -65,8 +75,6 @@
     }
     
     $_SESSION['relatMovi']      = $lista;
-    $_SESSION['relatVagasDescr'] = $descricao;
-    $_SESSION['relatVagasIdEmpr'] = $idEmpresa;
 
     header("location: ../relatorio-movimentacao.php"); 
 ?>
