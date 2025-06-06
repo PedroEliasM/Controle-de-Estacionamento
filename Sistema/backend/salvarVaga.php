@@ -25,11 +25,17 @@
         //Busca o próximo ID na tabela
         $idVaga = proxIdVaga();
 
-        // INSERT usando Prepared Statements para segurança contra SQL Injection
-        $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa) VALUES (?, ?, ?, ?, ?);";
-        $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "issii", $idVaga, $descricao, $situacao, $ativo, $idEmpresa);
-
+        if ($_SESSION['idTipoUsuario'] == 3) {
+            // INSERT usando Prepared Statements para segurança contra SQL Injection
+            $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa) VALUES (?, ?, ?, ?, ?);";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "issii", $idVaga, $descricao, $situacao, $ativo, $idEmpresa);
+        } else if ($_SESSION['idTipoUsuario'] == 1) {
+            // INSERT usando Prepared Statements para segurança contra SQL Injection
+            $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa) VALUES (?, ?, ?, ?, ?);";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "issii", $idVaga, $descricao, $situacao, $ativo, $_SESSION['idEmpresa']);
+        }
         if (mysqli_stmt_execute($stmt)) {
             $_SESSION['msg'] = '<p class="text-success">Vaga cadastrada com sucesso!</p>';
         } else {
@@ -40,13 +46,13 @@
     } elseif ($funcao == "A") {
 
         // NOVO: Verifica situação e status 'flg_ativo' atuais da vaga no banco de dados (USANDO PREPARED STATEMENT)
-        $query_atual = "SELECT situacao, flg_ativo FROM vaga WHERE id_vaga = ?";
-        $stmt_atual = mysqli_prepare($conn, $query_atual);
-        mysqli_stmt_bind_param($stmt_atual, "i", $idVaga);
-        mysqli_stmt_execute($stmt_atual);
-        $resultado_atual = mysqli_stmt_get_result($stmt_atual);
-        $dadosVagaAtual = mysqli_fetch_assoc($resultado_atual);
-        mysqli_stmt_close($stmt_atual);
+            $query_atual = "SELECT situacao, flg_ativo FROM vaga WHERE id_vaga = ?";
+            $stmt_atual = mysqli_prepare($conn, $query_atual);
+            mysqli_stmt_bind_param($stmt_atual, "i", $idVaga);
+            mysqli_stmt_execute($stmt_atual);
+            $resultado_atual = mysqli_stmt_get_result($stmt_atual);
+            $dadosVagaAtual = mysqli_fetch_assoc($resultado_atual);
+            mysqli_stmt_close($stmt_atual);
 
         $situacaoAtual = $dadosVagaAtual['situacao'] ?? null; // Pega a situação atual do banco
         $flgAtivoAtual = $dadosVagaAtual['flg_ativo'] ?? null; // Pega o flg_ativo atual do banco
@@ -62,10 +68,16 @@
         // FIM DA VALIDAÇÃO
 
         // UPDATE usando Prepared Statements para segurança
-        $sql = "UPDATE vaga SET descricao = ?, situacao = ?, flg_ativo = ?, fk_id_empresa = ? WHERE id_vaga = ?;";
-        $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "sssii", $descricao, $situacao, $ativo, $idEmpresa, $idVaga);
-        
+        if ($_SESSION['idTipoUsuario'] == 3) {
+            $sql = "UPDATE vaga SET descricao = ?, situacao = ?, flg_ativo = ?, fk_id_empresa = ? WHERE id_vaga = ?;";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "sssii", $descricao, $situacao, $ativo, $idEmpresa, $idVaga);
+        } else if ($_SESSION['idTipoUsuario'] == 1) {
+            $sql = "UPDATE vaga SET descricao = ?, situacao = ?, flg_ativo = ?, fk_id_empresa = ? WHERE id_vaga = ?;";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "sssii", $descricao, $situacao, $ativo, $_SESSION['idEmpresa'], $idVaga);
+        }
+
         if (mysqli_stmt_execute($stmt)) {
             $_SESSION['msg'] = '<p class="text-success">Vaga alterada com sucesso!</p>';
 

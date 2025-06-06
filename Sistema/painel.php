@@ -65,7 +65,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?php echo qtdVagasAtivasDiario();?></h3>
+                <h3><?php echo qtdVagasAtivas();?></h3>
 
                 <p>Vagas Ativas</p>
               </div>
@@ -134,9 +134,6 @@
                   <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool text-success" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
                 </div>
               </div>
               <div class="card-body">
@@ -160,9 +157,6 @@
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool text-success" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool text-success" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>

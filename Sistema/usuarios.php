@@ -70,6 +70,9 @@
                           <th>Tipo de Usuário</th>
                           <th>Nome</th>
                           <th>Login</th>
+                              <?php if ($_SESSION['idTipoUsuario'] == 3) { ?>
+                                  <th>Empresa</th>
+                              <?php } ?>
                           <th>Ativo</th>                
                           <th>Ações</th>
                       </tr>

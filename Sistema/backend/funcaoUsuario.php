@@ -3,7 +3,27 @@
 function listaUsuario(){
 
     include("conexao.php");
-    $sql = "SELECT * FROM usuario ORDER BY id_usuario;";
+    if (isset($_SESSION['idTipoUsuario']) && isset($_SESSION['idEmpresa'])) {
+        $idTipoUsuario = $_SESSION['idTipoUsuario'];
+        $idEmpresaUsuario = $_SESSION['idEmpresa'];
+
+        if ($idTipoUsuario == 3) {
+            // Dono vê todos usuários e suas empresas
+            $sql = "
+                SELECT u.*, e.nome AS nome_empresa 
+                FROM usuario u
+                LEFT JOIN empresa e ON u.fk_id_empresa = e.id_empresa
+                ORDER BY u.id_usuario;
+            ";
+        } elseif ($idTipoUsuario == 2 || $idTipoUsuario == 1) {
+            // Outros veem só usuários da própria empresa
+            $sql = "SELECT * FROM usuario WHERE fk_id_empresa = $idEmpresaUsuario ORDER BY id_usuario;";
+        } else {
+            return "Tipo de usuário inválido.";
+        }
+    } else {
+        return "Sessão não iniciada ou dados do usuário não definidos.";
+    }
             
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
@@ -33,14 +53,18 @@ function listaUsuario(){
             } 
             
             
-            //***Verificar os dados da consulta SQL
+            //***Verificar os dados da consulta SQL 
             $lista .= 
             '<tr>'
                 .'<td align="center">'.$coluna["id_usuario"].'</td>'
                 .'<td align="center">'.descrTipoUsuario($coluna["fk_id_tipo_usuario"]).'</td>'
                 .'<td>'.$coluna["nome"].'</td>'
-                .'<td>'.$coluna["email"].'</td>'
-                .'<td align="center">'.$icone.'</td>'
+                .'<td>'.$coluna["email"].'</td>';
+                if ($_SESSION['idTipoUsuario'] == 3) {
+                    $lista .= '<td>'.descrEmpresa($coluna["fk_id_empresa"]).'</td>';
+                }
+            $lista .= 
+                '<td align="center">'.$icone.'</td>'
                 .'<td>'
                     .'<div class="row" align="center">'
                         .'<div class="col-6">'
