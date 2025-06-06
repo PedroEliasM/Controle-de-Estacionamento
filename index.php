@@ -31,6 +31,19 @@
                 </div>
 
                 <input id="login-button" type="submit" value="Login">
+
+                <?php
+                    // Inicia a sessão se ainda não estiver iniciada, para acessar $_SESSION
+                    if (session_status() !== PHP_SESSION_ACTIVE) {
+                        session_start();
+                    }
+
+                    // Verifica se há uma mensagem de erro na sessão
+                    if (isset($_SESSION['msg_login'])) {
+                        echo '<p class="error-message">' . $_SESSION['msg_login'] . '</p>';
+                        unset($_SESSION['msg_login']); // Limpa a mensagem da sessão após exibir
+                    }
+                ?>
             </form>
 
         </div>
