@@ -140,12 +140,24 @@
                         </div>
                       </div>
                     
-                      <div class="col-12">
+                      <div class="col-8">
                         <div class="form-group">
                           <label for="iFoto">Foto:</label>
                           <input type="file" class="form-control" id="iFoto" name="nFoto" accept="image/*">
                         </div>
                       </div>
+
+                      <?php if ($_SESSION['idTipoUsuario'] == 3): ?>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="iEmpresa">Empresa:</label>
+                          <select id="iEmpresa" name="nEmpresa" class="form-control" required>
+                            <option value="">Selecione...</option>
+                            <?php echo optionEmpresa();?>
+                          </select>
+                        </div>
+                      </div>
+                      <?php endif; ?>
                     
                       <div class="col-12">
                         <div class="form-group">

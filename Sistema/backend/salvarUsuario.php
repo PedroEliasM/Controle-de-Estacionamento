@@ -15,6 +15,7 @@ $tipoUsuario    = $_POST["nTipoUsuario"] ?? '';
 $nome           = $_POST["nNome"] ?? '';
 $email          = $_POST["nEmail"] ?? '';
 $senha          = $_POST["nSenha"] ?? '';
+$empresa        = $_POST["nEmpresa"] ?? '';
 $funcao         = $_GET["funcao"] ?? '';
 $idUsuario      = isset($_GET["codigo"]) ? $_GET["codigo"] : null;
 $ativo          = isset($_POST["nAtivo"]) && $_POST["nAtivo"] == "on" ? "S" : "N";
@@ -47,10 +48,17 @@ if ($funcao == "I") {
     }
 
     // INSERT
+    if ($_SESSION['idTipoUsuario'] == 3) {
     $sql = "INSERT INTO usuario 
             (id_usuario, fk_id_tipo_usuario, nome, email, senha, foto, flg_ativo, fk_id_empresa) 
             VALUES 
-            ($idUsuario, $tipoUsuario, '$nome', '$email', md5('$senha'), '$foto', '$ativo', '$idEmpresa')";
+            ($idUsuario, $tipoUsuario, '$nome', '$email', md5('$senha'), '$foto', '$ativo', '$empresa')";
+    } else if ($_SESSION['idTipoUsuario'] == 1) {
+    $sql = "INSERT INTO usuario 
+        (id_usuario, fk_id_tipo_usuario, nome, email, senha, foto, flg_ativo, fk_id_empresa) 
+        VALUES 
+        ($idUsuario, $tipoUsuario, '$nome', '$email', md5('$senha'), '$foto', '$ativo', '$idEmpresa')";
+    }
 
 } elseif ($funcao == "A") {
 

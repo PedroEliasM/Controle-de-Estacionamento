@@ -10,6 +10,7 @@ function montaMenu($n1,$n2){
     $menuRelatorio      = '';
     $acaoRelatorio      = '';
 
+    $opcPainel          = '';
     $opcVagas           = '';
     $opcRelatVagas      = '';
     $opcPerfil          = '';
@@ -21,10 +22,10 @@ function montaMenu($n1,$n2){
             $acaoFuncionario = 'active';
             break;
 
-        case 'relatorio':
-            $menuRelatorio = 'menu-open';
-            $acaoRelatorio = 'active';
-            break;
+            case 'relatorio':
+                $menuRelatorio = 'menu-open';
+                $acaoRelatorio = 'active';
+                break;
     
         default:
             # code...
@@ -33,6 +34,10 @@ function montaMenu($n1,$n2){
 
     //Segundo nível do menu
     switch ($n2) {
+        case 'painel':
+            $opcPainel = 'active';
+            break;
+
         case 'vagas':
             $opcVagas = 'active';
             break;   
@@ -64,6 +69,12 @@ function montaMenu($n1,$n2){
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="./painel.php" class="nav-link '.$opcPainel.'">
+                        <i class="ion ion-pie-graph nav-icon"></i>
+                        <p>Dados diários</p>    
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="./vagas.php" class="nav-link '.$opcVagas.'">
                         <i class="fas fa-car nav-icon"></i>
