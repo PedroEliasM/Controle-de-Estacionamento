@@ -15,7 +15,6 @@ function montaMenu($n1,$n2){
     $opcUsuarios        = '';
     $opcVagas           = '';
     $opcEmpresas        = '';
-    $opcRelatVagas      = '';
     $opcRelatMov      = '';
     $opcPerfil          = '';
     
@@ -54,9 +53,7 @@ function montaMenu($n1,$n2){
             $opcVagas = 'active';
             break;   
 
-        case 'relatorio-vagas':
-            $opcRelatVagas = 'active';
-            break;   
+          
         
         case 'relatorio-movimentacao':
             $opcRelatMov = 'active';
@@ -132,14 +129,6 @@ function montaMenu($n1,$n2){
                     </p>
                 </a>
 
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="./relatorio-vagas.php" class="nav-link '.$opcRelatVagas.'">
-                        <i class="fas fa-file-alt nav-icon"></i>
-                        <p>Vagas</p>
-                        </a>
-                    </li>              
-                </ul>
 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">

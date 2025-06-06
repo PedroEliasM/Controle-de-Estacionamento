@@ -6,42 +6,41 @@
     include('funcoes.php');
 
     //Filtros de tela
-    $descricao   = $_POST["nDescricao"];
-    $idEmpresa = $_POST["nEmpresa"];
-    $situacao = $_POST["nSituacao"];
+    $movimentacao   = $_POST["nMovimentacao"];
+    $maxima = $_POST["hMax"];
+    $minima = $_POST["hMin"];
 
     //Campos para WHERE
     $whereDescricao   = '';
     $whereIdEmpresa = '';
     
     //Sessões para retorno
-    $_SESSION['relatVagas']      = '';
+    $_SESSION['relatMovi']      = '';
     $_SESSION['relatVagasDescr'] = '';
     $_SESSION['relatVagasIdEmpr'] = '';
    
     //Validar filtros
-    if($descricao != '') {
-        $whereDescricao = " AND vg.descricao LIKE '%".$descricao."%' ";
+    if($movimentacao != '') {
+        $whereMovimentacao = " AND mv.tipo LIKE '%".$movimentacao."%' ";
     }
 
-    if($idEmpresa != '0') {
-        $whereIdEmpresa = " AND vg.fk_id_empresa = ".$idEmpresa;
+    if($minima != '') {
+        $whereMinima = " AND mv.tipo LIKE .$minima. ";
     }
-    
+     
     include("conexao.php");
 
     $sql = "SELECT vg.id_vaga, "
             ." vg.descricao AS Descrição, "
-            ." em.nome AS Nome, "
-            ." em.id_empresa AS IdEmpresa, "
-            ." vg.situacao AS situacao, "
-            ." vg.fk_id_empresa "
-        ." FROM vaga vg "
-        ." INNER JOIN empresa em "
-        ." ON em.id_empresa = vg.fk_id_empresa " 
+            ." mv.tipo AS Tipo, "
+            ." mv.data AS Data, "
+            ." vg.id_vaga "
+        ." FROM movimentacao mv"
+        ." INNER JOIN vaga vg "
+        ." ON vg.id_vaga = mv.fk_id_vaga " 
         ." WHERE 1 = 1 "
-        .$whereDescricao
-        .$whereIdEmpresa
+
+        .$whereMovimentacao
         .";";
             
     $result = mysqli_query($conn,$sql);
@@ -59,15 +58,15 @@
             '<tr>'
                 .'<td>'.$coluna["id_vaga"].'</td>'
                 .'<td>'.$coluna["Descrição"].'</td>'
-                .'<td>'.$coluna["Nome"].'</td>'
-                .'<td>'.$coluna["situacao"].'</td>'
+                .'<td>'.$coluna["Tipo"].'</td>'
+                .'<td>'.$coluna["Data"].'</td>'
             .'</tr>';                       
         }    
     }
     
-    $_SESSION['relatVagas']      = $lista;
+    $_SESSION['relatMovi']      = $lista;
     $_SESSION['relatVagasDescr'] = $descricao;
     $_SESSION['relatVagasIdEmpr'] = $idEmpresa;
 
-    header("location: ../relatorio-vagas.php"); 
+    header("location: ../relatorio-movimentacao.php"); 
 ?>
