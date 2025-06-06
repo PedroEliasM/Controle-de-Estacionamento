@@ -111,17 +111,7 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <label for="editEmpresa'.$vaga_id.'">Empresa:</label>
-                                                <select name="nEmpresa" id="editEmpresa'.$vaga_id.'" class="form-control" required>
-                                                    <option value="'.$id_empresa.'">'.$empresa_nome.'</option>';
-                                                    // optionEmpresa() já gera todas as outras opções, mantendo a função original
-                                $lista .=              optionEmpresa();
-                                $lista .= '
-                                                </select>
-                                            </div>
-                                        </div>
+                                        '. botaoEditarVaga($vaga_id, $id_empresa, $empresa_nome) .'
                                         
                                         <div class="col-8">
                                             <div class="form-group">
@@ -1034,14 +1024,36 @@
         return $botao_vaga;
     }
 
+    function botaoEditarVaga($vaga_id, $id_empresa, $empresa_nome){
+        $botao_editar = "";
+        if ($_SESSION['idTipoUsuario'] == 3) {
+            $botao_editar = "
+                <div class=\"col-4\">
+                    <div class=\"form-group\">
+                        <label for=\"editEmpresa{$vaga_id}\">Empresa:</label>
+                        <select name=\"nEmpresa\" id=\"editEmpresa{$vaga_id}\" class=\"form-control\" required>
+                            <option value=\"{$id_empresa}\">{$empresa_nome}</option>';
+                            // optionEmpresa() já gera todas as outras opções, mantendo a função original
+        $botao_editar .=              optionEmpresa();
+        $botao_editar .= '
+                        </select>
+                    </div>
+                </div>
+            ";
+        } else {
+            $botao_editar = "";
+        }
+            return $botao_editar;
+    }
+
     function renderizarNovaVagaModal() {
         $nova_modal = "";
     
         if ($_SESSION['idTipoUsuario'] == 2) {
             // Funcionário
             $nova_modal = "";
-        } else {
-            // Dono e Admin
+        } else if ($_SESSION['idTipoUsuario'] == 3) {
+            // Dono
             // É importante que a função optionEmpresa() esteja disponível (incluída)
             // onde renderizarNovaVagaModal() é definida, ou que ela seja incluída aqui.
     
@@ -1090,6 +1102,67 @@
                                     </div>
                                 </div>
     
+                                <div class=\"col-12\">
+                                    <div class=\"form-group\">
+                                    <input type=\"checkbox\" id=\"iAtivo\" name=\"nAtivo\">
+                                    <label for=\"iAtivo\">Vaga Ativa</label>
+                                    </div>
+                                </div>
+    
+                                </div>
+    
+                                <div class=\"modal-footer\">
+                                <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Fechar</button>
+                                <button type=\"submit\" class=\"btn btn-success\">Salvar</button>
+                                </div>
+    
+                            </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                ";
+        } else if ($_SESSION['idTipoUsuario'] == 1) {
+            // Admin
+            // É importante que a função optionEmpresa() esteja disponível (incluída)
+            // onde renderizarNovaVagaModal() é definida, ou que ela seja incluída aqui.
+    
+            // Se 'optionEmpresa()' está em 'funcoes.php', e 'funcoes.php' já foi incluído
+            // no arquivo principal (como você tem `include('backend/funcoes.php');`),
+            // então ela já está disponível.
+            $options_empresas = optionEmpresa(); // Chama a função e guarda o resultado
+    
+            $nova_modal = "
+                    <div class=\"modal fade\" id=\"novaVagaModal\">
+                        <div class=\"modal-dialog\">
+                        <div class=\"modal-content\">
+                            <div class=\"modal-header bg-success\">
+                            <h4 class=\"modal-title\">Nova Vaga</h4>
+                            <button type=\"button\" class=\"close text-white\" data-dismiss=\"modal\" aria-label=\"Close\">
+                                <span aria-hidden=\"true\">&times;</span>
+                            </button>
+                            </div>
+                            <div class=\"modal-body\">
+                            <form method=\"POST\" action=\"backend/salvarVaga.php?funcao=I\" enctype=\"multipart/form-data\">
+                                <div class=\"row\">
+                                <div class=\"col-12\">
+                                    <div class=\"form-group\">
+                                    <label for=\"iDescricao\">Descrição:</label>
+                                    <input type=\"text\" class=\"form-control\" id=\"iDescricao\" name=\"nDescricao\" maxlength=\"7\" required>
+                                    </div>
+                                </div>
+    
+                                <div class=\"col-12\">
+                                    <div class=\"form-group\">
+                                    <label for=\"iSituacao\">Situação:</label>
+                                    <select name=\"nSituacao\" id=\"iSituacao\" class=\"form-control\" required>
+                                        <option value=\"\">Selecione...</option>
+                                        <option value=\"L\">Livre</option>
+                                        <option value=\"O\">Ocupada</option>
+                                    </select>
+                                    </div>
+                                </div>
+
                                 <div class=\"col-12\">
                                     <div class=\"form-group\">
                                     <input type=\"checkbox\" id=\"iAtivo\" name=\"nAtivo\">

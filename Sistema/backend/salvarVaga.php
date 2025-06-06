@@ -25,11 +25,17 @@
         //Busca o próximo ID na tabela
         $idVaga = proxIdVaga();
 
-        // INSERT usando Prepared Statements para segurança contra SQL Injection
-        $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa) VALUES (?, ?, ?, ?, ?);";
-        $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "issii", $idVaga, $descricao, $situacao, $ativo, $idEmpresa);
-
+        if ($_SESSION['idTipoUsuario'] == 3) {
+            // INSERT usando Prepared Statements para segurança contra SQL Injection
+            $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa) VALUES (?, ?, ?, ?, ?);";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "issii", $idVaga, $descricao, $situacao, $ativo, $idEmpresa);
+        } else if ($_SESSION['idTipoUsuario'] == 1) {
+            // INSERT usando Prepared Statements para segurança contra SQL Injection
+            $sql = "INSERT INTO vaga (id_vaga, descricao, situacao, flg_ativo, fk_id_empresa) VALUES (?, ?, ?, ?, ?);";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "issii", $idVaga, $descricao, $situacao, $ativo, $_SESSION['idEmpresa']);
+        }
         if (mysqli_stmt_execute($stmt)) {
             $_SESSION['msg'] = '<p class="text-success">Vaga cadastrada com sucesso!</p>';
         } else {
