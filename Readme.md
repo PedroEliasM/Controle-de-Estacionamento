@@ -2,7 +2,9 @@
 
 Sistema para controle de vagas de um estacionamento.
 
-*** O que irá encontrar? ***
+---
+
+### O que irá encontrar?
 
 * Dashboards para controle de dados diários e totais de Vagas e Movimentações.
 * CRUDs para Empresas, Usuários, Vagas.
