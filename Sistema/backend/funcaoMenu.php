@@ -16,6 +16,7 @@ function montaMenu($n1,$n2){
     $opcVagas         = '';
     $opcEmpresas      = '';
     $opcRelatVagas      = '';
+    $opcRelatMov      = '';
     $opcPerfil        = '';
     
     //Primeiro nível do menu

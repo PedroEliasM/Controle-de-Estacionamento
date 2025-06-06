@@ -56,45 +56,36 @@
 
               <!-- /.card-header -->
               <div class="modal-body">
-                <form method="POST" action="backend/relatorioVagas.php" enctype="multipart/form-data">              
+                <form method="POST" action="backend/relatorioMovimentacao.php" enctype="multipart/form-data">              
                   
                   <div class="row">
-                    <div class="col-5">
+                    <div class="col-4">
                       <div class="form-group">
-                        <label for="iDescricao">Descrição:</label>
-                        <input type="text" class="form-control" id="iDescricao" name="nDescricao" maxlength="7" value="<?php //echo $_SESSION['relatVagasDescr'];?>">
-                      </div>
-                    </div>
-                  
-            
-                    
-                    <div class="col-3">
-                      <div class="form-group">
-                        <label for="iEmpresa">Empresa:</label>
-                        <select name="nEmpresa" id="iEmpresa" class="form-control">
-                          <?php if($_SESSION['relatVagasEmpr'] != '0' && $_SESSION['relatVagasEmpr'] != ''){ ?>
-                            <option value="<?php echo $_SESSION['relatVagasEmpr']; ?>"><?php echo descrEmpresa($_SESSION['relatVagasEmpr']); ?></option>
-                          <?php } ?>
-                          <option value="0">Todas</option>
-                          <?php echo optionEmpresa();?>
+                        <label for="iMovimentacao">Tipo de Movimentação:</label>
+                        <select name= "nMovimentacao" id="iMovimentacao" class="form-control">
+                          <option value="T">Todas</option>    
+                          <option value="E">Entrada</option>
+                          <option value="S">Saída</option>
                         </select>
                       </div>
                     </div>
-
-                    <!--<div class="col-2">
+                  
+                    <div class="row">
+                    <div class="col-5">
                       <div class="form-group">
-                        <label for="iQtdMin">Qtd. Mínima:</label>
-                        <input type="number" class="form-control" id="iQtdMin" name="nQtdMin" min="0" value="<?php// echo $_SESSION['relatVagasMin'];?>">
+                        <label for="hMin">Data Mínima</label>
+                        <input type="datetime-local" id="hMin" name="hMin">
                       </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="row">
+                    <div class="col-5">
                       <div class="form-group">
-                        <label for="iQtdMax">Qtd. Máxima:</label>
-                        <input type="number" class="form-control" id="iQtdMax" name="nQtdMax" min="0" value="<?php //echo $_SESSION['relatVagasMax'];?>">
+                        <label for="hMax">Data Máxima</label>
+                        <input type="datetime-local" id="hMax" name="hMax">
                       </div>
-                    </div>-->
-
+                    </div>
+                    
                   </div>
 
                   <div align="right">
@@ -121,13 +112,13 @@
                   <tr>
                       <th>ID</th>
                       <th>Descrição</th>
-                      <th>Empresa</th>    
-                      <th>Situação</th>    
+                      <th>Movimentação</th>
+                      <th>Data e Hora</th>       
                   </tr>
                   </thead>
                   <tbody>
 
-                  <?php echo $_SESSION['relatVagas']; ?>
+                  <?php echo $_SESSION['relatMovi']; ?>
                   
                   </tbody>
                   
