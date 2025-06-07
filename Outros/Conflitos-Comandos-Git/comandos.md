@@ -1,6 +1,4 @@
-Aprendendo a usar Git/GitHub
-
-https://github.com/PedroEliasM/ProjetoGit.git
+Comandos Git
 
 
 *** Conectando/Criando um Repositório ***
