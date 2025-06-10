@@ -8,10 +8,13 @@ driver = webdriver.Chrome()
 
 # Acessa a página de cadastro usando o caminho absoluto com o protocolo file://
 # Certifique-se de que o caminho está apontando para um arquivo HTML específico
-driver.get("http://localhost/estacionamento/Sistema/vagas.php")
+driver.get("http://localhost:8080/estacionamento/Sistema/vagas.php")
 
 # Localiza o botão pelo ID e clica nele
-register_button = driver.find_element(By.ID, "novaVagaButton")
+# Aguarda até que o botão esteja visível
+register_button = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.ID, "novaVagaButton"))
+)
 register_button.click()
 
 time.sleep(1)
@@ -41,8 +44,11 @@ if not checkbox_element.is_selected():
 time.sleep(2)
 
 # Clica no botão de Cadastrar
-submit_button = driver.find_element(By.ID, "criarVagaNova")
-submit_button.click()
+save_button = driver.find_element(By.ID, "criarVagaNova")
+save_button.click()
+
+# Aguarda um momento para visualizar o resultado
+time.sleep(2)
 
 # Fecha o navegador
 driver.quit()
