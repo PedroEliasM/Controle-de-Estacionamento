@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 import time
 
 # Configuração do WebDriver (nesse exemplo, estamos usando o Chrome)
@@ -13,27 +14,34 @@ driver.get("http://localhost/estacionamento/Sistema/vagas.php")
 register_button = driver.find_element(By.ID, "novaVagaButton")
 register_button.click()
 
-# Preenche o campo Nome
-nome_input = driver.find_element(By.ID, "name")
-nome_input.send_keys("João da Silva")
+time.sleep(1)
 
-# Preenche o campo CPF
-cpf_input = driver.find_element(By.ID, "cpf")
-cpf_input.send_keys("12345678912")
+# Preenche o campo Descriçaõ da Vaga
+descricao_input = driver.find_element(By.ID, "iDescricao")
+descricao_input.send_keys("Vaga10")
 
-# Preenche o campo Endereço
-endereco_input = driver.find_element(By.ID, "address")
-endereco_input.send_keys("Rua das Flores, 123")
+# Localiza o elemento <select> pelo ID
+select_situacao = driver.find_element(By.ID, "iSituacao")
+# Cria um objeto Select para manipular o <select>
+select = Select(select_situacao)
+# Seleciona a opção pelo valor
+select.select_by_value("L")
 
-# Preenche o campo Telefone
-telefone_input = driver.find_element(By.ID, "phone")
-telefone_input.send_keys("11987654321")
+select_empresa = driver.find_element(By.ID, "iEmpresa")
+select2 = Select(select_empresa)
+select2.select_by_value("1")
 
-# Aguarda um momento para visualizar o resultado (em uma aplicação real, você verificaria a resposta)
-time.sleep(10)
+# Localiza o checkbox pelo ID
+checkbox_element = driver.find_element(By.ID, "iAtivo")
+# Marca o checkbox (se ainda não estiver marcado)
+if not checkbox_element.is_selected():
+    checkbox_element.click()
+
+# Aguarda um momento para visualizar o resultado
+time.sleep(2)
 
 # Clica no botão de Cadastrar
-submit_button = driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+submit_button = driver.find_element(By.ID, "criarVagaNova")
 submit_button.click()
 
 # Fecha o navegador

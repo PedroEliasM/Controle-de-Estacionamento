@@ -1087,7 +1087,7 @@
     
                                 <div class=\"modal-footer\">
                                 <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Fechar</button>
-                                <button type=\"submit\" class=\"btn btn-success\">Salvar</button>
+                                <button id=\"criarVagaNova\" type=\"submit\" class=\"btn btn-success\">Salvar</button>
                                 </div>
     
                             </form>
