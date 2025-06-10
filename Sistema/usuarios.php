@@ -52,7 +52,7 @@
                       </div>
                       
                       <div class="col-3" align="right">
-                        <button type="button" class="btn btn-success new-user-but" data-toggle="modal" data-target="#novoUsuarioModal">
+                        <button id="CriarNovoUsuario" type="button" class="btn btn-success new-user-but" data-toggle="modal" data-target="#novoUsuarioModal">
                           Novo Usuário
                         </button>
                       </div>
@@ -170,7 +170,7 @@
 
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                      <button type="submit" class="btn btn-success">Salvar</button>
+                      <button id="SalvarCriarUsuario" type="submit" class="btn btn-success">Salvar</button>
                     </div>
                     
                   </form>
