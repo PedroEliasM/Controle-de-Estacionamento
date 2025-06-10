@@ -17,7 +17,7 @@ password_input = driver.find_element(By.ID, "iSenha")
 password_input.send_keys("123")  # Substitua pela senha correta
 
 # Clica no botão de login
-login_button = driver.find_element(By.ID, "loginButton")
+login_button = driver.find_element(By.ID, "login-button")
 login_button.click()
 
 # Aguarda o redirecionamento para a página de vagas
@@ -29,11 +29,11 @@ driver.get("http://localhost:8080/estacionamento/Sistema/vagas.php")
 register_button = driver.find_element(By.ID, "novaVagaButton")
 register_button.click()
 
-time.sleep(1)
+time.sleep(2)
 
 # Preenche o campo Descriçaõ da Vaga
 descricao_input = driver.find_element(By.ID, "iDescricao")
-descricao_input.send_keys("Vaga10")
+descricao_input.send_keys("Vaga100")
 
 # Localiza o elemento <select> pelo ID
 select_situacao = driver.find_element(By.ID, "iSituacao")
@@ -60,7 +60,7 @@ save_button = driver.find_element(By.ID, "criarVagaNova")
 save_button.click()
 
 # Aguarda um momento para visualizar o resultado
-time.sleep(2)
+time.sleep(5)
 
 # Fecha o navegador
 driver.quit()
