@@ -990,7 +990,7 @@
         } else {
             // Dono e Admin
             $botao_vaga = "
-                <button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#novaVagaModal\">
+                <button id=\"novaVagaButton\" type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#novaVagaModal\">
                     Nova Vaga
                 </button>
             ";

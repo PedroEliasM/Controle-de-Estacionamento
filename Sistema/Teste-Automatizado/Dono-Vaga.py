@@ -9,6 +9,9 @@ driver = webdriver.Chrome()
 # Certifique-se de que o caminho está apontando para um arquivo HTML específico
 driver.get("http://localhost/estacionamento/Sistema/vagas.php")
 
+# Localiza o botão pelo ID e clica nele
+register_button = driver.find_element(By.ID, "novaVagaButton")
+register_button.click()
 
 # Preenche o campo Nome
 nome_input = driver.find_element(By.ID, "name")
