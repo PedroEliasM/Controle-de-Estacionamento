@@ -7,7 +7,7 @@ driver = webdriver.Chrome()
 
 # Acessa a página de cadastro usando o caminho absoluto com o protocolo file://
 # Certifique-se de que o caminho está apontando para um arquivo HTML específico
-driver.get("file:///C:/Users/pedro_e_possamai/Desktop/Teste_Automatizado/index.html")
+driver.get("http://localhost/estacionamento/Sistema/vagas.php")
 
 
 # Preenche o campo Nome
