@@ -6,15 +6,27 @@ import time
 # Configuração do WebDriver (nesse exemplo, estamos usando o Chrome)
 driver = webdriver.Chrome()
 
-# Acessa a página de cadastro usando o caminho absoluto com o protocolo file://
-# Certifique-se de que o caminho está apontando para um arquivo HTML específico
+# Acessa a página de login
+driver.get("http://localhost:8080/estacionamento/index.php")
+
+# Preenche o formulário de login
+username_input = driver.find_element(By.ID, "username")
+username_input.send_keys("admin")  # Substitua pelo nome de usuário correto
+
+password_input = driver.find_element(By.ID, "password")
+password_input.send_keys("123456")  # Substitua pela senha correta
+
+# Clica no botão de login
+login_button = driver.find_element(By.ID, "loginButton")
+login_button.click()
+
+# Aguarda o redirecionamento para a página de vagas
+time.sleep(2)
+
 driver.get("http://localhost:8080/estacionamento/Sistema/vagas.php")
 
 # Localiza o botão pelo ID e clica nele
-# Aguarda até que o botão esteja visível
-register_button = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.ID, "novaVagaButton"))
-)
+register_button = driver.find_element(By.ID, "novaVagaButton")
 register_button.click()
 
 time.sleep(1)
