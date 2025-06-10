@@ -10,11 +10,11 @@ driver = webdriver.Chrome()
 driver.get("http://localhost:8080/estacionamento/index.php")
 
 # Preenche o formulário de login
-username_input = driver.find_element(By.ID, "username")
-username_input.send_keys("admin")  # Substitua pelo nome de usuário correto
+username_input = driver.find_element(By.ID, "iEmail")
+username_input.send_keys("parkway@gmail.com")  # Substitua pelo nome de usuário correto
 
-password_input = driver.find_element(By.ID, "password")
-password_input.send_keys("123456")  # Substitua pela senha correta
+password_input = driver.find_element(By.ID, "iSenha")
+password_input.send_keys("123")  # Substitua pela senha correta
 
 # Clica no botão de login
 login_button = driver.find_element(By.ID, "loginButton")
