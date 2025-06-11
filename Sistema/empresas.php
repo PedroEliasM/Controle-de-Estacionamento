@@ -52,7 +52,7 @@
                   </div>
                   
                   <div class="col-3" align="right">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#novaEmpresaModal">
+                    <button id="novaEmpresaBotao" type="button" class="btn btn-success" data-toggle="modal" data-target="#novaEmpresaModal">
                       Nova Empresa
                     </button>
                   </div>
